@@ -1,0 +1,131 @@
+﻿<div>
+    <div class="header" ng-class="{ 'header-success': userOrder.isPurchased }">
+        <h1>
+            {{userOrder.user.name}}
+            <span class="pull-right">
+                {{orderedBoxes.ordersSum | currency}}
+            </span>
+        </h1>
+    </div>
+    <div class="content">
+        <div class="users-orders">
+            <div style="max-height: 540px; height: 540px; overflow-y: auto">
+                <table ng-repeat="box in orderedBoxes.boxes | orderBy: 'index'" class="box table table-striped-light">
+                    <thead ng-if="box.index > 0">
+                        <tr>
+                            <td colspan="2">
+                                <span class="label label-default">
+                                    Бокс <b>#{{box.index}}</b>
+                                </span>
+
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="order in box.orders | orderBy: 'course.name'">
+                            <td class="full-width" style="font-size:  24px;">
+                                {{order.course.name}}
+                            </td>
+                            <td class="count width-75 text-center">
+                                {{order.quantity}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="sales-buttons">
+                <button type="button" class="btn btn-xlg btn-default" ng-class="{ 'sales-button-single': isActivatedByIdentityCard }" ng-click="close()" ng-disabled="state.isUpdating">
+                    Закрыть
+                </button>
+
+                <button type="button" class="btn btn-xlg btn-success ladda-button"
+                        ng-hide="userOrder.isPurchased || isActivatedByIdentityCard"
+                        data-style="zoom-in"
+                        ng-click="purchaseOrder()"
+                        ng-disabled="state.isRemoving"
+                        is-loading="state.isUpdating"
+                        data-spinner-size="24">
+                    Получил заказ
+                </button>
+
+                <button type="button" class="btn btn-xlg btn-warning ladda-button"
+                        ng-show="userOrder.isPurchased && !isActivatedByIdentityCard"
+                        data-style="zoom-in"
+                        ng-click="undoPurchaseOrder()"
+                        ng-disabled="state.isRemoving"
+                        is-loading="state.isUpdating"
+                        data-spinner-size="24">
+                    Отменить заказ
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div class="modal-header">
+    <h3 class="modal-title">
+        {{userOrder.user.name}}
+        <span class="pull-right">
+            {{orderedBoxes.ordersSum | currency}}
+        </span>
+    </h3>
+</div>
+
+<div class="modal-body" style="max-height: 500px; overflow-y: auto">
+    <table ng-repeat="box in orderedBoxes.boxes | orderBy: 'index'" class="box table table-striped table-hover">
+        <thead ng-if="box.index > 0">
+            <tr>
+                <td colspan="2">
+                    <span class="label label-default">
+                        Бокс <b>#{{box.index}}</b>    
+                    </span>
+                    
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="order in box.orders | orderBy: 'course.name'">
+                <td class="full-width" style="font-size:  24px;">
+                    {{order.course.name}}
+                </td>
+                <td class="count width-75 text-center">
+                    {{order.quantity}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="modal-footer text-center">
+    <button type="button" class="btn btn-lg btn-danger ladda-button pull-left"
+            data-style="zoom-in"
+            ng-click="removeOrder()"
+            is-loading="state.isRemoving"
+            ng-disabled="state.isUpdating"
+            data-spinner-size="24">
+        Удалить
+    </button>        
+
+    <button type="button" class="btn btn-lg btn-default" ng-click="closeDialog()" ng-disabled="state.isUpdating || state.isRemoving">Отмена</button>
+
+    <button type="button" class="btn btn-lg btn-success ladda-button"
+            ng-hide="userOrder.isPurchased"
+            data-style="zoom-in"
+            ng-click="purchaseOrder()"
+            ng-disabled="state.isRemoving"
+            is-loading="state.isUpdating"
+            data-spinner-size="24">
+        Получил заказ
+    </button>
+
+    <button type="button" class="btn btn-lg btn-warning ladda-button"
+            ng-show="userOrder.isPurchased"
+            data-style="zoom-in"
+            ng-click="undoPurchaseOrder()"
+            ng-disabled="state.isRemoving"
+            is-loading="state.isUpdating"
+            data-spinner-size="24">
+        Отменить заказ
+    </button>
+</div>*@

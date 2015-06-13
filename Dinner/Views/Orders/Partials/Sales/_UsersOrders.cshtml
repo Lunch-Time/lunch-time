@@ -1,0 +1,65 @@
+﻿<div class="block-flat" ng-switch on="viewState">
+
+    <div ng-switch-when="user-order">
+        <lt:admin-sales-user-order active-user-order="activeUserOrder"
+                                   on-purchase-order="purchaseOrder(userOrder)"
+                                   on-undo-purchase-order="undoPurchaseOrder(userOrder)"
+                                   on-close="closeActiveUserOrder()">
+
+        </lt:admin-sales-user-order>
+    </div>
+    <div ng-switch-when="users-orders">
+        <div class="header">
+            <h3>
+                Список заказов на {{ date | date:'dd MMMM yyyy' }}
+                <span class="pull-right" style="font-size: smaller">
+                    {{salesStats.totalOrders - salesStats.ordersPurchased}}
+                    /
+                    {{salesStats.totalOrders}}
+                </span>
+            </h3>
+        </div>
+        <div class="content">
+            <div class="users-orders">
+                <table class="table table-striped-light">
+                    <colgroup>
+                        <col class="full-width" />
+                        <col />
+                    </colgroup>
+                    <tbody>
+                        <tr ng-repeat="userOrder in notPurchasedUsersOrders | orderBy: 'user.name'" ng-click="viewUserOrder(userOrder)">
+                            <td style="vertical-align: middle">
+                                <h4>{{userOrder.user.name}}</h4>
+                            </td>
+                            <td style="vertical-align: middle">
+                                <button class="btn btn-lg btn-default">Выдать заказ</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table class="table table-striped-light" ng-show="purchasedUsersOrders.length > 0">
+                    <thead>
+                        <tr>
+                            <th class="full-width">
+                                Выданые заказы ({{purchasedUsersOrders.length}})
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="userOrder in purchasedUsersOrders | orderBy: 'user.name'" ng-click="viewUserOrder(userOrder)" class="purchased" style="color: #fff">
+                            <td style="vertical-align: middle">
+                                <h4>{{userOrder.user.name}}</h4>
+                            </td>
+                            <td style="vertical-align: middle">
+                                <button class="btn btn-lg btn-default">Вернуть заказ</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

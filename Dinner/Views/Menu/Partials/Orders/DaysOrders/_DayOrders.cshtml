@@ -1,0 +1,40 @@
+﻿<div class="orders-day" ng-class="{ 'archive-order': state.isArchived, 'current-day': state.isCurrentDate }">
+    <h3>
+        <span class="day-name">{{dayOrders.date | date:'EEEE'}}</span>
+
+        <span ng-show="state.hasOrders" class="total-price">
+            {{orderedBoxes.ordersSum | currency}}
+        </span>
+        <span ng-show="!state.hasOrders && !dayOrders.isFreezed" class="no-orders">Вы ещё ничего не заказали</span>
+        <span ng-show="!state.hasOrders && dayOrders.isFreezed" class="frozen-order">Заказ обедов заморожен</span>
+
+        <span class="order-date">
+            {{dayOrders.date | date:'dd MMMM yyyy'}}
+        </span>
+    </h3>
+
+    <div>
+        <div ng-repeat="orderedBox in orderedBoxes.boxes">
+
+            <div ng-show="orderedBox.index > 0">
+                Бокс #{{orderedBox.index}}
+            </div>
+
+@*
+            <div class="order-items">                
+                <div ng-repeat="order in orderedBox.orders">
+                    <lt:user-orders-day-order order="order" is-freezed="dayOrders.isFreezed"></lt:user-orders-day-order>
+                </div>
+            </div>*@
+            <table class="table menu-table table-striped">
+                <tbody>
+                    <tr ng-repeat="order in orderedBox.orders"
+                        lt-user-orders-day-order
+                        order="order" is-freezed="dayOrders.isFreezed">                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

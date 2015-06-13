@@ -1,0 +1,49 @@
+﻿<div>
+    <h3 class="page-title">
+        <i class="glyphicon glyphicon-list-alt"></i>
+        Меню на {{  date | date:'dd MMMM yyyy' }}
+    </h3>
+
+    <div ng-repeat="categoryMenu in categoriesMenu">
+        <lt:menu-category-title category="categoryMenu.category"></lt:menu-category-title>
+
+        <table class="table menu-table table-striped">
+            <thead>
+                <tr>
+                    <td></td>
+                    <td class="full-width"></td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="course in categoryMenu.courses">
+                    <td>
+                        <a href="javascript:void(0)" class="btn btn-circle">
+                            <img style="cursor: pointer;" class="img-circle course-category-icon"
+                                 ng-src="{{courseImage.thumbnailUrl}}"
+                                 src-big="{{courseImage.url}}" />
+                        </a>
+                    </td>
+
+                    <td>
+                        <div>
+                            <span style="font-size: larger;">
+                                {{course.name}}
+                            </span>
+                        </div>
+                        <div class="visible-sm visible-md visible-lg">
+                            <small class="text-muted">
+                                <span ng-if="course.weight">{{course.weight | weight}}, </span>
+                                <span ng-if="course.description">{{course.description}}</span>
+                            </small>
+                        </div>
+                    </td>
+
+                    <td class="nowrap">
+                        {{course.price | currency}}
+                    </td>                 
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

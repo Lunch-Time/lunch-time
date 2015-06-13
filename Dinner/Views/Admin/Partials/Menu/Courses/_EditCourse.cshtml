@@ -1,0 +1,68 @@
+﻿<div class="modal-header">
+    <button type="button" class="close" ng-click="closeDialog()" aria-hidden="true">&times;</button>
+    <h4 class="modal-title">{{dialog.title}}</h4>
+</div>
+<div class="modal-body">
+    <form name="editCourseForm" novalidate class="form-horizontal" role="form">
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+                <div class="row">
+                    <div class="col-sm-3 text-center" style="padding-top: 40px;">
+                        <a href="javascript:void(0)" file-upload auto-upload="true" max-file-size="10mb" mime-type="image" on-file-uploaded="imageUploaded(files, response)" upload-url="{{uploadImageUrl}}" ng-disabled="state.isSavingChanges">
+                            <img class="img-rounded" alt="140x140" style="width: 140px; height: 140px;" ng-src="{{courseImage.url}}">
+                            <small>Загрузить изображение</small>
+                        </a>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="form-group">
+                            <label for="name" class="col-sm-4 control-label">Наименование*</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="name" ng-model="course.name" required placeholder="Наименование блюда" class="form-control"
+                                       ng-class="{ 'input-validation-error': editCourseForm.name.$invalid && editCourseForm.name.$dirty }"
+                                       ng-disabled="state.isSavingChanges" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="price" class="col-sm-4 control-label">Цена*</label>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <input type="number" name="price" ng-model="course.price" required min="1" placeholder="Цена" class="form-control"
+                                           ng-class="{ 'input-validation-error': editCourseForm.price.$invalid && editCourseForm.price.$dirty }"
+                                           ng-disabled="state.isSavingChanges" />
+                                    <span class="input-group-addon">руб</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="weight" class="col-sm-4 control-label">Вес</label>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <input type="text" name="weight" ng-model="course.weight" placeholder="Вес" class="form-control"
+                                        ng-disabled="state.isSavingChanges" />
+                                    <span class="input-group-addon">гр&nbsp;</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="description" class="col-sm-4 control-label">Описание</label>
+                            <div class="col-sm-8">
+                                <textarea name="description" ng-model="course.description" placeholder="Описание блюда" rows="3" class="form-control" ng-disabled="state.isSavingChanges"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="closeDialog()" ng-disabled="state.isSavingChanges">Отмена</button>
+    <button type="button" class="btn btn-success ladda-button"
+            data-style="zoom-in"
+            ng-click="saveChanges()"
+            is-loading="state.isSavingChanges"
+            ng-disabled="editCourseForm.$invalid || editCourseForm.$pristine"
+            data-spinner-size="24">
+        Сохранить
+    </button>
+</div>

@@ -1,0 +1,127 @@
+﻿@using Dinner.Helpers
+@model Dinner.Models.MenuFormationModel
+@{
+    ViewBag.Title = "Формирование меню";
+    Layout = "~/Views/Shared/_LayoutWithMenu.cshtml";
+    ViewBag.Date = Model.Date;
+    
+    var UseMinifiedScripts = ApplicationEnvironment.IsRelease;
+}
+
+@section header
+{
+    
+}
+
+@section scripts
+{
+    <!--[if IE 9]>
+        <meta http-equiv="X-UA-Compatible" content="IE=8" />
+    <![endif]-->
+    <!--[if lt IE 9]>
+        <script src="@Url.CachedContent("~/Scripts/Libs/shives/html5.js")"></script>
+    <![endif]-->
+    <!--[if lte IE 8]>
+        <script src="@Url.CachedContent("~/Scripts/Libs/angular/ie-shiv.js")"></script>
+        <script src="@Url.CachedContent("~/Scripts/Libs/shives/json2.js")"></script>
+    <![endif]-->
+
+
+    <script>
+        (function (global) {
+            global.applicationUrl = '@VirtualPathUtility.ToAbsolute("~/Scripts/LunchTime/")';
+        })(window);
+
+    </script>
+
+    @if (UseMinifiedScripts)
+    {
+        <script src="@Url.CachedContent("~/Scripts/Libs/require/require.min.js")"></script>
+        <script src="@Url.CachedContent("~/Scripts/Libs/libs.min.js")"></script>
+        <script src="@Url.CachedContent("~/Scripts/LunchTime/LunchTime.min.js")"></script>
+        <script src="@Url.CachedContent("~/Scripts/LunchTime/main.js")"></script>
+    }
+    else
+    {
+        <script src="@Url.Content("~/Scripts/Libs/require/require.js")" data-main="../../Scripts/LunchTime/main.dev"></script>
+    }
+}
+
+<div ng-view>
+    <div class="modal fade in" style="display: block;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h4 class="text-center">Загрузка данных...</h4>
+                    <div class="text-center">
+                        <img src="@Url.Content("~/Images/ajax-loader-bar.GIF")" alt="" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-backdrop fade in"></div>
+</div>
+
+@using (Html.AngularTemplate("/template/admin/menu.tmpl"))
+{
+     @Html.Partial("Partials/Menu/_Menu")
+}
+
+@using (Html.AngularTemplate("/template/admin/menu/add-course-to-menu.tmpl"))
+{
+    @Html.Partial("Partials/Menu/_AddCourseToMenu")
+}
+
+@* Menu templates *@
+@using (Html.AngularTemplate("/template/admin/menu/menu.tmpl"))
+{
+    @Html.Partial("Partials/Menu/Menu/_Menu")
+}
+
+@using (Html.AngularTemplate("/template/admin/menu/menu/course.tmpl"))
+{
+    @Html.Partial("Partials/Menu/Menu/_MenuCourse")
+}
+
+@using (Html.AngularTemplate("/template/admin/menu/menu/course/change-max-orders.tmpl"))
+{
+    @Html.Partial("Partials/Menu/Menu/_ChangeMaxOrders")
+}
+
+@using (Html.AngularTemplate("/template/admin/menu/menu/course/confirm-remove.tmpl"))
+{
+    @Html.Partial("Partials/Menu/Menu/_ConfirmRemoveCourseFromMenu")
+}
+
+
+@* Courses templates *@
+@using (Html.AngularTemplate("/template/admin/menu/courses.tmpl"))
+{
+    @Html.Partial("Partials/Menu/Courses/_Courses")
+}
+
+@using (Html.AngularTemplate("/template/admin/menu/courses/category.tmpl"))
+{
+    @Html.Partial("Partials/Menu/Courses/_CoursesCategory")
+}
+
+@using (Html.AngularTemplate("/template/admin/menu/courses/course.tmpl"))
+{
+    @Html.Partial("Partials/Menu/Courses/_Course")
+}
+
+@using (Html.AngularTemplate("/template/admin/menu/courses/course/confirm-remove.tmpl"))
+{
+    @Html.Partial("Partials/Menu/Courses/_ConfirmRemoveCourse")
+}
+
+@using (Html.AngularTemplate("/template/admin/menu/courses/course/edit.tmpl"))
+{
+    @Html.Partial("Partials/Menu/Courses/_EditCourse")
+}
+
+@using (Html.AngularTemplate("/template/admin/menu/courses/course/create.tmpl"))
+{
+    @Html.Partial("Partials/Menu/Courses/_EditCourse")
+}

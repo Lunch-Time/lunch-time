@@ -1,0 +1,94 @@
+﻿@using Dinner.Helpers
+
+@{
+    ViewBag.Title = "Заказы";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var UseMinifiedScripts = ApplicationEnvironment.IsRelease;
+}
+
+@section header
+{
+
+}
+
+@section scripts
+{
+    <!--[if IE 9]>
+        <meta http-equiv="X-UA-Compatible" content="IE=8" />
+    <![endif]-->
+    <!--[if lt IE 9]>
+        <script src="@Url.CachedContent("~/Scripts/Libs/shives/html5.js")"></script>
+    <![endif]-->
+    <!--[if lte IE 8]>
+        <script src="@Url.CachedContent("~/Scripts/Libs/angular/ie-shiv.js")"></script>
+        <script src="@Url.CachedContent("~/Scripts/Libs/shives/json2.js")"></script>
+    <![endif]-->
+
+
+    <script>
+        (function (global) {
+            global.applicationUrl = '@VirtualPathUtility.ToAbsolute("~/Scripts/LunchTime/")';
+        })(window);
+
+    </script>
+
+    @if (UseMinifiedScripts)
+    {
+        <script src="@Url.CachedContent("~/Scripts/Libs/require/require.min.js")"></script>
+        <script src="@Url.CachedContent("~/Scripts/Libs/libs.min.js")"></script>
+        <script src="@Url.CachedContent("~/Scripts/LunchTime/LunchTime.min.js")"></script>
+        <script src="@Url.CachedContent("~/Scripts/LunchTime/main.js")"></script>
+    }
+    else
+    {
+        <script src="@Url.Content("~/Scripts/Libs/require/require.js")" data-main="../../Scripts/LunchTime/main.dev"></script>
+    }
+}
+
+<div class="content">
+        <div class="sidebar-nav">
+@*            <lt:week-sidebar current-date="date" is-active-date="" on-date-chage="dateChanged(date)">
+                @#1#Html.Partial("Partials/NavBar")#1#
+            </lt:week-sidebar>*@
+
+        </div>
+        <div class="content-main">
+            <div ng-view>
+                <div class="modal fade in" style="display: block;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <h4 class="text-center">Загрузка данных...</h4>
+                                <div class="text-center">
+                                    <img src="@Url.Content("~/Images/ajax-loader-bar.GIF")" alt="" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-backdrop fade in"></div>
+            </div>
+        </div>
+    </div>
+
+
+@using (Html.AngularTemplate("/template/user/orders.tmpl"))
+{
+    @Html.Partial("Partials/Orders/_Orders")
+}
+
+@using (Html.AngularTemplate("/template/user/orders/days.tmpl"))
+{
+    @Html.Partial("Partials/Orders/DaysOrders/_DaysOrders")    
+}
+
+@using (Html.AngularTemplate("/template/user/orders/days/day.tmpl"))
+{
+    @Html.Partial("Partials/Orders/DaysOrders/_DayOrders")
+}
+
+@using (Html.AngularTemplate("/template/user/orders/days/day/order.tmpl"))
+{
+    @Html.Partial("Partials/Orders/DaysOrders/_DayOrder")
+}

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6695ec2d02b04280a6fcf58ba06179b4" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.Company" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Course" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Order" Width="1.5" PointX="8.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.User" Width="1.5" PointX="6" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.UserRole" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_CompanyCourse" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_UserOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Role" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Model.CourseCategory" Width="1.5" PointX="3" PointY="6.75" />
+        <AssociationConnector Association="Model.FK_CourseCategory_Course" />
+        <EntityTypeShape EntityType="Model.Menu" Width="1.5" PointX="5.125" PointY="6.5" />
+        <AssociationConnector Association="Model.FK_Course_Menu" />
+        <EntityTypeShape EntityType="Model.OrderItem" Width="1.5" PointX="8.25" PointY="6.25" />
+        <AssociationConnector Association="Model.FK_OrderItem_Menu" />
+        <AssociationConnector Association="Model.FK_OrderItem_Order" />
+        <EntityTypeShape EntityType="Model.UserSetting" Width="1.5" PointX="6.5" PointY="9" />
+        <AssociationConnector Association="Model.FK_UserSettings_User" />
+        <EntityTypeShape EntityType="Model.CompanySetting" Width="1.5" PointX="7.2644332140984158" PointY="14.97484061819261" />
+        <AssociationConnector Association="Model.FK_Company_CompanySettings" />
+        <EntityTypeShape EntityType="Model.EventLog" Width="1.5" PointX="0.75" PointY="10.25" />
+        <EntityTypeShape EntityType="Model.Feedback" Width="1.5" PointX="11.625" PointY="3.625" />
+        <EntityTypeShape EntityType="Model.FeedbackType" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="Model.MenuItemWish" Width="1.5" PointX="11.625" PointY="8.375" />
+        <AssociationConnector Association="Model.FK_Feedback_Company" />
+        <AssociationConnector Association="Model.FK_Feedback_Course" />
+        <AssociationConnector Association="Model.FK_Feedback_Feedback" />
+        <AssociationConnector Association="Model.FK_Feedback_FeedbackType" />
+        <AssociationConnector Association="Model.FK_Feedback_User" />
+        <AssociationConnector Association="Model.FK_MenuItemWish_Menu" />
+        <AssociationConnector Association="Model.FK_MenuItemWish_User" />
+        <EntityTypeShape EntityType="Model.IdentityCard" Width="1.5" PointX="12.25" PointY="0.75" />
+        <AssociationConnector Association="Model.FK_IdentityCard_CustomerCompany" />
+        <AssociationConnector Association="Model.FK_IdentityCard_IdentityCard" />
+        <AssociationConnector Association="Model.FK_MenuItemWish_CourseCategory" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,16 @@
+﻿<accordion-group is-open="isOpen" >
+    <accordion-heading>
+        <div class="uppercase" style="cursor: pointer">
+            <lt:category-icon category="category"></lt:category-icon>
+            {{category.name}}
+        </div>
+    </accordion-heading>
+    <ul class="list-group">
+        <li ng-repeat="course in courses | orderBy:'name'" class="list-group-item" style="vertical-align: middle">
+            <lt:admin-course course="course" on-add-course-to-menu="addCourseToMenu(course)" on-edit-course="editCourse(course)" on-remove-course="removeCourse(course)"></lt:admin-course>
+        </li>
+    </ul>
+    <div class="text-right">
+        <button class="btn btn-success" ng-click="createCourse()">Добавить</button>
+    </div>
+</accordion-group>

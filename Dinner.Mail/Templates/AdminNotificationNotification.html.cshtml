@@ -1,0 +1,38 @@
+﻿<body style="margin: 0; padding: 0;">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td align="center" valign="top" width="600px">
+                <!-- HEADER STARTS -->
+                <table width="600px" cellspacing="0" cellpadding="0" border="0" style="width: 600px;" >
+                    <tr>
+                        <td align="left"></td>
+                    </tr>
+                </table>
+                <!-- HEADER END -->
+                <!-- CONTENT STARTS -->
+                <table width="600px" cellspacing="0" cellpadding="0" border="0" style="padding-top: 20px; width: 600px;">
+                    <tr>
+                        <td align="justify" valign="top">
+                            <p style="font-family: Arial, sans-serif; font-size: 14px; color: rgb(26, 26, 26);">
+                                @Model.Text
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+                <!-- CONTENT END -->
+                <!-- FOOTER STARTS -->
+                <table width="600" cellspacing="0" cellpadding="0" border="0" style="padding-top: 50px; width: 600px;">
+                    <tr>
+                        <td align="justify">
+                            <p style="font-size: 11pt;">
+                                Если вы не хотите получать уведомления от <a href="http://lunch-time.co">lunch-time.co</a>,
+                                то можете поменять <a href="http://lunch-time.co/account/settings">настройки уведомлений</a> или <a href="@Model.UnsubscribePath">отписаться от всех уведомлений</a>.
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+                <!-- FOOTER END -->
+            </td>
+        </tr>
+    </table>
+</body>

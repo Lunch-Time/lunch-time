@@ -1,0 +1,39 @@
+﻿<div class="row menu-orders-list">
+    <div class="col-md-12 col-lg-12" ng-repeat="box in orderedBoxes.boxes">
+        <h3 class="page-title">
+            <i class="glyphicon glyphicon-shopping-cart" ng-show="box.index === 0"></i>
+            {{box | boxTitleFilter}}
+            <span class="pull-right box-price">
+                ( {{box.ordersSum | currency}})
+            </span>
+        </h3>
+        <table class="table menu-table table-striped">
+            <colgroup>
+                <col class="full-width">
+                <col>
+                <col>
+            </colgroup>
+            <tbody data-orders="true">
+                <tr ng-repeat="order in box.orders"
+                    lt-user-menu-order
+                    order="order"
+                    is-freezed="isFreezed"
+                    boxes="orderedBoxes.boxes"
+                    on-remove-order="removeOrder(order)"
+                    on-move-order-to-box="moveOrderToBox(order, box)">                    
+                </tr>
+                <tr ng-show="box.orders.length === 0">
+                    <td colspan="3" class="text-center">
+                        Ничего не заказано
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-12 col-lg-12">
+        <hr>
+        <h4 class="uppercase" style="vertical-align: middle">
+            Итого: {{orderedBoxes.ordersSum | currency}}
+        </h4>
+    </div>
+</div>

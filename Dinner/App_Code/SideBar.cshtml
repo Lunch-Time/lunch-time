@@ -1,0 +1,36 @@
+﻿@using Dinner.Infrastructure
+@inherits Dinner.Helper
+
+@helper Render(DateTime? shownDate, DateTime nextWorkingDate)
+{
+    var monday = (shownDate ?? nextWorkingDate).StartOfWeek();
+    var friday = monday.AddDays(4);
+    var title = monday.Month == friday.Month
+        ? string.Format("{0} - {1} {2}", monday.Day, friday.Day, monday.ToString("MMMM"))
+        : string.Format("{0} {1} - {2} {3}", monday.Day, monday.ToString("MMMM"), friday.Day, friday.ToString("MMMM"));
+
+        <text>
+            <div class="selected-week">
+                <a href="@Url.Action("Index", new { date = monday.AddDays(-7).ToString("yyyy-MM-dd") })" class="" target="_self">
+                    <i class="glyphicon glyphicon-chevron-left"></i>
+                </a>
+
+                @title
+                <a href="@Url.Action("Index", new { date = monday.AddDays(7).ToString("yyyy-MM-dd") })" target="_self">
+                    <i class="glyphicon glyphicon-chevron-right"></i>
+                </a>
+            </div>
+            <ul class="nav nav-pills week-day-selector">
+                @for (var currentDate = monday; currentDate <= friday; currentDate = currentDate.AddDays(1))
+                {
+                    <text>
+                        <li class="@(shownDate != null && currentDate.DayOfWeek == shownDate.Value.DayOfWeek ? "active" : string.Empty)">
+                            <a href="@Url.Action("Index", new { date = currentDate.ToString("yyyy-MM-dd") })" class="text-left" target="_self">
+                                @currentDate.ToString("ddddd")
+                            </a>
+                        </li>
+                    </text>
+                }
+            </ul>
+        </text>
+}

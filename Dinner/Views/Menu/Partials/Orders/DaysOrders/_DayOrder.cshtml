@@ -1,0 +1,80 @@
+﻿@*<div class="order-item">
+    <div class="category-name">
+        <img style="cursor: pointer;" class="img-circle course-category-icon"
+             src="/Images/ajax_loader_gray_32.gif"
+             ng-src="{{courseImage.thumbnailUrl}}"
+             src-big="{{courseImage.url}}" />
+    </div>
+    <div class="dish-name">
+        {{order.course.name}}
+    </div>
+    <div class="course-price">
+        {{order.quantity * order.course.price | currency}}
+    </div>
+    <div class="course-quantity">
+        <div class="btn-group">
+            <button is-loading="state.isOrdering" type="button" class="btn btn-danger ladda-button" data-style="zoom-in"
+                    ng-click="orderCourse(order.course, defaultOption.quantity)" ng-disabled="isFreezed || order.course.ordersCount === order.course.maxOrders">
+                <span class="ladda-label">
+                    {{order.quantity}}
+                </span>
+            </button>
+
+            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" ng-disabled="isFreezed || state.isOrdering || order.course.ordersCount === order.course.maxOrders || orderOptions.length === 0">
+                <span class="caret"></span>
+            </button>
+
+            <ul class="dropdown-menu" role="menu">
+                <li ng-repeat="orderOption in orderOptions">
+                    <a href="javascript:void(0)" ng-click="orderCourse(order.course, orderOption.quantity)">Заказать {{orderOption.name}} порции</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>*@
+
+<td>
+    <img style="cursor: pointer;" class="img-circle course-category-icon"
+         src="/Images/ajax_loader_gray_32.gif"
+         ng-src="{{courseImage.thumbnailUrl}}"
+         src-big="{{courseImage.url}}" /> 
+</td>
+
+<td>
+    <div>
+        <span>
+            {{order.course.name}}
+        </span>
+    </div>
+    <div class="visible-sm visible-md visible-lg">
+        <small class="text-muted">
+            <span ng-if="order.course.weight">{{order.course.weight | weight}}, </span>
+            <span ng-if="order.course.description">{{order.course.description}}</span>
+        </small>
+    </div>
+</td>
+
+<td class="nowrap">
+    {{order.course.price | currency}}
+</td>
+
+<td class="nowrap">
+    <div class="btn-group">
+        <button is-loading="state.isOrdering" type="button" class="btn btn-danger ladda-button" data-style="zoom-in"
+                ng-click="orderCourse(order.course, defaultOption.quantity)" ng-disabled="isFreezed || order.course.ordersCount === order.course.maxOrders">
+            <span class="ladda-label">
+                {{order.quantity}}
+            </span>
+        </button>
+
+        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" ng-disabled="isFreezed || state.isOrdering || order.course.ordersCount === order.course.maxOrders || orderOptions.length === 0">
+            <span class="caret"></span>
+        </button>
+
+        <ul class="dropdown-menu" role="menu">
+            <li ng-repeat="orderOption in orderOptions">
+                <a href="javascript:void(0)" ng-click="orderCourse(order.course, orderOption.quantity)">Заказать {{orderOption.name}} порции</a>
+            </li>
+        </ul>
+    </div>
+</td>

@@ -1,0 +1,17 @@
+﻿<div class="modal-header">
+    <button type="button" class="close" ng-click="closeDialog()" aria-hidden="true" ng-disabled="state.isSavingChanges">&times;</button>
+    <h4 class="modal-title">Укажите максимальное количество заказов на данное блюдо</h4>
+</div>
+<div class="modal-body">
+    <form name="editCourseMaxOrdersForm" novalidate>
+        <input type="number" name="maxOrders" ng-model="course.maxOrders" min="1" required placeholder="Максимальное количество заказов" class="form-control" ng-disabled="state.isSavingChanges"
+               ng-class="{ 'input-validation-error': editCourseMaxOrdersForm.maxOrders.$invalid }" />
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="closeDialog()" ng-disabled="state.isSavingChanges">Отмена</button>
+    <button type="button" class="btn btn-success ladda-button" data-style="zoom-in" ng-click="saveChanges()" 
+            ng-disabled="editCourseMaxOrdersForm.$invalid || editCourseMaxOrdersForm.$pristine" is-loading="state.isSavingChanges" data-spinner-size="24">
+        Сохранить
+    </button>   
+</div>

@@ -1,0 +1,139 @@
+﻿@using Dinner.Entities
+@model Dinner.Models.OrdersModel
+@{
+    ViewBag.Title = "Список заказов";
+    Layout = "~/Views/Shared/_LayoutWithMenu.cshtml";
+    ViewBag.Section = "Orders";
+    ViewBag.Date = Model.Date;
+}
+
+@helper UserOrders(string userName, int orderId, IList<OrderedMenuModel> orders)
+{
+    <div>
+        <h3 class="uppercase">
+            @userName
+
+            <span class="pull-right">
+                <button class="btn btn-danger" data-toggle="modal" data-target="#removeOrder_@(orderId)">
+                    <i class="glyphicon glyphicon-remove"></i>
+                    Удалить заказ
+                </button>
+            </span>
+        </h3>
+        <table class="table menu-table table-striped">
+            <thead>
+                <tr>
+                    <td class="full-width"></td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in orders)
+                {
+                    <tr>
+                        <td>
+                            @order.Course.Name
+                        </td>
+                        <td>
+                            @order.Quantity
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <!-- Modal -->
+        <div class="modal fade" id="removeOrder_@(orderId)" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Удаление заказа</h4>
+                    </div>
+                    <div class="modal-body">
+                        Удалить заказ пользователя @userName на @Model.Date.ToString("D") ?
+                    </div>
+                    <div class="modal-footer">                       
+                        @using (Html.BeginForm("RemoveOrder", "Orders", FormMethod.Post))
+                        {
+                            <input type="hidden" name="date" value="@Model.Date.ToString("yyyy-MM-dd")" />
+                            <input type="hidden" name="orderId" value="@orderId" />
+                             <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                            <button type="submit" class="btn btn-danger">Удалить заказ</button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-title">
+            <i class="glyphicon glyphicon-shopping-cart"></i>
+            Заказы на @Model.Date.ToString("D")
+            <span>
+                <small>
+                    <a href="@Url.Action("Print", new {date = Model.Date.ToString("yyyy-MM-dd")})" target="_blank">
+                        (
+                        страница для печати
+                        <i class="glyphicon glyphicon-print"></i>
+                        )
+                    </a>
+                </small>
+            </span>
+        </h3>
+    </div>
+</div>
+
+@if (Model.Orders.Any())
+{
+    <div class="row">
+        <div class="col-md-6 col-lg-6">
+            @foreach (var userOrders in Model.UsersOrders)
+            {
+                @UserOrders(userOrders.UserName, userOrders.OrderID, userOrders.Orders)
+            }
+        </div>
+
+        <div class="col-md-6 col-lg-5">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td class="full-width"></td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model.Orders)
+                    {
+                        <tr>
+                            <td>@string.Format("{0} x {1}", order.Quantity, order.Course.Name)</td>
+                            <td class="nowrap">
+                                @string.Format("{0:C}", order.Quantity * order.Course.Price)
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+            <hr>
+            <h4 class="uppercase">
+                Итого:
+                <span>
+                    @string.Format("{0:C}", Model.Orders.Sum(order => order.Course.Price * order.Quantity))
+                </span>
+            </h4>
+        </div>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-lg-12">
+            Список заказов пуст.
+        </div>
+    </div>
+}

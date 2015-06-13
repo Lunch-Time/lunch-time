@@ -1,0 +1,90 @@
+﻿@model IDictionary<DateTime, Dinner.Entities.UserOrdersModel>
+
+@{
+    ViewBag.Title = "Мои заказы";
+    Layout = "~/Views/Shared/_LayoutWithMenu.cshtml";
+}
+
+@section menu
+{
+    @Html.Partial("Partials/NavBar")
+}
+
+<div class="user-orders-page">
+    <h3 class="page-title">Мои заказы</h3>
+    @foreach (var date in this.Model.Keys.OrderBy(date => date))
+    {
+        <div @Html.Css("orders-day").Add("archive-order", date < ViewBag.CurrentDate.Date).Add("current-day", date.Date == ViewBag.CurrentDate.Date)>
+            <h3>
+                <span class="day-name">@date.ToString("ddddd")</span>
+                @if (Model[date].Orders.Count > 0)
+                {
+                    <span class="total-price">@Model[date].Orders.Sum(item => item.Course.Price * item.Quantity) р.</span>
+                }
+                else
+                {
+                    if (!ViewBag.FrozenDates.Contains(date))
+                    {
+                        <span class="no-orders">Вы ещё ничего не заказали</span>
+                    }
+                    else
+                    {
+                        <span class="frozen-order">Заказ обедов заморожен</span>
+                    }
+                }
+                <span class="order-date">@date.ToShortDateString()</span>
+            </h3>
+            @if (Model[date].Orders.Count > 0)
+            {
+                <div class="user-order">
+                    @foreach (var boxGroup in Model[date].Orders.GroupBy(menu => menu.Course.Boxindex))
+                    {
+                        <div @Html.Css("box").Add("box" + (boxGroup.Key % 4 + 1), boxGroup.Key > 0)>
+                            @if (boxGroup.Key > 0)
+                            {
+                                <div class="box-header">Бокс #@boxGroup.Key</div>
+                            }
+                            <div class="order-items">
+                                @foreach (var menuModel in boxGroup.OrderBy(menu => menu.Course.CategoryType))
+                                {
+                                    <div class="order-item">
+                                        <div class="category-name" title="@menuModel.Course.CategoryName">
+                                            @Category.CategoryIcon(menuModel.Course.CategoryType)
+                                            @menuModel.Course.CategoryName
+                                        </div>
+                                        <div class="dish-name">
+                                            @menuModel.Quantity x @menuModel.Course.Name
+                                        </div>
+                                        <div class="course-price">
+                                            @(menuModel.Course.Price * menuModel.Quantity)
+                                            р.
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+                if (!ViewBag.FrozenDates.Contains(date)) { 
+                    <div class="btn-group-sm">
+                        <a href="@Url.Action("Index", new { date = date.ToString("yyyy-MM-dd") })" class="btn btn-default">Изменить</a>
+                    </div>
+                }
+                @*if (ViewBag.DeleteFrozenDate > DateTime.Now)
+    {
+        <div class="btn-group-sm">
+            <a href="@Url.Action("api/Menu/RemoveOrder2", new { date = date.ToString("yyyy-MM-dd"), orderId = Model[date].OrderID })" class="btn btn-default">Удалить</a>
+        </div>
+    }*@
+            }
+            else
+            {
+                if (!ViewBag.FrozenDates.Contains(date)) { 
+                    <div class="btn-group-sm">
+                        <a href="@Url.Action("Index", new { date = date.ToString("yyyy-MM-dd") })" class="btn btn-danger">Заказать</a>
+                    </div>
+                }
+            }
+        </div>
+    }
+</div>

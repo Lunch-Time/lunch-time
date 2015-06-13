@@ -1,0 +1,32 @@
+﻿<td>
+    <img style="cursor: pointer;" class="img-circle course-category-icon"
+         src="/Images/ajax_loader_gray_32.gif"
+         ng-src="{{courseImage.thumbnailUrl}}"
+         src-big="{{courseImage.url}}" />  
+</td>
+<td>
+    <div>
+        <span>
+            {{course.name}}
+        </span>
+    </div>
+    <div class="visible-sm visible-md visible-lg">
+        <small class="text-muted">
+            <span ng-if="course.weight">{{course.weight | weight}}, </span>
+            <span ng-if="course.description">{{course.description}}</span>
+        </small>
+    </div>    
+</td>
+<td class="nowrap">
+    {{course.price | currency}}
+</td>
+<td>
+    <button class="btn" ng-click="changeMaxOrders(course)" ng-disabled="state.isRemoving" tooltip="Максимальное количество заказов">
+        {{course.maxOrders}}
+    </button>
+</td>
+<td>
+    <button type="button" class="btn btn-danger ladda-button" ng-click="removeCourse(course)" data-style="zoom-in" is-loading="state.isRemoving">
+        Удалить
+    </button>
+</td>

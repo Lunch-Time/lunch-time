@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section header
+{
+    @RenderSection("header", required: false)
+}
+
+<div class="content">
+    <div class="sidebar-nav">
+        @SideBar.Render(ViewBag.Date, ViewBag.NextWorkingDate)
+        @RenderSection("menu", required: false)
+    </div>
+    <div class="content-main">
+        @RenderBody()
+    </div>
+</div>
+
+@section scripts
+{
+    @RenderSection("scripts", required: false)
+}
+

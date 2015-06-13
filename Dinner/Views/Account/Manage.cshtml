@@ -1,0 +1,25 @@
+﻿@model Dinner.Models.LocalPasswordModel
+@{
+    ViewBag.Title = "Профиль";
+}
+
+<div class="row content">
+    <div class="col-md-12 col-lg-12 full-height">
+        <div class="row header-title">
+            <div class="col-md-12 col-lg-12 text-center">
+                <h1>Изменить пароль</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-xs-1"></div>
+            <div class="col-lg-4 col-md-4 col-xs-10">
+                @Html.Partial("_ChangePasswordPartial")
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

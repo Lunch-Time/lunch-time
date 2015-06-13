@@ -1,0 +1,19 @@
+﻿<div>
+    <div class="selected-week">
+        <a href="javascript:void(0)" target="_self" ng-click="previousWeek()">
+            <i class="glyphicon glyphicon-chevron-left"></i>
+        </a>
+        {{week.title}}
+        <a href="javascript:void(0)" target="_self" ng-click="nextWeek()">
+            <i class="glyphicon glyphicon-chevron-right"></i>
+        </a>
+    </div>
+    <ul class="nav nav-pills week-day-selector">
+        <li ng-repeat="date in week.dates" ng-class="{ 'active': isActive(date) }">
+            <a href="javascript:void(0)" class="text-left" target="_self" ng-click="changeDate(date)">
+                {{date | date:'dddd'}}
+            </a>
+        </li>
+    </ul>
+    <div ng-transclude></div>
+</div>

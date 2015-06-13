@@ -1,0 +1,54 @@
+﻿@using Dinner
+@if (Request.IsAuthenticated)
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                @User.Identity.Name <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>                    
+                    @Html.ActionLink("Изменить пароль", "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", target="_self" })
+                </li>
+                <li>
+                    @Html.ActionLink("Изменить имя", "ChangeDisplayName", "Account", routeValues: null, htmlAttributes: new { @class = "username", target="_self" })
+                </li>
+                <li>
+                    @Html.ActionLink("Настройки", "Settings", "Account", routeValues: null, htmlAttributes: new { @class = "username", target="_self" })
+                </li>
+                @if (User.IsInRole("Admin"))
+                {
+                <li>
+                        @Html.ActionLink("Настройки компании", "CompanySettings", "Account", routeValues: null, htmlAttributes: new { @class = "username", target="_self" })
+                </li>
+                }
+                <li class="divider"></li>
+                <li>
+                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Get, new { id = "logoutForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input type="submit" class="btn btn-link" value="Выход"/>
+                    }                
+                </li>
+            </ul>
+        </li>
+    </ul>
+}
+else
+{
+    using (@Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "navbar-form navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group with-icon-over-input">
+            <input type="text" name="UserName" placeholder="Почта" class="form-control">
+            <i class="icon glyphicon glyphicon-user text-muted"></i>
+        </div>
+        <div class="form-group with-icon-over-input">
+            <input type="password" name="Password" placeholder="Пароль" class="form-control">
+            <i class="icon glyphicon glyphicon-lock text-muted"></i>
+        </div>
+        <button type="submit" class="btn btn-success">Вход</button>
+        @Html.ActionLink("Регистрация", "Register", "Account", routeValues: null, htmlAttributes: new { @class = "btn btn-link", target = "_self" })
+        @Html.ActionLink("Забыли пароль?", "ResetPassword", "Account", routeValues: null, htmlAttributes: new { @class = "btn btn-link", target = "_self" })
+    }
+}

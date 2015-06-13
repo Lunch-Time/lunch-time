@@ -1,0 +1,931 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1F8AA7AF-1566-4BB5-BA15-1A9E313A0F0B}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Dinner</RootNamespace>
+    <AssemblyName>Dinner</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+    <CodeContractsAssemblyMode>1</CodeContractsAssemblyMode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <CodeContractsEnableRuntimeChecking>True</CodeContractsEnableRuntimeChecking>
+    <CodeContractsRuntimeOnlyPublicSurface>False</CodeContractsRuntimeOnlyPublicSurface>
+    <CodeContractsRuntimeThrowOnFailure>True</CodeContractsRuntimeThrowOnFailure>
+    <CodeContractsRuntimeCallSiteRequires>False</CodeContractsRuntimeCallSiteRequires>
+    <CodeContractsRuntimeSkipQuantifiers>False</CodeContractsRuntimeSkipQuantifiers>
+    <CodeContractsRunCodeAnalysis>False</CodeContractsRunCodeAnalysis>
+    <CodeContractsNonNullObligations>False</CodeContractsNonNullObligations>
+    <CodeContractsBoundsObligations>False</CodeContractsBoundsObligations>
+    <CodeContractsArithmeticObligations>False</CodeContractsArithmeticObligations>
+    <CodeContractsEnumObligations>False</CodeContractsEnumObligations>
+    <CodeContractsRedundantAssumptions>False</CodeContractsRedundantAssumptions>
+    <CodeContractsInferRequires>False</CodeContractsInferRequires>
+    <CodeContractsInferEnsures>False</CodeContractsInferEnsures>
+    <CodeContractsInferObjectInvariants>False</CodeContractsInferObjectInvariants>
+    <CodeContractsSuggestAssumptions>False</CodeContractsSuggestAssumptions>
+    <CodeContractsSuggestRequires>True</CodeContractsSuggestRequires>
+    <CodeContractsSuggestEnsures>False</CodeContractsSuggestEnsures>
+    <CodeContractsSuggestObjectInvariants>False</CodeContractsSuggestObjectInvariants>
+    <CodeContractsRunInBackground>True</CodeContractsRunInBackground>
+    <CodeContractsShowSquigglies>True</CodeContractsShowSquigglies>
+    <CodeContractsUseBaseLine>False</CodeContractsUseBaseLine>
+    <CodeContractsEmitXMLDocs>False</CodeContractsEmitXMLDocs>
+    <CodeContractsCustomRewriterAssembly />
+    <CodeContractsCustomRewriterClass />
+    <CodeContractsLibPaths />
+    <CodeContractsExtraRewriteOptions />
+    <CodeContractsExtraAnalysisOptions />
+    <CodeContractsBaseLineFile />
+    <CodeContractsCacheAnalysisResults>True</CodeContractsCacheAnalysisResults>
+    <CodeContractsRuntimeCheckingLevel>Full</CodeContractsRuntimeCheckingLevel>
+    <CodeContractsReferenceAssembly>DoNotBuild</CodeContractsReferenceAssembly>
+    <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <CodeContractsEnableRuntimeChecking>True</CodeContractsEnableRuntimeChecking>
+    <CodeContractsRuntimeOnlyPublicSurface>False</CodeContractsRuntimeOnlyPublicSurface>
+    <CodeContractsRuntimeThrowOnFailure>True</CodeContractsRuntimeThrowOnFailure>
+    <CodeContractsRuntimeCallSiteRequires>False</CodeContractsRuntimeCallSiteRequires>
+    <CodeContractsRuntimeSkipQuantifiers>False</CodeContractsRuntimeSkipQuantifiers>
+    <CodeContractsRunCodeAnalysis>False</CodeContractsRunCodeAnalysis>
+    <CodeContractsNonNullObligations>False</CodeContractsNonNullObligations>
+    <CodeContractsBoundsObligations>False</CodeContractsBoundsObligations>
+    <CodeContractsArithmeticObligations>False</CodeContractsArithmeticObligations>
+    <CodeContractsEnumObligations>False</CodeContractsEnumObligations>
+    <CodeContractsRedundantAssumptions>False</CodeContractsRedundantAssumptions>
+    <CodeContractsInferRequires>False</CodeContractsInferRequires>
+    <CodeContractsInferEnsures>False</CodeContractsInferEnsures>
+    <CodeContractsInferObjectInvariants>False</CodeContractsInferObjectInvariants>
+    <CodeContractsSuggestAssumptions>False</CodeContractsSuggestAssumptions>
+    <CodeContractsSuggestRequires>True</CodeContractsSuggestRequires>
+    <CodeContractsSuggestEnsures>False</CodeContractsSuggestEnsures>
+    <CodeContractsSuggestObjectInvariants>False</CodeContractsSuggestObjectInvariants>
+    <CodeContractsRunInBackground>True</CodeContractsRunInBackground>
+    <CodeContractsShowSquigglies>True</CodeContractsShowSquigglies>
+    <CodeContractsUseBaseLine>False</CodeContractsUseBaseLine>
+    <CodeContractsEmitXMLDocs>False</CodeContractsEmitXMLDocs>
+    <CodeContractsCustomRewriterAssembly />
+    <CodeContractsCustomRewriterClass />
+    <CodeContractsLibPaths />
+    <CodeContractsExtraRewriteOptions />
+    <CodeContractsExtraAnalysisOptions />
+    <CodeContractsBaseLineFile />
+    <CodeContractsCacheAnalysisResults>True</CodeContractsCacheAnalysisResults>
+    <CodeContractsRuntimeCheckingLevel>Full</CodeContractsRuntimeCheckingLevel>
+    <CodeContractsReferenceAssembly>DoNotBuild</CodeContractsReferenceAssembly>
+    <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.1.5\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc">
+      <HintPath>..\packages\Autofac.Mvc4.3.1.0\lib\net40\Autofac.Integration.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.WebApi">
+      <HintPath>..\packages\Autofac.WebApi.3.1.0\lib\net40\Autofac.Integration.WebApi.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.Patterns, Version=0.7.0.32308, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.Patterns.0.7\lib\net40\EntityFramework.Patterns.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=2.1.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NLog.2.1.0\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Code\Helper.cs" />
+    <Compile Include="App_Start\AuthConfig.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RequireJsConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Attributes\AdminAttribute.cs" />
+    <Compile Include="Attributes\ApiExceptionFilterAttribute.cs" />
+    <Compile Include="Attributes\IntermediaEmail.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\Api\AdminController.cs" />
+    <Compile Include="Controllers\Api\MenuController.cs" />
+    <Compile Include="Controllers\AdminNotificationController.cs" />
+    <Compile Include="Controllers\Api\CoursePictureController.cs" />
+    <Compile Include="Controllers\Api\NotificationController.cs" />
+    <Compile Include="Controllers\Api\OrdersController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\StatisticsController.cs" />
+    <Compile Include="Controllers\MenuApiController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\TimingController.cs" />
+    <Compile Include="Controllers\VersionController.cs" />
+    <Compile Include="Controllers\WebCamController.cs" />
+    <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\DoubleModelBinder.cs" />
+    <Compile Include="Helpers\EnumExtensions.cs" />
+    <Compile Include="Helpers\ApplicationEnvironment.cs" />
+    <Compile Include="Helpers\HtmlHelperExtensions.cs" />
+    <Compile Include="Helpers\ScriptTag.cs" />
+    <Compile Include="Helpers\StatisticsHelper.cs" />
+    <Compile Include="HtmlAttribute.cs" />
+    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\AssignIdentityCardToUserViewModel.cs" />
+    <Compile Include="Models\Orders\ReportOrderedItemModel.cs" />
+    <Compile Include="Models\Orders\ReportOrdersModel.cs" />
+    <Compile Include="Models\PurchaseOrderViewModel.cs" />
+    <Compile Include="Models\SalesViewModel.cs" />
+    <Compile Include="Models\UserOrdersForDateViewModel.cs" />
+    <Compile Include="ViewModels\Admin\AddCourseToMenuViewModel.cs" />
+    <Compile Include="ViewModels\Admin\AdminMenuViewModel.cs" />
+    <Compile Include="ViewModels\Admin\ChangeMaxOrdersViewModel.cs" />
+    <Compile Include="ViewModels\Admin\RemoveCourseViewModel.cs" />
+    <Compile Include="ViewModels\CourseViewModel.cs" />
+    <Compile Include="ViewModels\Admin\UpdateCourseViewModel.cs" />
+    <Compile Include="ViewModels\Admin\CreateCourseViewModel.cs" />
+    <Compile Include="Models\MoveToBoxModel.cs" />
+    <Compile Include="Models\OrderCourseModel.cs" />
+    <Compile Include="ViewModels\Admin\RemoveCourseFromMenuViewModel.cs" />
+    <Compile Include="Models\RemoveOrderModel.cs" />
+    <Compile Include="Models\ApplicationViewModel.cs" />
+    <Compile Include="Models\ResetPasswordModel.cs" />
+    <Compile Include="Models\MenuFormationModel.cs" />
+    <Compile Include="Models\MenuModel.cs" />
+    <Compile Include="Models\OrdersModel.cs" />
+    <Compile Include="Models\StatisticRecordsGroup.cs" />
+    <Compile Include="Models\StatisticsModel.cs" />
+    <Compile Include="Models\UserTimingsModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\User\WishCourseViewModel.cs" />
+    <Compile Include="WebModule.cs" />
+    <Compile Include="WebPrincipalProvider.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\css\bootstrap-datepicker.css" />
+    <Content Include="Content\css\bootstrap-theme.css">
+      <!--<DependentUpon>bootstrap-theme.less</DependentUpon>-->
+    </Content>
+    <Content Include="Content\css\bootstrap.css">
+      <DependentUpon>bootstrap.less</DependentUpon>
+    </Content>
+    <Content Include="Content\css\bootstrap.min.css">
+      <DependentUpon>bootstrap.css</DependentUpon>
+    </Content>
+    <Content Include="Content\css\datepicker.classic.time.css" />
+    <Content Include="Content\css\datepicker.classic.css" />
+    <Content Include="Content\css\datepicker.classic.date.css" />
+    <Content Include="Content\css\dinner.css">
+      <DependentUpon>dinner.less</DependentUpon>
+    </Content>
+    <Content Include="Content\css\dinner.min.css">
+      <DependentUpon>dinner.css</DependentUpon>
+    </Content>
+    <Content Include="Content\css\ladda-themeless.css" />
+    <Content Include="Content\css\toastr.css" />
+    <Content Include="Content\css\user-orders-page.css">
+      <DependentUpon>user-orders-page.less</DependentUpon>
+    </Content>
+    <Content Include="Content\css\user-orders-page.min.css">
+      <DependentUpon>user-orders-page.css</DependentUpon>
+    </Content>
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="App_Code\SideBar.cshtml" />
+    <Content Include="Images\ajax-loader-bar.GIF" />
+    <Content Include="Images\ajax-loader.gif" />
+    <Content Include="Images\ajax_loader_gray_32.gif" />
+    <Content Include="Images\CourseType\garnish.png" />
+    <Content Include="Images\CourseType\misc.png" />
+    <Content Include="Images\empty-course.png" />
+    <Content Include="Images\empty-course.thumbnail.png" />
+    <Content Include="Images\logo.gif" />
+    <Content Include="Images\CourseType\meat.png" />
+    <Content Include="Images\CourseType\salad.png" />
+    <Content Include="Images\CourseType\soup.png" />
+    <Content Include="img\glyphicons-halflings-white.png" />
+    <Content Include="img\glyphicons-halflings.png" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\jqPlot\jqplot.barRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\jqplot.canvasAxisLabelRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\jqplot.canvasAxisTickRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\jqplot.canvasTextRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\jqplot.categoryAxisRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\jqplot.highlighter.min.js" />
+    <Content Include="Scripts\jqPlot\jquery.jqplot.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="App_Code\Category.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Content\bootstrap\alerts.less" />
+    <Content Include="Content\bootstrap\badges.less" />
+    <Content Include="Content\bootstrap\bootstrap.less" />
+    <Content Include="Content\bootstrap\breadcrumbs.less" />
+    <Content Include="Content\bootstrap\button-groups.less" />
+    <Content Include="Content\bootstrap\buttons.less" />
+    <Content Include="Content\bootstrap\carousel.less" />
+    <Content Include="Content\bootstrap\close.less" />
+    <Content Include="Content\bootstrap\code.less" />
+    <Content Include="Content\bootstrap\component-animations.less" />
+    <Content Include="Content\bootstrap\dropdowns.less" />
+    <Content Include="Content\bootstrap\forms.less" />
+    <Content Include="Content\bootstrap\glyphicons.less" />
+    <Content Include="Content\bootstrap\grid.less" />
+    <Content Include="Content\bootstrap\input-groups.less" />
+    <Content Include="Content\bootstrap\jumbotron.less" />
+    <Content Include="Content\bootstrap\labels.less" />
+    <Content Include="Content\bootstrap\list-group.less" />
+    <Content Include="Content\bootstrap\media.less" />
+    <Content Include="Content\bootstrap\mixins.less" />
+    <Content Include="Content\bootstrap\modals.less" />
+    <Content Include="Content\bootstrap\navbar.less" />
+    <Content Include="Content\bootstrap\navs.less" />
+    <Content Include="Content\bootstrap\normalize.less" />
+    <Content Include="Content\bootstrap\pager.less" />
+    <Content Include="Content\bootstrap\pagination.less" />
+    <Content Include="Content\bootstrap\panels.less" />
+    <Content Include="Content\bootstrap\popovers.less" />
+    <Content Include="Content\bootstrap\print.less" />
+    <Content Include="Content\bootstrap\progress-bars.less" />
+    <Content Include="Content\bootstrap\responsive-utilities.less" />
+    <Content Include="Content\bootstrap\scaffolding.less" />
+    <Content Include="Content\bootstrap\tables.less" />
+    <Content Include="Content\bootstrap\theme.less" />
+    <Content Include="Content\bootstrap\thumbnails.less" />
+    <Content Include="Content\bootstrap\tooltip.less" />
+    <Content Include="Content\bootstrap\type.less" />
+    <Content Include="Content\bootstrap\utilities.less" />
+    <Content Include="Content\bootstrap\variables.less" />
+    <Content Include="Content\bootstrap\wells.less" />
+    <Content Include="Content\css\dinner.less" />
+    <Content Include="Content\css\mixins.less" />
+    <Content Include="Content\css\bootstrap.less" />
+    <!--<Content Include="Content\css\bootstrap-theme.less" />-->
+    <Content Include="Content\css\user-orders-page.less" />
+    <Content Include="Images\Web.config" />
+    <Content Include="img\Web.config" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-migrate-1.2.1.js" />
+    <Content Include="Scripts\jquery-migrate-1.2.1.min.js" />
+    <Content Include="Scripts\jquery.form.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Libs\angular\angular-animate.js" />
+    <Content Include="Scripts\Libs\angular\angular-animate.min.js">
+      <DependentUpon>angular-animate.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Libs\angular\angular-cookies.js" />
+    <Content Include="Scripts\Libs\angular\angular-cookies.min.js">
+      <DependentUpon>angular-cookies.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Libs\angular\angular-csp.css" />
+    <Content Include="Scripts\Libs\angular\angular-loader.js" />
+    <Content Include="Scripts\Libs\angular\angular-loader.min.js">
+      <DependentUpon>angular-loader.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Libs\angular\angular-mocks.js" />
+    <Content Include="Scripts\Libs\angular\angular-resource.js" />
+    <Content Include="Scripts\Libs\angular\angular-resource.min.js">
+      <DependentUpon>angular-resource.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Libs\angular\angular-route.js" />
+    <Content Include="Scripts\Libs\angular\angular-route.min.js">
+      <DependentUpon>angular-route.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Libs\angular\angular-sanitize.js" />
+    <Content Include="Scripts\Libs\angular\angular-sanitize.min.js">
+      <DependentUpon>angular-sanitize.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Libs\angular\angular-scenario.js" />
+    <Content Include="Scripts\Libs\angular\angular-touch.js" />
+    <Content Include="Scripts\Libs\angular\angular-touch.min.js">
+      <DependentUpon>angular-touch.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Libs\angular\angular.js" />
+    <Content Include="Scripts\Libs\angular\angular.min.js">
+      <DependentUpon>angular.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Libs\angular\i18n\angular-locale_ru-ru.js" />
+    <Content Include="Scripts\Libs\angular\i18n\angular-locale_ru.js" />
+    <Content Include="Scripts\Libs\angular\ie-shiv.js" />
+    <Content Include="Scripts\Libs\angular\version.txt" />
+    <Content Include="Scripts\Libs\bootstrap\bootstrap.js" />
+    <Content Include="Scripts\Libs\bootstrap\bootstrap.min.js">
+      <DependentUpon>bootstrap.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Libs\bootstrap\ui-bootstrap-tpls.js" />
+    <Content Include="Scripts\Libs\bootstrap\ui-bootstrap-tpls.min.js">
+      <DependentUpon>ui-bootstrap-tpls.js</DependentUpon>
+    </Content>
+    <Content Include="Content\css\glisse.css" />
+    <Content Include="Scripts\Libs\glisse\glisse.js" />
+    <Content Include="Images\loader.gif" />
+    <Content Include="Scripts\Libs\jquery\jquery.form.js" />
+    <Content Include="Scripts\Libs\jquery\jquery.js" />
+    <Content Include="Scripts\Libs\jquery\jquery.min.js">
+      <DependentUpon>jquery.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Libs\ladda\ladda.js" />
+    <Content Include="Scripts\Libs\libs.build.js" />
+    <Content Include="Scripts\Libs\nginfinitescroll\nginfinitescroll.min.js">
+      <DependentUpon>nginfinitescroll.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Libs\nginfinitescroll\nginfinitescroll.js" />
+    <Content Include="Scripts\Libs\plupload\i18n\bs.js" />
+    <Content Include="Scripts\Libs\plupload\i18n\cs.js" />
+    <Content Include="Scripts\Libs\plupload\i18n\cy.js" />
+    <Content Include="Scripts\Libs\plupload\i18n\da.js" />
+    <Content Include="Scripts\Libs\plupload\i18n\de.js" />
+    <Content Include="Scripts\Libs\plupload\i18n\el.js" />
+    <Content Include="Scripts\Libs\plupload\i18n\en.js" />
+    <Content Include="Scripts\Libs\plupload\i18n\es.js" />
+    <Content Include="Scripts\Libs\plupload\i18n\et.js" />
+    <Content Include="Scripts\Libs\plupload\i18n\fa.js" />
+    <Content Include="Scripts\Libs\plupload\i18n\fi.js" />
+    <Content Include="Scripts\Libs\plupload\i18n\fr.js" />
+    <Content Include="Scripts\Libs\plupload\i18n\hr.js" />
+    <Content Include="Scripts\Libs\plupload\i18n\hu.js" />
+    <Content Include="Scripts\Libs\plupload\i18n\hy.js" />
+    <Content Include="Scripts\Libs\plupload\i18n\it.js" />
+    <Content Include="Scripts\Libs\plupload\i18n\ja.js" />
+    <Content Include="Scripts\Libs\plupload\i18n\ka.js" />
+    <Content Include="Scripts\Libs\plupload\i18n\ko.js" />
+    <Content Include="Scripts\Libs\plupload\i18n\lt.js" />
+    <Content Include="Scripts\Libs\plupload\i18n\lv.js" />
+    <Content Include="Scripts\Libs\plupload\i18n\nl.js" />
+    <Content Include="Scripts\Libs\plupload\i18n\pl.js" />
+    <Content Include="Scripts\Libs\plupload\i18n\pt_BR.js" />
+    <Content Include="Scripts\Libs\plupload\i18n\ro.js" />
+    <Content Include="Scripts\Libs\plupload\i18n\ru.js" />
+    <Content Include="Scripts\Libs\plupload\i18n\sk.js" />
+    <Content Include="Scripts\Libs\plupload\i18n\sr.js" />
+    <Content Include="Scripts\Libs\plupload\i18n\sv.js" />
+    <Content Include="Scripts\Libs\plupload\i18n\th_TH.js" />
+    <Content Include="Scripts\Libs\plupload\i18n\tr.js" />
+    <Content Include="Scripts\Libs\plupload\i18n\uk_UA.js" />
+    <Content Include="Scripts\Libs\plupload\i18n\zh_CN.js" />
+    <Content Include="Scripts\Libs\plupload\jquery.plupload.queue\css\jquery.plupload.queue.css" />
+    <Content Include="Scripts\Libs\plupload\jquery.plupload.queue\img\backgrounds.gif" />
+    <Content Include="Scripts\Libs\plupload\jquery.plupload.queue\img\buttons-disabled.png" />
+    <Content Include="Scripts\Libs\plupload\jquery.plupload.queue\img\buttons.png" />
+    <Content Include="Scripts\Libs\plupload\jquery.plupload.queue\img\delete.gif" />
+    <Content Include="Scripts\Libs\plupload\jquery.plupload.queue\img\done.gif" />
+    <Content Include="Scripts\Libs\plupload\jquery.plupload.queue\img\error.gif" />
+    <Content Include="Scripts\Libs\plupload\jquery.plupload.queue\img\throbber.gif" />
+    <Content Include="Scripts\Libs\plupload\jquery.plupload.queue\img\transp50.png" />
+    <Content Include="Scripts\Libs\plupload\jquery.plupload.queue\jquery.plupload.queue.js" />
+    <Content Include="Scripts\Libs\plupload\jquery.plupload.queue\jquery.plupload.queue.min.js" />
+    <Content Include="Scripts\Libs\plupload\jquery.ui.plupload\css\jquery.ui.plupload.css" />
+    <Content Include="Scripts\Libs\plupload\jquery.ui.plupload\img\loading.gif" />
+    <Content Include="Scripts\Libs\plupload\jquery.ui.plupload\img\plupload.png" />
+    <Content Include="Scripts\Libs\plupload\jquery.ui.plupload\jquery.ui.plupload.js" />
+    <Content Include="Scripts\Libs\plupload\jquery.ui.plupload\jquery.ui.plupload.min.js">
+      <DependentUpon>jquery.ui.plupload.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Libs\plupload\moxie.js" />
+    <Content Include="Scripts\Libs\plupload\moxie.min.js">
+      <DependentUpon>moxie.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Libs\plupload\Moxie.swf" />
+    <Content Include="Scripts\Libs\plupload\Moxie.xap" />
+    <Content Include="Scripts\Libs\plupload\plupload.dev.js" />
+    <Content Include="Scripts\Libs\plupload\plupload.full.min.js" />
+    <Content Include="Scripts\Libs\plupload\plupload.min.js" />
+    <Content Include="Scripts\Libs\moment\moment.js" />
+    <Content Include="Scripts\Libs\require\require.js" />
+    <Content Include="Scripts\Libs\require\require.min.js">
+      <DependentUpon>require.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Libs\require\text.js" />
+    <Content Include="Scripts\Libs\shives\html5.js" />
+    <Content Include="Scripts\Libs\shives\json2.js" />
+    <Content Include="Scripts\Libs\spin\spin.js" />
+    <Content Include="Scripts\Libs\toastr\toastr.js" />
+    <Content Include="Scripts\Libs\underscore\underscore.js" />
+    <Content Include="Scripts\Libs\underscore\underscore.min.js">
+      <DependentUpon>underscore.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\LunchTime\admin\admin.config.js" />
+    <Content Include="Scripts\LunchTime\admin\admin.events.js" />
+    <Content Include="Scripts\LunchTime\admin\admin.js" />
+    <Content Include="Scripts\LunchTime\admin\sales\controllers\adminSalesController.js" />
+    <Content Include="Scripts\LunchTime\admin\sales\controllers\adminSalesRegisterIdentityCardController.js" />
+    <Content Include="Scripts\LunchTime\admin\sales\controllers\adminSalesCoursesStatsController.js" />
+    <Content Include="Scripts\LunchTime\admin\sales\controllers\adminSalesUserOrderController.js" />
+    <Content Include="Scripts\LunchTime\admin\sales\controllers\adminSalesUsersOrdersController.js" />
+    <Content Include="Scripts\LunchTime\admin\sales\controllers\controllers.js" />
+    <Content Include="Scripts\LunchTime\admin\sales\directives\adminSalesCoursesStats.js" />
+    <Content Include="Scripts\LunchTime\admin\sales\directives\adminSalesUserOrder.js" />
+    <Content Include="Scripts\LunchTime\admin\sales\directives\adminSalesUsersOrders.js" />
+    <Content Include="Scripts\LunchTime\admin\sales\directives\directives.js" />
+    <Content Include="Scripts\LunchTime\admin\sales\filters\filters.js" />
+    <Content Include="Scripts\LunchTime\admin\sales\models\activeUserOrder.js" />
+    <Content Include="Scripts\LunchTime\admin\sales\models\orderedCourseStats.js" />
+    <Content Include="Scripts\LunchTime\admin\sales\models\salesData.js" />
+    <Content Include="Scripts\LunchTime\admin\sales\models\salesStats.js" />
+    <Content Include="Scripts\LunchTime\admin\sales\models\userOrder.js" />
+    <Content Include="Scripts\LunchTime\admin\sales\sales.start.js" />
+    <Content Include="Scripts\LunchTime\admin\sales\services\adminSalesApiMappingService.js" />
+    <Content Include="Scripts\LunchTime\admin\sales\services\adminSalesApiService.js" />
+    <Content Include="Scripts\LunchTime\admin\sales\services\adminSalesCardReaderService.js" />
+    <Content Include="Scripts\LunchTime\admin\sales\services\adminSalesDateWatcherService.js" />
+    <Content Include="Scripts\LunchTime\admin\sales\services\adminSalesQueueApiService.js" />
+    <Content Include="Scripts\LunchTime\admin\sales\services\adminSalesService.js" />
+    <Content Include="Scripts\LunchTime\admin\sales\services\services.js" />
+    <Content Include="Scripts\LunchTime\admin\sales\templates\templates.js" />
+    <Content Include="Scripts\LunchTime\admin\sales\sales.js" />
+    <Content Include="Scripts\LunchTime\admin\menu\controllers\adminAddCourseToMenuController.js" />
+    <Content Include="Scripts\LunchTime\admin\menu\controllers\menu\adminMenuCourseChangeMaxOrdersController.js" />
+    <Content Include="Scripts\LunchTime\admin\menu\controllers\courses\adminCoursesCategoryController.js" />
+    <Content Include="Scripts\LunchTime\admin\menu\controllers\courses\adminCourseController.js" />
+    <Content Include="Scripts\LunchTime\admin\menu\controllers\courses\adminCoursesController.js" />
+    <Content Include="Scripts\LunchTime\admin\menu\controllers\courses\adminCourseEditController.js" />
+    <Content Include="Scripts\LunchTime\admin\menu\controllers\menu\adminMenuController.js" />
+    <Content Include="Scripts\LunchTime\admin\menu\controllers\adminManageMenuController.js" />
+    <Content Include="Scripts\LunchTime\admin\admin.routes.js" />
+    <Content Include="Scripts\LunchTime\admin\menu\controllers\menu\adminMenuCourseController.js" />
+    <Content Include="Scripts\LunchTime\admin\menu\directives\courses\adminCoursesCategory.js" />
+    <Content Include="Scripts\LunchTime\admin\menu\directives\courses\adminCourse.js" />
+    <Content Include="Scripts\LunchTime\admin\menu\directives\courses\adminCourses.js" />
+    <Content Include="Scripts\LunchTime\admin\menu\directives\menu\adminMenu.js" />
+    <Content Include="Scripts\LunchTime\admin\menu\directives\menu\adminMenuCourse.js" />
+    <Content Include="Scripts\LunchTime\admin\menu\models\menuData.js" />
+    <Content Include="Scripts\LunchTime\admin\menu\services\adminMenuApiService.js" />
+    <Content Include="Scripts\LunchTime\admin\menu\services\adminMenuApiMappingService.js" />
+    <Content Include="Scripts\LunchTime\application.build.js" />
+    <Content Include="Scripts\LunchTime\application.config.js" />
+    <Content Include="Scripts\LunchTime\application.events.js" />
+    <Content Include="Scripts\LunchTime\application.js" />
+    <Content Include="Scripts\LunchTime\application.providers.js" />
+    <Content Include="Scripts\LunchTime\application.routes.js" />
+    <Content Include="Scripts\LunchTime\application.start.js" />
+    <Content Include="Scripts\Framework\extensions\boolean.extensions.js" />
+    <Content Include="Scripts\Framework\extensions\extensions.js" />
+    <Content Include="Scripts\Framework\extensions\string.extensions.js" />
+    <Content Include="Scripts\Framework\assert.js" />
+    <Content Include="Scripts\Framework\class.js" />
+    <Content Include="Scripts\Framework\utils.js" />
+    <Content Include="Scripts\LunchTime\common\directives\weekSidebar.js" />
+    <Content Include="Scripts\LunchTime\common\filters\weight.js" />
+    <Content Include="Scripts\LunchTime\common\models\user.js" />
+    <Content Include="Scripts\LunchTime\common\services\commonApiMappingService.js" />
+    <Content Include="Scripts\LunchTime\common\services\menuService.js" />
+    <Content Include="Scripts\LunchTime\common\templates\weekSidebar.tmpl.html" />
+    <Content Include="Scripts\LunchTime\core\controllers\confirmController.js" />
+    <Content Include="Scripts\LunchTime\core\controllers\controllers.js" />
+    <Content Include="Scripts\LunchTime\core\core.js" />
+    <Content Include="Scripts\LunchTime\core\directives\directives.js" />
+    <Content Include="Scripts\LunchTime\core\directives\fileUploadPreviewImage.js" />
+    <Content Include="Scripts\LunchTime\core\directives\isLoading.js" />
+    <Content Include="Scripts\LunchTime\core\directives\fileUpload.js" />
+    <Content Include="Scripts\LunchTime\core\directives\popoverHtml.js" />
+    <Content Include="Scripts\LunchTime\core\directives\popoverHtmlPopup.js" />
+    <Content Include="Scripts\LunchTime\core\directives\srcBig.js" />
+    <Content Include="Scripts\LunchTime\core\directives\toggle.js" />
+    <Content Include="Scripts\LunchTime\core\filters\filters.js" />
+    <Content Include="Scripts\LunchTime\core\filters\formatTimeSpanFilter.js" />
+    <Content Include="Scripts\LunchTime\core\models\timeSpan.js" />
+    <Content Include="Scripts\LunchTime\core\providers\providers.js" />
+    <Content Include="Scripts\LunchTime\core\providers\qDecorator.js" />
+    <Content Include="Scripts\LunchTime\core\services\services.js" />
+    <Content Include="Scripts\LunchTime\core\templates\popoverHtml.tmpl.html" />
+    <Content Include="Scripts\LunchTime\core\templates\templates.js" />
+    <Content Include="Scripts\LunchTime\main.dev.js" />
+    <Content Include="Scripts\LunchTime\main.js" />
+    <Content Include="Scripts\LunchTime\admin\menu\controllers\controllers.js" />
+    <Content Include="Scripts\LunchTime\admin\menu\directives\directives.js" />
+    <Content Include="Scripts\LunchTime\admin\menu\filters\filters.js" />
+    <Content Include="Scripts\LunchTime\admin\menu\services\services.js" />
+    <Content Include="Scripts\LunchTime\admin\menu\templates\templates.js" />
+    <Content Include="Scripts\LunchTime\admin\menu\menu.js" />
+    <Content Include="Scripts\LunchTime\common\controllers\controllers.js" />
+    <Content Include="Scripts\LunchTime\common\directives\categoryIcon.js" />
+    <Content Include="Scripts\LunchTime\common\directives\directives.js" />
+    <Content Include="Scripts\LunchTime\common\directives\menuCategoryTitle.js" />
+    <Content Include="Scripts\LunchTime\common\filters\filters.js" />
+    <Content Include="Scripts\LunchTime\common\models\categories.js" />
+    <Content Include="Scripts\LunchTime\common\models\category.js" />
+    <Content Include="Scripts\LunchTime\common\models\course.js" />
+    <Content Include="Scripts\LunchTime\common\models\order.js" />
+    <Content Include="Scripts\LunchTime\common\providers\providers.js" />
+    <Content Include="Scripts\LunchTime\common\services\categoryService.js" />
+    <Content Include="Scripts\LunchTime\common\services\services.js" />
+    <Content Include="Scripts\LunchTime\common\templates\categoryIcon.tmpl.html" />
+    <Content Include="Scripts\LunchTime\common\templates\menuCategoryTitle.tmpl.html" />
+    <Content Include="Scripts\LunchTime\common\templates\templates.js" />
+    <Content Include="Scripts\LunchTime\common\common.js" />
+    <Content Include="Scripts\LunchTime\user\menu\controllers\anonymousUserMenuController.js" />
+    <Content Include="Scripts\LunchTime\user\menu\controllers\courses\userMenuCoursesViewController.js" />
+    <Content Include="Scripts\LunchTime\user\menu\controllers\courses\userMenuCourseController.js" />
+    <Content Include="Scripts\LunchTime\user\menu\directives\courses\userMenuCourse.js" />
+    <Content Include="Scripts\LunchTime\user\menu\directives\courses\userMenuCoursesView.js" />
+    <Content Include="Scripts\LunchTime\user\menu\models\anonymousMenuData.js" />
+    <Content Include="Scripts\LunchTime\user\menu\services\userMenuApiMappingService.js" />
+    <Content Include="Scripts\LunchTime\user\orders\controllers\daysOrders\userOrdersDayController.js" />
+    <Content Include="Scripts\LunchTime\user\orders\controllers\daysOrders\userOrdersDayOrderController.js" />
+    <Content Include="Scripts\LunchTime\user\orders\controllers\daysOrders\userOrdersDaysController.js" />
+    <Content Include="Scripts\LunchTime\user\orders\controllers\userOrdersController.js" />
+    <Content Include="Scripts\LunchTime\user\orders\directives\daysOrders\userOrdersDay.js" />
+    <Content Include="Scripts\LunchTime\user\orders\directives\daysOrders\userOrdersDayOrder.js" />
+    <Content Include="Scripts\LunchTime\user\orders\directives\daysOrders\userOrdersDays.js" />
+    <Content Include="Scripts\LunchTime\user\orders\models\dayOrder.js" />
+    <Content Include="Scripts\LunchTime\user\orders\models\ordersData.js" />
+    <Content Include="Scripts\LunchTime\user\orders\services\userOrdersApiMappingService.js" />
+    <Content Include="Scripts\LunchTime\user\orders\services\userOrdersApiService.js" />
+    <Content Include="Scripts\LunchTime\user\user.routes.js" />
+    <Content Include="Scripts\LunchTime\user\menu\controllers\controllers.js" />
+    <Content Include="Scripts\LunchTime\user\menu\controllers\userMenuController.js" />
+    <Content Include="Scripts\LunchTime\user\menu\controllers\courses\userMenuCoursesController.js" />
+    <Content Include="Scripts\LunchTime\user\menu\controllers\orders\userMenuOrderController.js" />
+    <Content Include="Scripts\LunchTime\user\menu\controllers\orders\userMenuOrdersController.js" />
+    <Content Include="Scripts\LunchTime\user\menu\directives\orders\userMenuOrder.js" />
+    <Content Include="Scripts\LunchTime\user\menu\directives\orders\userMenuOrders.js" />
+    <Content Include="Scripts\LunchTime\user\menu\directives\courses\userMenuCourses.js" />
+    <Content Include="Scripts\LunchTime\user\menu\filters\boxTitleFilter.js" />
+    <Content Include="Scripts\LunchTime\user\menu\menu.js" />
+    <Content Include="Scripts\LunchTime\user\menu\directives\directives.js" />
+    <Content Include="Scripts\LunchTime\user\menu\filters\filters.js" />
+    <Content Include="Scripts\LunchTime\user\menu\models\box.js" />
+    <Content Include="Scripts\LunchTime\user\menu\models\boxCapacityValidationResult.js" />
+    <Content Include="Scripts\LunchTime\common\models\categoryMenu.js" />
+    <Content Include="Scripts\LunchTime\user\menu\models\menu.js" />
+    <Content Include="Scripts\LunchTime\user\menu\models\menuData.js" />
+    <Content Include="Scripts\LunchTime\user\menu\models\orderedBoxes.js" />
+    <Content Include="Scripts\LunchTime\user\menu\models\orderOption.js" />
+    <Content Include="Scripts\LunchTime\user\menu\providers\providers.js" />
+    <Content Include="Scripts\LunchTime\user\menu\services\boxCapacityService.js" />
+    <Content Include="Scripts\LunchTime\user\menu\services\userMenuApiService.js" />
+    <Content Include="Scripts\LunchTime\user\menu\services\userMenuService.js" />
+    <Content Include="Scripts\LunchTime\user\menu\services\orderService.js" />
+    <Content Include="Scripts\LunchTime\user\menu\services\services.js" />
+    <Content Include="Scripts\LunchTime\user\menu\templates\templates.js" />
+    <Content Include="Scripts\LunchTime\user\user.config.js" />
+    <Content Include="Scripts\LunchTime\user\user.js" />
+    <Content Include="Scripts\LunchTime\user\orders\controllers\controllers.js" />
+    <Content Include="Scripts\LunchTime\user\orders\directives\directives.js" />
+    <Content Include="Scripts\LunchTime\user\orders\filters\filters.js" />
+    <Content Include="Scripts\LunchTime\user\orders\services\services.js" />
+    <Content Include="Scripts\LunchTime\user\orders\templates\templates.js" />
+    <Content Include="Scripts\LunchTime\user\orders\orders.js" />
+    <Content Include="Scripts\LunchTime\_template\controllers\controllers.js" />
+    <Content Include="Scripts\LunchTime\_template\directives\directives.js" />
+    <Content Include="Scripts\LunchTime\_template\filters\filters.js" />
+    <Content Include="Scripts\LunchTime\_template\_template.js" />
+    <Content Include="Scripts\LunchTime\_template\services\services.js" />
+    <Content Include="Scripts\LunchTime\_template\templates\templates.js" />
+    <Content Include="Scripts\LunchTime\require.config.js" />
+    <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\picker.date.js" />
+    <Content Include="Scripts\picker.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Images\accent.png" />
+    <Content Include="Images\bullet.png" />
+    <Content Include="Images\heroAccent.png" />
+    <Content Include="Images\orderedList0.png" />
+    <Content Include="Images\orderedList1.png" />
+    <Content Include="Images\orderedList2.png" />
+    <Content Include="Images\orderedList3.png" />
+    <Content Include="Images\orderedList4.png" />
+    <Content Include="Images\orderedList5.png" />
+    <Content Include="Images\orderedList6.png" />
+    <Content Include="Images\orderedList7.png" />
+    <Content Include="Images\orderedList8.png" />
+    <Content Include="Images\orderedList9.png" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\WebCam\Index.cshtml" />
+    <Content Include="Views\Orders\Index.cshtml" />
+    <Content Include="Views\Orders\Print.cshtml" />
+    <Content Include="Views\Menu\Partials\AnonymousMenuRow.cshtml" />
+    <Content Include="Views\Shared\_LayoutWithMenu.cshtml" />
+    <Content Include="Views\Menu\ViewMenu.cshtml" />
+    <Content Include="Settings.StyleCop" />
+    <Content Include="Views\Timing\Index.cshtml" />
+    <Content Include="Views\Account\ChangeDisplayName.cshtml" />
+    <Content Include="Views\Statistics\Index.cshtml" />
+    <Content Include="Views\Menu\UserOrders.cshtml" />
+    <Content Include="Views\Menu\Partials\NavBar.cshtml" />
+    <Content Include="Scripts\Libs\angular\angular-animate.min.js.map">
+      <DependentUpon>angular-animate.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Libs\angular\angular-cookies.min.js.map">
+      <DependentUpon>angular-cookies.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Libs\angular\angular-loader.min.js.map">
+      <DependentUpon>angular-loader.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Libs\angular\angular-resource.min.js.map">
+      <DependentUpon>angular-resource.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Libs\angular\angular-route.min.js.map">
+      <DependentUpon>angular-route.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Libs\angular\angular-sanitize.min.js.map">
+      <DependentUpon>angular-sanitize.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Libs\angular\angular-touch.min.js.map">
+      <DependentUpon>angular-touch.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Libs\angular\angular.min.js.map">
+      <DependentUpon>angular.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Libs\angular\errors.json" />
+    <Content Include="Scripts\Libs\angular\version.json" />
+    <Content Include="Views\Menu\OrderMenu.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordComplete.cshtml" />
+    <Content Include="Views\Account\Settings.cshtml" />
+    <Content Include="Views\Account\Unsubscribe.cshtml" />
+    <Content Include="Views\Version\Index.cshtml" />
+    <Content Include="Views\AdminNotification\Index.cshtml" />
+    <Content Include="Views\Orders\TablePrint.cshtml" />
+    <Content Include="Views\Account\CompanySettings.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Scripts\Web.config" />
+    <Content Include="Views\Menu\Partials\Menu\_Menu.cshtml" />
+    <Content Include="Views\Menu\Partials\Menu\Courses\_Courses.cshtml" />
+    <Content Include="Views\Menu\Partials\Menu\Orders\_Orders.cshtml" />
+    <Content Include="Views\Menu\Partials\Menu\Orders\_Order.cshtml" />
+    <Content Include="Views\Admin\Partials\Menu\Menu\_Menu.cshtml" />
+    <Content Include="Views\Admin\Partials\Menu\Menu\_MenuCourse.cshtml" />
+    <Content Include="Views\Admin\Partials\Menu\Courses\_Courses.cshtml" />
+    <Content Include="Views\Admin\Partials\Menu\Courses\_Course.cshtml" />
+    <Content Include="Views\Admin\Partials\Menu\Menu\_ChangeMaxOrders.cshtml" />
+    <Content Include="Views\Admin\Partials\Menu\Courses\_EditCourse.cshtml" />
+    <Content Include="Views\Admin\Partials\Menu\Courses\_CoursesCategory.cshtml" />
+    <Content Include="Views\Admin\Partials\Menu\Courses\_ConfirmRemoveCourse.cshtml" />
+    <Content Include="Views\Admin\Partials\Menu\Menu\_ConfirmRemoveCourseFromMenu.cshtml" />
+    <Content Include="Views\Admin\Partials\Menu\_AddCourseToMenu.cshtml" />
+    <Content Include="Views\Menu\Partials\Menu\Courses\_Course.cshtml" />
+    <Content Include="Views\Admin\Partials\Menu\_Menu.cshtml" />
+    <Content Include="Views\Menu\Partials\Menu\_ViewMenu.cshtml" />
+    <Content Include="Views\Orders\Sales.cshtml" />
+    <Content Include="Views\Orders\Partials\Sales\_Sales.cshtml" />
+    <Content Include="Views\Orders\Partials\Sales\_CoursesStats.cshtml" />
+    <Content Include="Views\Orders\Partials\Sales\_UsersOrders.cshtml" />
+    <Content Include="Views\Orders\Partials\Sales\_UserOrder.cshtml" />
+    <Content Include="Views\Orders\Partials\Sales\_ConfirmRemoveOrder.cshtml" />
+    <Content Include="Views\Orders\Partials\Sales\_UnknownIdentityNumber.cshtml" />
+    <Content Include="Views\Orders\Partials\Sales\_UserOrderNotFound.cshtml" />
+    <Content Include="Views\Menu\ngUserOrders.cshtml" />
+    <Content Include="Views\Menu\Partials\Orders\_Orders.cshtml" />
+    <Content Include="Views\Menu\Partials\Orders\DaysOrders\_DaysOrders.cshtml" />
+    <Content Include="Views\Menu\Partials\Orders\DaysOrders\_DayOrders.cshtml" />
+    <Content Include="Views\Menu\Partials\Orders\DaysOrders\_DayOrder.cshtml" />
+    <Content Include="Views\Orders\Partials\Sales\_RegisterIdentityCard.cshtml" />
+    <Content Include="Views\Orders\Partials\Sales\_ConfirmRegisterIdentityNumber.cshtml" />
+    <None Include="Web.Test.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Scripts\Libs\glisse\img\" />
+    <Folder Include="Scripts\LunchTime\user\orders\controllers\menu\" />
+    <Folder Include="Scripts\LunchTime\_template\models\" />
+    <Folder Include="Views\User\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dinner.Entities\Dinner.Entities.csproj">
+      <Project>{22207837-6aec-4beb-bf4d-2716209c0cb0}</Project>
+      <Name>Dinner.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dinner.Infrastructure\Dinner.Infrastructure.csproj">
+      <Project>{9f62ee4d-5ebb-487e-a784-0f3e41f33bab}</Project>
+      <Name>Dinner.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dinner.Mail\Dinner.Mail.csproj">
+      <Project>{59A5C700-5A54-4D9E-9F44-3EB8CA960A27}</Project>
+      <Name>Dinner.Mail</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dinner.Services\Dinner.Services.csproj">
+      <Project>{a187bfa7-674d-450b-aee5-07977b2911a8}</Project>
+      <Name>Dinner.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>62613</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:62613/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>if not "$(ConfigurationName)" == "Debug" (
+"$(ProjectDir)\..\Tools\node.exe" "$(ProjectDir)\..\Tools\r.js" -o "$(WebProjectOutputDir)\Scripts\Libs\Libs.build.js"
+"$(ProjectDir)\..\Tools\node.exe" "$(ProjectDir)\..\Tools\r.js" -o "$(WebProjectOutputDir)\Scripts\LunchTime\application.build.js"
+)</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <!--  <PropertyGroup>
+    <CopyAllFilesToSingleFolderForPackageDependsOn>
+    CustomCollectFiles;
+    $(CopyAllFilesToSingleFolderForPackageDependsOn);
+  </CopyAllFilesToSingleFolderForPackageDependsOn>
+    <CopyAllFilesToSingleFolderForMsdeployDependsOn>
+    CustomCollectFiles;
+    $(CopyAllFilesToSingleFolderForPackageDependsOn);
+  </CopyAllFilesToSingleFolderForMsdeployDependsOn>
+  </PropertyGroup>-->
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <!--  <Target Name="CustomCollectFiles">
+    <ItemGroup>
+      <_LunchTimeScript Include="Scripts\LunchTime\LunchTime.min.js" />
+      <_LibsScript Include="Scripts\Libs\Libs.min.js" />
+      <FilesForPackagingFromProject Include="%(_LunchTimeScript.Identity)">
+        <DestinationRelativePath>Scripts\LunchTime\LunchTime.min.js</DestinationRelativePath>
+      </FilesForPackagingFromProject>
+      <FilesForPackagingFromProject Include="%(_LibsScript.Identity)">
+        <DestinationRelativePath>Scripts\Libs\Libs.min.js</DestinationRelativePath>
+      </FilesForPackagingFromProject>      
+    </ItemGroup>
+  </Target>-->
+</Project>

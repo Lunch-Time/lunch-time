@@ -1,0 +1,75 @@
+﻿@using Dinner.Entities
+@using Dinner.Entities.Company
+@using Dinner.Entities.Course
+@using Dinner.Models
+@model Dinner.Models.MenuModel
+
+@{
+    ViewBag.Title = "Меню";
+    ViewBag.Date = Model.Date;
+    Layout = "~/Views/Shared/_LayoutWithMenu.cshtml";
+}
+
+@helper CategoryMenu(string category, CourseCategories categoryType)
+{
+    @Category.Title(categoryType, category)
+    <table class="table menu-table table-striped">
+        <thead>
+            <tr>
+                @if (Model.CompanySettings.ShowMenuWithImages)
+                {
+                    <td></td>
+                }
+                <td class="full-width"></td>
+                @if (Model.CompanySettings.ShowMenuWithWeight)
+                {
+                    <td></td>
+                }
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var course in Model.MenuCourses.Where(course => course.CategoryType == categoryType).OrderBy(course => course.Name))
+            {
+                @Html.Partial("Partials/AnonymousMenuRow", new ApplicationViewModel<CourseModel, CompanySettingsModel>(course, Model.CompanySettings))
+            }
+        </tbody>
+    </table>
+}
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-title">
+            <i class="glyphicon glyphicon-list-alt"></i>
+            Меню на @Model.Date.ToString("D")
+        </h3>
+        <h6 class="grey-color uppercase">Для заказа обеда вам необходимо войти в систему</h6>
+        <hr>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-11 col-lg-7">
+        @CategoryMenu("Салаты", CourseCategories.Salads)
+        @CategoryMenu("Супы", CourseCategories.Soups)
+        @CategoryMenu("Основные блюда", CourseCategories.MainDishes)
+        @CategoryMenu("Гарниры", CourseCategories.SideDishes)
+        @CategoryMenu("Другое", CourseCategories.Misc)
+    </div>
+</div>
+
+<div id="thumbnails"></div>
+
+<link rel="stylesheet" href="@Href("~/Content/Css/glisse.css")" />
+<script src="@Href("~/Scripts/Libs/glisse/glisse.js")"></script>
+<script>
+    
+    
+    $(document).ready(function () {
+        $('.pics').glisse({
+            speed: 500,
+            effect: 'bounce'
+        });
+    });
+</script>

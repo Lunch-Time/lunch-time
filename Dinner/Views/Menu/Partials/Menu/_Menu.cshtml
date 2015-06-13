@@ -1,0 +1,28 @@
+﻿<div class="row">
+    <div class="col-md-7 col-lg-7 menu-courses">
+        <div class="row" ng-show="isFreezed">
+            <div class="col-md-12 col-lg-12">
+                <div class="alert alert-danger">
+                    Заказ обедов на {{ date | date:'dd MMMM yyyy' }} заморожен. Заказы принимаются до {{ freezeTime | formatTimeSpan }}.
+                </div>
+            </div>
+        </div>
+
+        <lt:user-menu-courses 
+            courses="courses"
+            date="date" 
+            is-freezed="isFreezed"
+            wished-courses="wishedCourses"
+            on-order-course="orderCourse(course, quantity)">            
+        </lt:user-menu-courses>
+    </div>
+
+    <div class="col-md-5 col-lg-5 menu-orders">
+        <lt:user-menu-orders orders="orders"
+                        date="date"
+                        is-freezed="isFreezed"
+                        on-remove-order="removeOrder(order)"
+                        on-move-order-to-box="moveOrderToBox(order, box)">
+        </lt:user-menu-orders>
+    </div>
+</div>

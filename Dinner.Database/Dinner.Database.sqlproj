@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>Dinner.Database</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{3d74b026-a21a-46fd-926c-f49b5bc2d283}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.SqlAzureDatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>Dinner.Database</RootNamespace>
+    <AssemblyName>Dinner.Database</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>True</SqlServerVerification>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- VS10 without SP1 will not have VisualStudioVersion set, so do that here -->
+  <PropertyGroup />
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Test|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Stored Procedures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\UserRole.sql" />
+    <Build Include="dbo\Tables\CourseCategory.sql" />
+    <Build Include="dbo\Tables\Menu.sql" />
+    <Build Include="dbo\Tables\User.sql" />
+    <Build Include="dbo\Tables\Order.sql" />
+    <Build Include="dbo\Tables\Course.sql" />
+    <Build Include="dbo\Tables\Company.sql" />
+    <Build Include="dbo\Tables\OrderMenu.sql" />
+    <Build Include="dbo\Stored Procedures\p_MarkCourseAsDeleted.sql" />
+    <Build Include="dbo\Stored Procedures\p_GetCourses.sql" />
+    <Build Include="dbo\Stored Procedures\p_GetAllOrdersByDate.sql" />
+    <Build Include="dbo\Stored Procedures\p_DeleteCourseFromMenu.sql" />
+    <Build Include="dbo\Stored Procedures\p_SetOrderTime.sql" />
+    <Build Include="dbo\Stored Procedures\p_GetOrderTime.sql" />
+    <Build Include="dbo\Stored Procedures\p_GetDayTiming.sql" />
+    <Build Include="dbo\Stored Procedures\p_UpsertCourseToMenu.sql" />
+    <Build Include="dbo\Stored Procedures\p_DeleteCourse.sql" />
+    <Build Include="dbo\Stored Procedures\p_UpsertCourse.sql" />
+    <Build Include="dbo\Stored Procedures\ip_ClearDeletedCourses.sql" />
+    <Build Include="dbo\Stored Procedures\p_GetDayMenu.sql" />
+    <Build Include="dbo\Stored Procedures\p_GetOrderedMenu.sql" />
+    <Build Include="dbo\Stored Procedures\p_SetUserTime.sql" />
+    <Build Include="dbo\Stored Procedures\p_GetUserOrderTime.sql" />
+    <Build Include="dbo\Tables\OrderItem.sql" />
+    <Build Include="dbo\Stored Procedures\p_DeleteOrderItem.sql" />
+    <Build Include="dbo\Stored Procedures\p_ChangeOrderItemBoxindex.sql" />
+    <Build Include="dbo\Stored Procedures\p_AddOrderItem.sql" />
+    <Build Include="dbo\Stored Procedures\p_GetUserOrderForPeriod.sql" />
+    <Build Include="dbo\Stored Procedures\p_GetUserOrderForDay.sql" />
+    <Build Include="dbo\Tables\UserSettings.sql" />
+    <Build Include="dbo\Stored Procedures\p_StatisticByUsers.sql" />
+    <Build Include="dbo\Stored Procedures\p_StatisticByDays.sql" />
+    <Build Include="dbo\Stored Procedures\p_StatisticByCourse.sql" />
+    <Build Include="dbo\Stored Procedures\p_GetUsersForNotification.sql" />
+    <Build Include="dbo\Stored Procedures\p_StatisticByCourseDeficit.sql" />
+    <Build Include="dbo\Stored Procedures\p_StatisticByCourseBuyout.sql" />
+    <Build Include="dbo\Tables\CompanySettings.sql" />
+    <Build Include="dbo\Stored Procedures\p_DeleteCompany.sql" />
+    <Build Include="dbo\Stored Procedures\p_ChangeCompanyName.sql" />
+    <Build Include="dbo\Stored Procedures\p_AddCompany.sql" />
+    <Build Include="dbo\Stored Procedures\p_UpsertCoursePicture.sql" />
+    <Build Include="dbo\Stored Procedures\p_GetCoursePictures.sql" />
+    <Build Include="dbo\Stored Procedures\p_GetCoursePicture.sql" />
+    <Build Include="dbo\Tables\EventLog.sql" />
+    <Build Include="dbo\Tables\MenuItemWish.sql" />
+    <Build Include="dbo\Tables\FeedbackType.sql" />
+    <Build Include="dbo\Tables\Feedback.sql" />
+    <Build Include="dbo\Stored Procedures\p_UpdateFeedback.sql" />
+    <Build Include="dbo\Stored Procedures\p_MenuItemWish_Upsert.sql" />
+    <Build Include="dbo\Stored Procedures\p_MenuItemWish_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\p_MenuItemWish_Get.sql" />
+    <Build Include="dbo\Stored Procedures\p_MenuItemWish_Delete.sql" />
+    <Build Include="dbo\Stored Procedures\p_GetFeedback.sql" />
+    <Build Include="dbo\Stored Procedures\p_DeleteFeedback.sql" />
+    <Build Include="dbo\Stored Procedures\p_AddFeedback.sql" />
+    <Build Include="dbo\Tables\IdentityCard.sql" />
+    <Build Include="dbo\Stored Procedures\p_Order_SetPurchased.sql" />
+    <Build Include="dbo\Stored Procedures\p_Order_GetByIdentityCard.sql" />
+    <Build Include="dbo\Stored Procedures\ip_IdentityCard_UpdateRelationship.sql" />
+    <Build Include="dbo\Stored Procedures\p_UserOrder_GetByID.sql" />
+    <Build Include="dbo\Stored Procedures\p_IdentityCard_CheckNumber.sql" />
+    <Build Include="dbo\Stored Procedures\p_Order_Delete.sql" />
+    <Build Include="dbo\Stored Procedures\p_CustomerUser_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\ip_IdentityCard_UpdateAllRelationships.sql" />
+  </ItemGroup>
+</Project>

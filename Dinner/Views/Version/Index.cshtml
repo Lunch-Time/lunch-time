@@ -1,0 +1,89 @@
+﻿@{
+    ViewBag.Title = "Обновления";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h3>
+            <span>Версия 1.4</span>
+            <span style=" float: right; color: #555555; font-size: 0.6em; line-height: 2.5em;">09.02.2014</span>
+        </h3>
+        <hr />
+        <ul>
+            <li>
+                На странице "<a href="@Url.Action("Index", "Menu")">Заказ обедов</a>" добавлены фотографии блюд, их вес и состав.
+            </li>
+            <li>
+                На странице "<a href="@Url.Action("Index", "Menu")">Заказ обедов</a>" добавлена возможность голосования за увеличение количества порций блюда в каждой из категорий.
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h3>
+            <span>Версия 1.3</span>
+            <span style=" float: right; color: #555555; font-size: 0.6em; line-height: 2.5em;">17.12.2013</span>
+        </h3>
+        <hr />
+        <ul>
+            <li>
+                На странице "<a href="@Url.Action("Index", "Menu")">Заказ обедов</a>" добавлена возможность группировки по боксам.              
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h3>
+            <span>Версия 1.2</span>
+            <span style=" float: right; color: #555555; font-size: 0.6em; line-height: 2.5em;">04.12.2013</span>
+        </h3>
+        <hr />
+        <ul>
+            <li>
+                Добавлена страница "<a href="@Url.Action("Index","Statistics")">Статистика</a>" - позволяет посмотреть стратистику по блюдам и датам.              
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h3>
+            <span>Версия 1.1</span>
+            <span style=" float: right; color: #555555; font-size: 0.6em; line-height: 2.5em;">01.12.2013</span>
+        </h3>
+        <hr />
+        <ul>
+            <li>
+                Добавлена страница "<a href="@Url.Action("Settings","Account")">Мои настройки</a>" - позволяет включать и отключать различные уведомления высылаемые на почту указанную при регистрации:
+                <ul>
+                    <li>Напоминать о заказе обеда на следующий день - уведомление высылается в 12:00 если Вы ещё не сделали заказ на следующий день.</li>
+                    <li>Напоминать о заказе обеда на следующую неделю - уведомление высылается если в 12:00 пятницы Вы ещё не сделали заказ на понедельник.</li>
+                    <li>Получать новости от сайта - уведомления о выходе новых версий и изменений в системе.</li>
+                </ul>                
+            </li>
+            <li>
+                Добавлена страница "<a href="@Url.Action("ChangeDisplayName","Account")">Изменить имя</a>" - позволяет изменить имя, отображаемое в списке заказов.
+            </li>
+            <li>
+                Добавлена страница "<a href="@Url.Action("ResetPassword","Account")">Сброс пароля</a>" - позволяет восстановить забытый пароль.
+            </li>
+            <li>
+                Добавлена страница "<a href="@Url.Action("UserOrders","Menu")">Мои заказы</a>" - отображает Ваш список заказов на всю неделю.
+            </li>
+            <li>
+                На странице "<a href="@Url.Action("Index", "Menu")">Заказ обедов</a>" по-умолчанию открывается следующий рабочий день.
+            </li>
+            <li>
+                Добавлены всплывающие уведомления об успешном изменении заказа.
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+﻿@model bool
+@{
+    ViewBag.Title = "Отписка завершена";
+}
+
+<div class="row content">
+    <div class="col-md-12 col-lg-12 full-height">
+        <div class="row header-title">
+            <div class="col-md-12 col-lg-12 text-center">
+                <h1>Отписка завершена</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-xs-1"></div>
+            <div class="col-lg-4 col-md-4 col-xs-10">
+                @if (Model)
+                {
+                    @Html.Raw("Вы были отписаны от всех уведомлений")
+                }
+                else
+                {
+                    @Html.Raw("Пользователь с такой почтой не найден")
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

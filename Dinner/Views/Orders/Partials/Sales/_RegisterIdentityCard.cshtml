@@ -1,0 +1,27 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">Выберите пользователя:</h3>
+</div>
+<div class="modal-body">
+    <div style="max-height: 440px; height: 440px; overflow-y: auto; background-color: #fafafa">
+        <table class="table table-striped-light">
+            <colgroup>
+                <col class="full-width" />
+                <col />
+            </colgroup>
+            <tbody>
+                <tr ng-repeat="user in users | orderBy: 'user.name'" ng-click="assignIdentityCardToUser(user)">
+                    <td style="vertical-align: middle">
+                        <h4>{{user.name}}</h4>
+                    </td>
+                    <td style="vertical-align: middle">
+                        <button class="btn btn-lg btn-success ladda-button" data-style="zoom-in" is-loading="state.isSavingChanges" data-spinner-size="24" ng-disabled="state.isSavingChanges">Выбрать</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-lg btn-default" ng-click="closeDialog()" ng-disabled="state.isSavingChanges">Отмена</button>
+</div>

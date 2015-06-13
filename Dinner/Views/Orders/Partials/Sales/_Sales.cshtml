@@ -1,0 +1,14 @@
+﻿<div class="row no-margin" style="margin-top: -35px !important;">
+    <div class="col-lg-7 col-md-7 no-padding">
+        <lt:admin-sales-users-orders date="date"
+                                     users-orders="usersOrders"
+                                     on-purchase-order="purchaseOrder(userOrder)"
+                                     on-undo-purchase-order="undoPurchaseOrder(userOrder)"
+                                     on-remove-order="removeOrder(userOrder)">
+        </lt:admin-sales-users-orders>
+    </div>
+
+    <div class="col-lg-5 col-md-5 no-padding">
+        <lt:admin-sales-courses-stats date="date" courses-stats="orderedCoursesStats"></lt:admin-sales-courses-stats>
+    </div>
+</div>

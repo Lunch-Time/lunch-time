@@ -1,0 +1,405 @@
+﻿body {} @import "mixins.less";
+
+html, body {
+    padding-top: 26px;
+
+    @media (max-width: @screen-sm-max) {
+        padding-top: 30px;
+    }
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+
+.no-margin {
+    margin: 0 !important;
+}
+
+
+.full-height {
+    height: 100%;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.width-150 {
+    min-width: 150px;
+}
+
+.width-175 {
+    min-width: 175px;
+}
+
+.width-50 {
+    min-width: 50px;
+}
+
+.width-75 {
+    min-width: 75px;
+}
+
+.navbar {
+    margin-bottom: 0px !important;
+}
+
+.uppercase {
+    .uppercase();
+}
+
+.course-category-icon {
+    height: 32px;
+    width: 32px;
+}
+
+.header-title {
+    background: @accent-color;
+    color: white;
+    padding: 20px 0 20px 0;
+}
+
+.accent-color {
+    color: @accent-color;
+}
+
+.grey-color {
+    color: grey;
+}
+
+.content {    
+    height: 100%;
+}
+
+// Sidebar
+.sidebar-nav {
+    background: @accent-color;
+    color: #ffffff;
+    padding: 10px;
+
+    & .btn-link {
+        color: #ffffff;
+    }
+
+    & a {
+        color: #ffffff;
+
+        &:hover {
+            color: #BD503C;
+        }
+    }
+
+    & .selected-week {
+        .uppercase();
+        .text-center();
+    }
+
+    & .btn-default {
+        color: @accent-color;
+        font-weight: bolder;
+    }
+
+    .nav-pills {
+        li {
+            &.active a {
+                background-color: #ffffff;
+                border-color: #ffffff;
+                color: @accent-color;
+                font-weight: bolder;
+
+                &:hover {
+                    background-color: #ffffff;
+                    border-color: #ffffff;
+                    color: @accent-color;
+                    font-weight: bolder;
+                }
+            }
+
+            & a {
+                color: #ffffff;
+                text-transform: uppercase;
+
+                &:hover {
+                    color: #ffffff;
+                    background-color: #BD503C;
+                }
+            }
+        }
+    }
+
+    .week-day-selector {
+        padding-top: 5px;
+        margin-top: 5px;
+        border-top: 1px solid #fff;
+    }
+
+    @media (min-width: @screen-md-min) {
+        position: fixed;
+        left: 0px;
+        top: 51px;
+        bottom: 0px;
+        z-index: 999;
+        width: 250px;
+        padding: 25px 45px 25px 45px;
+
+        .week-day-selector {
+            padding: 10px 0;
+            margin: 12px 0;
+            border-top: 1px solid #fff;
+            border-bottom: 1px solid #fff;
+        }
+
+        & .nav > li {
+            float: none;
+        }
+    }
+}
+
+// Main content block
+.content-main {
+    background-color: #ffffff;
+    height: 100%;
+    padding: 15px 25px;
+    
+    @media (min-width: @screen-md-min) {
+        margin-left: 250px;
+        margin-right: 0px;
+    }
+}
+
+.menu-table {
+    & tr td {
+        vertical-align: middle !important;
+    }
+}
+
+.with-icon-over-input
+{
+    position: relative;
+
+    & .icon {
+        position: absolute;
+        right: 10px;
+        top: 9px;
+    }
+}
+
+.input-validation-error {
+    border-color: #b94a48 !important;
+    background-color: #f9f2f4 !important;
+    .box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.075)) !important;
+}
+
+.field-validation-error {
+    color: #b94a48;
+    background-color: #f9f2f4 !important;
+}
+
+.alert-inline {
+    margin-top: 15px;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.not-available {
+    text-decoration: line-through;
+    color: #999;
+}
+
+h3.page-title {
+    margin-top: 0;
+    padding-bottom: 10px;
+    height: @page-title-height + 10px;
+    line-height: 33px;
+    border-bottom: 1px solid @gray-lighter;
+    color: @accent-color;
+    .uppercase();
+}
+
+.box-price {
+    color: #d7634e;
+    font-size: .7em;
+    vertical-align: middle;
+    line-height: 2.14em;
+}
+
+.modal.modal-wide .modal-dialog {
+    width: 800px;
+
+}
+.modal-wide .modal-body {
+  overflow-y: auto;
+}
+
+    .btn-circle {
+        position: relative;
+    }
+
+    .btn.btn-circle, .btn.btn-circle.disabled {
+        padding: 2px 5px;
+        box-shadow: none;
+        border: none;
+        background: transparent;
+        position: relative;
+    }
+
+    .btn-circle b.badge {
+        position: absolute;
+    }
+
+        .btn-circle b.badge.up {
+            right: -7px;
+            top: -7px;
+        }
+
+        .btn-circle b.badge.down {
+            right: -7px;
+            top: 25px;
+        }
+
+    .btn-circle .badge i {
+        margin: 0 -2px;
+    }
+
+    .badge.bg-danger {
+        background-color: #fb6b5b;
+        color: #ffffff;
+    }
+
+    .badge.bg-default {
+        background-color: buttonface;
+        color: #999;
+    }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.menu-orders {
+    .affix {
+        @media (min-width: @screen-md-min) {
+            .make-md-column(4);
+            .make-lg-column(4);
+            position: fixed; padding-left: 0px; top: 66px;
+        }
+    }
+
+    .menu-orders-list {
+        @media (min-width: @screen-md-min) {
+            .make-md-column(4);
+            .make-lg-column(4);
+            position: fixed; 
+            padding-left: 0px;
+            top: 67px;
+        }
+    }
+}
+.block-flat {
+  margin: 0 10px 20px 10px;
+  padding: 0;
+  background: #FFF;
+  border-radius: 3px;
+  position: relative;
+  -webkit-border-radius: 3px;
+  border-left: 1px solid #efefef;
+  border-right: 1px solid #efefef;
+  border-bottom: 1px solid #e2e2e2;
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.04);
+  transition: padding 500ms;
+  -moz-transition: padding 500ms;
+  -webkit-transition: padding 500ms;
+}
+
+.block-flat .header {
+  margin-top: 15px;
+  margin-bottom: 0px;
+  padding: 5px 20px 10px 20px;
+  background-color: #FEFEFE;
+  border-bottom: 1px solid #dadada;
+  transition: border 500ms;
+  -moz-transitiontransition: border 500ms;
+  -webkit-transition: border 500ms;
+}
+
+    .block-flat .header.header-success {
+        background-color: #5cb85c;
+        color:#fff;
+    }
+
+.block-flat .content {
+    background-color: #fafafa;
+    padding: 20px 15px 10px 20px;
+}
+
+    table.box .box-title-column {
+        -ms-transform: rotate(270deg); /* IE 9 */
+        -moz-transform: rotate(270deg); /* Firefox */
+        -webkit-transform: rotate(270deg); /* Safari and Chrome */
+        -o-transform: rotate(270deg); /* Opera */
+        filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); /* IE6,IE7 */
+        -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)"; /* IE8 */
+    }
+
+    table.box .box-title {
+        padding: 0px;
+        vertical-align: middle;
+        line-height: 0;
+        height: 40px;
+        width: 15px;
+        white-space: nowrap;
+    }
+
+.courses-stats {
+    overflow-y: scroll;
+    height: 572px;
+    max-height: 572px;
+}
+
+.users-orders {
+    overflow-y: auto;
+    height: 620px;
+    max-height: 620px;
+}
+
+table .count {
+    font-size: larger; 
+    font-weight: bold
+}
+
+.btn.btn-xlg {
+    padding: 20px 16px; 
+    font-size: 28px;
+    line-height: 1.33;
+    border-radius: 6px;
+}
+
+.sales-buttons {
+    .text-center();
+
+    button {
+        margin: 0 16px 0 16px;
+        width: 40%;
+    }
+
+        button.sales-button-single {
+            width: 70%;
+        }
+}
+
+.table-striped-light {
+  > tbody > tr:nth-child(odd) {
+    > td,
+    > th {
+      background-color: #fff;
+    }
+  }
+}
+
+.table-row-variant(purchased; #5cb85c);
+

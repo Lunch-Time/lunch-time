@@ -1,0 +1,34 @@
+﻿<div class="block-flat">
+    <div class="header">
+        <h3>
+            Сводка по блюдам
+        </h3>
+    </div>
+    <div class="content">
+        <table class="table table-striped" style="margin-bottom: 10px;">
+            <thead>
+                <tr>
+                    <th class="full-width">Наименование блюда</th>
+                    <th class="width-75 text-center">Остаток</th>
+                    <th class="width-75 text-center">Всего</th>
+                    <th style="width: 10px;"></th>
+                </tr>
+            </thead>
+        </table>
+        <div class="courses-stats">
+            <table class="table table-striped-light">
+                <tbody>
+                    <tr ng-repeat="courseStats in coursesStats | orderBy: 'course.name'">
+                        <td class="full-width">{{courseStats.course.name}}</td>
+                        <td class="width-75 text-center count">
+                            {{courseStats.ordersLeft}}
+                        </td>
+                        <td class="width-75 text-center count">
+                            {{courseStats.totalOrders}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

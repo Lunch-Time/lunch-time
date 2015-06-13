@@ -1,0 +1,60 @@
+﻿<td>
+    <a href="javascript:void(0)" class="btn btn-circle">
+        <img style="cursor: pointer;" class="img-circle course-category-icon"
+             src="/Images/ajax_loader_gray_32.gif"
+             ng-src="{{courseImage.thumbnailUrl}}"
+             src-big="{{courseImage.url}}" />
+        <b class="badge up bg-danger" tooltip="Осталось {{course.maxOrders - course.ordersCount}} из {{course.maxOrders}} порций">
+            {{course.maxOrders - course.ordersCount}}
+        </b>                           
+    </a>
+</td>
+
+<td>
+    <div ng-class="{ 'not-available' : course.ordersCount === course.maxOrders}">
+        <span>
+            {{course.name}}
+        </span>
+    </div>
+    <div class="visible-sm visible-md visible-lg">
+        <small class="text-muted">
+            <span ng-if="course.weight">{{course.weight | weight}}, </span>
+            <span ng-if="course.description">{{course.description}}</span>
+        </small>
+    </div>
+</td>
+
+<td class="nowrap">
+    {{course.price | currency}}
+</td>
+
+<td>
+    <span tooltip="Голосовать за увеличение порций этого блюда!" tooltip-popup-delay="250">
+        <button class="btn btn-xs ladda-button" ng-click="wishCourse(course)"
+                ng-class="{ 'btn-danger': isWished, 'btn-default': !isWished }"
+                data-style="zoom-in"
+                data-spinner-size="16"
+                is-loading="state.isWishing">
+            <i class="ladda-label glyphicon glyphicon-arrow-up"></i>
+        </button>
+    </span>
+</td>
+
+<td class="nowrap">
+    <div class="btn-group">
+        <button is-loading="state.isOrdering" type="button" class="btn btn-danger ladda-button" data-style="zoom-in"
+                ng-click="orderCourse(course, defaultOption.quantity)" ng-disabled="isFreezed || course.ordersCount === course.maxOrders">
+            Заказать
+        </button>
+
+        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" ng-disabled="isFreezed || state.isOrdering || course.ordersCount === course.maxOrders || orderOptions.length === 0">
+            <span class="caret"></span>
+        </button>
+
+        <ul class="dropdown-menu" role="menu">
+            <li ng-repeat="orderOption in orderOptions">
+                <a href="javascript:void(0)" ng-click="orderCourse(course, orderOption.quantity)">Заказать {{orderOption.name}} порции</a>
+            </li>
+        </ul>
+    </div>
+</td>

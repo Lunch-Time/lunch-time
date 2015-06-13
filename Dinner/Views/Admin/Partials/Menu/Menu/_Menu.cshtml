@@ -1,0 +1,30 @@
+﻿<div>
+    <h3 class="page-title">
+        <i class="glyphicon glyphicon-list-alt"></i>
+        Меню на {{ date | date:'dd MMMM yyyy' }}
+    </h3>
+
+    <div ng-repeat="categoryMenu in categoriesMenu">
+        <lt:menu-category-title category="categoryMenu.category"></lt:menu-category-title>
+
+        <table class="table menu-table table-striped">
+            <thead>
+                <tr>
+                    <td></td>
+                    <td class="full-width"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="course in categoryMenu.courses"
+                    lt-admin-menu-course
+                    course="course"
+                    date="date"
+                    on-change-course-max-orders="changeCourseMaxOrders(course)"
+                    on-remove-course="removeCourse(course)"></tr>
+            </tbody>
+        </table>
+    </div>
+</div>

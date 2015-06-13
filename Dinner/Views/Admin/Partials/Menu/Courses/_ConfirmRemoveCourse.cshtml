@@ -1,0 +1,12 @@
+﻿<div class="modal-header">
+    <button type="button" class="close" ng-click="closeDialog()" aria-hidden="true">&times;</button>
+    <h4 class="modal-title">Вы действительно хотите удалить блюдо?</h4>
+</div>
+<div class="modal-body">
+    Блюдо "{{data.course.name}}" будет удалено из списка доступных блюд, но оно будет по-прежнему доступно в меню. 
+    Чтобы окончательно удалить это блюдо - удалите его из меню на все дни.
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="closeDialog()">Отмена</button>
+    <button type="button" class="btn btn-danger" ng-click="confirm()">Удалить</button>
+</div>

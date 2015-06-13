@@ -1,0 +1,2227 @@
+﻿<?xml version="1.0" encoding="utf-8"?><edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CompanySettings">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="int" Nullable="false" />
+          <Property Name="ShowMenuWithImages" Type="bit" Nullable="false" />
+          <Property Name="ShowMenuWithDescription" Type="bit" Nullable="false" />
+          <Property Name="ShowMenuWithWeight" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Price" Type="smallmoney" Nullable="false" />
+          <Property Name="CourseCategoryID" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Weight" Type="nvarchar" MaxLength="10" />
+          <Property Name="Picture" Type="image" />
+        </EntityType>
+        <EntityType Name="CourseCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EventLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="EventType" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Details" Type="nvarchar(max)" />
+          <Property Name="Principal" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FeedbackTypeID" Type="smallint" Nullable="false" />
+          <Property Name="CompanyID" Type="int" Nullable="false" />
+          <Property Name="OwnerUserID" Type="int" Nullable="false" />
+          <Property Name="Message" Type="nvarchar" MaxLength="2000" Nullable="false" />
+          <Property Name="CourseID" Type="int" />
+          <Property Name="ReplyToFeedbackID" Type="int" />
+          <Property Name="IsPublic" Type="bit" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FeedbackType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="smallint" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IdentityCard">
+          <Key>
+            <PropertyRef Name="CustomerCompanyID" />
+            <PropertyRef Name="IdentityNumber" />
+          </Key>
+          <Property Name="CustomerCompanyID" Type="int" Nullable="false" />
+          <Property Name="IdentityNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="CustomerUserID" Type="int" />
+          <Property Name="PublicNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourseID" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Limit" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MenuItemWish">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerUserID" Type="int" Nullable="false" />
+          <Property Name="MenuItemID" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="CourseCategoryID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Time" Type="time" Precision="7" />
+          <Property Name="IsPurchased" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderItem">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MenuID" Type="int" Nullable="false" />
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="decimal" Precision="5" Scale="1" Nullable="false" />
+          <Property Name="Boxindex" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="CompanyID" Type="int" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Time" Type="time" Precision="0" />
+          <Property Name="NewPassword" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsVerified" Type="bit" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserSettings">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Time" Type="time" Precision="0" />
+          <Property Name="SendAdminNotification" Type="bit" Nullable="false" />
+          <Property Name="SendChangedOrderNotification" Type="bit" Nullable="false" />
+          <Property Name="SendWeeklyNotification" Type="bit" Nullable="false" />
+          <Property Name="SendDailyNotification" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Company_CompanySettings">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="CompanySettings" Type="Self.CompanySettings" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CompanySettings">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Company_Course">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="Course" Type="Self.Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CourseCategory_Course">
+          <End Role="CourseCategory" Type="Self.CourseCategory" Multiplicity="1" />
+          <End Role="Course" Type="Self.Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CourseCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="CourseCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feedback_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feedback_Course">
+          <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+          <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feedback_Feedback">
+          <End Role="Feedback" Type="Self.Feedback" Multiplicity="0..1" />
+          <End Role="Feedback1" Type="Self.Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Feedback">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Feedback1">
+              <PropertyRef Name="ReplyToFeedbackID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feedback_FeedbackType">
+          <End Role="FeedbackType" Type="Self.FeedbackType" Multiplicity="1" />
+          <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FeedbackType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="FeedbackTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feedback_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="OwnerUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdentityCard_CustomerCompany">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="IdentityCard" Type="Self.IdentityCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="IdentityCard">
+              <PropertyRef Name="CustomerCompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdentityCard_CustomerUser">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="IdentityCard" Type="Self.IdentityCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="IdentityCard">
+              <PropertyRef Name="CustomerUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Menu_Course">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="Menu" Type="Self.Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Menu">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuItemWish_CourseCategory">
+          <End Role="CourseCategory" Type="Self.CourseCategory" Multiplicity="1" />
+          <End Role="MenuItemWish" Type="Self.MenuItemWish" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CourseCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MenuItemWish">
+              <PropertyRef Name="CourseCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuItemWish_Menu">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+          <End Role="MenuItemWish" Type="Self.MenuItemWish" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MenuItemWish">
+              <PropertyRef Name="MenuItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuItemWish_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="MenuItemWish" Type="Self.MenuItemWish" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MenuItemWish">
+              <PropertyRef Name="CustomerUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderItem_Menu">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+          <End Role="OrderItem" Type="Self.OrderItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderItem">
+              <PropertyRef Name="MenuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderItem_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="OrderItem" Type="Self.OrderItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderItem">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Role">
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRole">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserSettings_User">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserSettings" Type="Self.UserSettings" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserSettings">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="ip_ClearDeletedCourses" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="p_AddCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="p_AddOrderItem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="int" Mode="In" />
+          <Parameter Name="CourseID" Type="int" Mode="In" />
+          <Parameter Name="Date" Type="date" Mode="In" />
+          <Parameter Name="Quantity" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="p_ChangeCompanyName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CompanyID" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="p_ChangeOrderItemBoxindex" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OrderItemID" Type="int" Mode="In" />
+          <Parameter Name="UserID" Type="int" Mode="In" />
+          <Parameter Name="Date" Type="date" Mode="In" />
+          <Parameter Name="Quantity" Type="decimal" Mode="In" />
+          <Parameter Name="Boxindex" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="p_CustomerUser_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CustomerCompanyID" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Login" Type="nvarchar" Mode="In" />
+          <Parameter Name="PasswordMD5" Type="nvarchar" Mode="In" />
+          <Parameter Name="RoleID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="p_DeleteCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CompanyID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="p_DeleteCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CompanyID" Type="int" Mode="In" />
+          <Parameter Name="CourseID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="p_DeleteCourseFromMenu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CourseID" Type="int" Mode="In" />
+          <Parameter Name="Date" Type="date" Mode="In" />
+        </Function>
+        <Function Name="p_DeleteOrderItem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="int" Mode="In" />
+          <Parameter Name="Date" Type="date" Mode="In" />
+          <Parameter Name="OrderItemID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="p_GetAllOrdersByDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CompanyID" Type="int" Mode="In" />
+          <Parameter Name="Date" Type="date" Mode="In" />
+        </Function>
+        <Function Name="p_GetCoursePicture" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CompanyID" Type="int" Mode="In" />
+          <Parameter Name="CourseID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="p_GetCoursePictures" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CompanyID" Type="int" Mode="In" />
+          <Parameter Name="IncludeDeleted" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="p_GetCourses" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CompanyID" Type="int" Mode="In" />
+          <Parameter Name="IncludeDeleted" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="p_GetDayMenu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CompanyID" Type="int" Mode="In" />
+          <Parameter Name="Date" Type="date" Mode="In" />
+        </Function>
+        <Function Name="p_GetDayTiming" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CompanyID" Type="int" Mode="In" />
+          <Parameter Name="Date" Type="date" Mode="In" />
+        </Function>
+        <Function Name="p_GetOrderedMenu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CompanyID" Type="int" Mode="In" />
+          <Parameter Name="UserID" Type="int" Mode="In" />
+          <Parameter Name="Date" Type="date" Mode="In" />
+        </Function>
+        <Function Name="p_GetOrderTime" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="int" Mode="In" />
+          <Parameter Name="Date" Type="date" Mode="In" />
+        </Function>
+        <Function Name="p_GetUserOrderForDay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CompanyID" Type="int" Mode="In" />
+          <Parameter Name="UserID" Type="int" Mode="In" />
+          <Parameter Name="Date" Type="date" Mode="In" />
+        </Function>
+        <Function Name="p_GetUserOrderForPeriod" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CompanyID" Type="int" Mode="In" />
+          <Parameter Name="UserID" Type="int" Mode="In" />
+          <Parameter Name="StartDate" Type="date" Mode="In" />
+          <Parameter Name="EndDate" Type="date" Mode="In" />
+        </Function>
+        <Function Name="p_GetUserOrderTime" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="int" Mode="In" />
+          <Parameter Name="Date" Type="date" Mode="In" />
+        </Function>
+        <Function Name="p_GetUsersForNotification" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FromDate" Type="date" Mode="In" />
+          <Parameter Name="ToDate" Type="date" Mode="In" />
+        </Function>
+        <Function Name="p_IdentityCard_CheckNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdentityCard" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="p_MarkCourseAsDeleted" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CompanyID" Type="int" Mode="In" />
+          <Parameter Name="CourseID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="p_MenuItemWish_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CustomerUserID" Type="int" Mode="In" />
+          <Parameter Name="MenuItemID" Type="int" Mode="In" />
+          <Parameter Name="Date" Type="date" Mode="In" />
+        </Function>
+        <Function Name="p_MenuItemWish_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CustomerUserID" Type="int" Mode="In" />
+          <Parameter Name="Date" Type="date" Mode="In" />
+        </Function>
+        <Function Name="p_MenuItemWish_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Date" Type="date" Mode="In" />
+        </Function>
+        <Function Name="p_MenuItemWish_Upsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CustomerUserID" Type="int" Mode="In" />
+          <Parameter Name="MenuItemID" Type="int" Mode="In" />
+          <Parameter Name="Date" Type="date" Mode="In" />
+        </Function>
+        <Function Name="p_Order_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OrderID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="p_Order_GetByIdentityCard" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SupplierCompanyID" Type="int" Mode="In" />
+          <Parameter Name="Date" Type="date" Mode="In" />
+          <Parameter Name="IdentityCard" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="p_Order_SetPurchased" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OrderID" Type="int" Mode="In" />
+          <Parameter Name="Time" Type="time" Mode="In" />
+          <Parameter Name="IsPurchased" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="p_SetOrderTime" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="int" Mode="In" />
+          <Parameter Name="Date" Type="date" Mode="In" />
+          <Parameter Name="Time" Type="time" Mode="In" />
+        </Function>
+        <Function Name="p_SetUserTime" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="int" Mode="In" />
+          <Parameter Name="Time" Type="time" Mode="In" />
+        </Function>
+        <Function Name="p_StatisticByCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CompanyID" Type="int" Mode="In" />
+          <Parameter Name="FromDate" Type="date" Mode="In" />
+          <Parameter Name="ToDate" Type="date" Mode="In" />
+        </Function>
+        <Function Name="p_StatisticByCourseBuyout" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CompanyID" Type="int" Mode="In" />
+          <Parameter Name="FromDate" Type="date" Mode="In" />
+          <Parameter Name="ToDate" Type="date" Mode="In" />
+        </Function>
+        <Function Name="p_StatisticByCourseDeficit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CompanyID" Type="int" Mode="In" />
+          <Parameter Name="FromDate" Type="date" Mode="In" />
+          <Parameter Name="ToDate" Type="date" Mode="In" />
+        </Function>
+        <Function Name="p_StatisticByDays" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CompanyID" Type="int" Mode="In" />
+          <Parameter Name="FromDate" Type="date" Mode="In" />
+          <Parameter Name="ToDate" Type="date" Mode="In" />
+        </Function>
+        <Function Name="p_StatisticByUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CompanyID" Type="int" Mode="In" />
+          <Parameter Name="FromDate" Type="date" Mode="In" />
+          <Parameter Name="ToDate" Type="date" Mode="In" />
+        </Function>
+        <Function Name="p_UpsertCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CompanyID" Type="int" Mode="In" />
+          <Parameter Name="CourseID" Type="int" Mode="In" />
+          <Parameter Name="CourseCategoryID" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Description" Type="nvarchar" Mode="In" />
+          <Parameter Name="Price" Type="smallmoney" Mode="In" />
+          <Parameter Name="Weight" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="p_UpsertCoursePicture" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CompanyID" Type="int" Mode="In" />
+          <Parameter Name="CourseID" Type="int" Mode="In" />
+          <Parameter Name="Picture" Type="image" Mode="In" />
+        </Function>
+        <Function Name="p_UpsertCourseToMenu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CourseID" Type="int" Mode="In" />
+          <Parameter Name="Date" Type="date" Mode="In" />
+          <Parameter Name="Limit" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="p_UserOrder_GetByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OrderID" Type="int" Mode="In" />
+          <Parameter Name="Date" Type="date" Mode="In" />
+        </Function>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompanySettings" EntityType="Self.CompanySettings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CourseCategory" EntityType="Self.CourseCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventLog" EntityType="Self.EventLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FeedbackType" EntityType="Self.FeedbackType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IdentityCard" EntityType="Self.IdentityCard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MenuItemWish" EntityType="Self.MenuItemWish" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderItem" EntityType="Self.OrderItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserSettings" EntityType="Self.UserSettings" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Company" Association="Self.FK_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Company_CompanySettings" Association="Self.FK_Company_CompanySettings">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="CompanySettings" EntitySet="CompanySettings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Company_Course" Association="Self.FK_Company_Course">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Course" EntitySet="Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseCategory_Course" Association="Self.FK_CourseCategory_Course">
+            <End Role="CourseCategory" EntitySet="CourseCategory" />
+            <End Role="Course" EntitySet="Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feedback_Company" Association="Self.FK_Feedback_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Feedback" EntitySet="Feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feedback_Course" Association="Self.FK_Feedback_Course">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Feedback" EntitySet="Feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feedback_Feedback" Association="Self.FK_Feedback_Feedback">
+            <End Role="Feedback" EntitySet="Feedback" />
+            <End Role="Feedback1" EntitySet="Feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feedback_FeedbackType" Association="Self.FK_Feedback_FeedbackType">
+            <End Role="FeedbackType" EntitySet="FeedbackType" />
+            <End Role="Feedback" EntitySet="Feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feedback_User" Association="Self.FK_Feedback_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Feedback" EntitySet="Feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IdentityCard_CustomerCompany" Association="Self.FK_IdentityCard_CustomerCompany">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="IdentityCard" EntitySet="IdentityCard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IdentityCard_CustomerUser" Association="Self.FK_IdentityCard_CustomerUser">
+            <End Role="User" EntitySet="User" />
+            <End Role="IdentityCard" EntitySet="IdentityCard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Menu_Course" Association="Self.FK_Menu_Course">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Menu" EntitySet="Menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuItemWish_CourseCategory" Association="Self.FK_MenuItemWish_CourseCategory">
+            <End Role="CourseCategory" EntitySet="CourseCategory" />
+            <End Role="MenuItemWish" EntitySet="MenuItemWish" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuItemWish_Menu" Association="Self.FK_MenuItemWish_Menu">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="MenuItemWish" EntitySet="MenuItemWish" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuItemWish_User" Association="Self.FK_MenuItemWish_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="MenuItemWish" EntitySet="MenuItemWish" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_User" Association="Self.FK_Order_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItem_Menu" Association="Self.FK_OrderItem_Menu">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="OrderItem" EntitySet="OrderItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItem_Order" Association="Self.FK_OrderItem_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderItem" EntitySet="OrderItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Role" Association="Self.FK_Role">
+            <End Role="UserRole" EntitySet="UserRole" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserSettings_User" Association="Self.FK_UserSettings_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserSettings" EntitySet="UserSettings" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+          <EntitySet Name="Companies" EntityType="Model.Company" />
+          <EntitySet Name="Courses" EntityType="Model.Course" />
+          <EntitySet Name="Orders" EntityType="Model.Order" />
+          <EntitySet Name="Users" EntityType="Model.User" />
+          <EntitySet Name="UserRoles" EntityType="Model.UserRole" />
+          <AssociationSet Name="FK_Company" Association="Model.FK_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyCourse" Association="Model.FK_CompanyCourse">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Course" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserOrder" Association="Model.FK_UserOrder">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Role" Association="Model.FK_Role">
+            <End Role="UserRole" EntitySet="UserRoles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="CourseCategories" EntityType="Model.CourseCategory" />
+          <AssociationSet Name="FK_CourseCategory_Course" Association="Model.FK_CourseCategory_Course">
+            <End Role="CourseCategory" EntitySet="CourseCategories" />
+            <End Role="Course" EntitySet="Courses" />
+          </AssociationSet>
+          <EntitySet Name="Menus" EntityType="Model.Menu" />
+          <AssociationSet Name="FK_Course_Menu" Association="Model.FK_Course_Menu">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="Menu" EntitySet="Menus" />
+          </AssociationSet>
+          <FunctionImport Name="p_GetDayMenu" ReturnType="Collection(Model.p_GetDayMenu_Result)">
+            <Parameter Name="CompanyID" Mode="In" Type="Int32" />
+            <Parameter Name="Date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="p_GetCourses" ReturnType="Collection(Model.p_GetCourses_Result)">
+            <Parameter Name="CompanyID" Mode="In" Type="Int32" />
+            <Parameter Name="IncludeDeleted" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="p_MarkCourseAsDeleted">
+            <Parameter Name="CompanyID" Mode="In" Type="Int32" />
+            <Parameter Name="CourseID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="p_UpsertCourse" ReturnType="Collection(Model.p_UpsertCourse_Result)">
+            <Parameter Name="CompanyID" Mode="In" Type="Int32" />
+            <Parameter Name="CourseID" Mode="In" Type="Int32" />
+            <Parameter Name="CourseCategoryID" Mode="In" Type="Int32" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="Price" Mode="In" Type="Decimal" />
+            <Parameter Name="Weight" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="p_GetAllOrdersByDate" ReturnType="Collection(Model.p_GetAllOrdersByDate_Result)">
+            <Parameter Name="CompanyID" Mode="In" Type="Int32" />
+            <Parameter Name="Date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="p_DeleteCourseFromMenu">
+            <Parameter Name="CourseID" Mode="In" Type="Int32" />
+            <Parameter Name="Date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="p_GetDayTiming" ReturnType="Collection(Model.p_GetDayTiming_Result)">
+            <Parameter Name="CompanyID" Mode="In" Type="Int32" />
+            <Parameter Name="Date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="p_GetOrderTime" ReturnType="Collection(Time)">
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+            <Parameter Name="Date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="p_SetOrderTime">
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+            <Parameter Name="Date" Mode="In" Type="DateTime" />
+            <Parameter Name="Time" Mode="In" Type="Time" />
+          </FunctionImport>
+          <FunctionImport Name="p_UpsertCourseToMenu" ReturnType="Collection(Model.p_UpsertCourseToMenu_Result)">
+            <Parameter Name="CourseID" Mode="In" Type="Int32" />
+            <Parameter Name="Date" Mode="In" Type="DateTime" />
+            <Parameter Name="Limit" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="p_DeleteCourse">
+            <Parameter Name="CompanyID" Mode="In" Type="Int32" />
+            <Parameter Name="CourseID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="p_GetUserOrderTime" ReturnType="Collection(Model.p_GetUserOrderTime_Result)">
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+            <Parameter Name="Date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="p_SetUserTime">
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+            <Parameter Name="Time" Mode="In" Type="Time" />
+          </FunctionImport>
+          <EntitySet Name="OrderItems" EntityType="Model.OrderItem" />
+          <FunctionImport Name="ip_ClearDeletedCourses" />
+          <FunctionImport Name="p_AddOrderItem" ReturnType="Collection(Model.p_AddOrderItem_Result)">
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+            <Parameter Name="CourseID" Mode="In" Type="Int32" />
+            <Parameter Name="Date" Mode="In" Type="DateTime" />
+            <Parameter Name="Quantity" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="p_ChangeOrderItemBoxindex" ReturnType="Collection(Model.p_ChangeOrderItemBoxindex_Result)">
+            <Parameter Name="OrderItemID" Mode="In" Type="Int32" />
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+            <Parameter Name="Date" Mode="In" Type="DateTime" />
+            <Parameter Name="Quantity" Mode="In" Type="Decimal" />
+            <Parameter Name="Boxindex" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="p_DeleteOrderItem" ReturnType="Collection(Model.p_DeleteOrderItem_Result)">
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+            <Parameter Name="Date" Mode="In" Type="DateTime" />
+            <Parameter Name="OrderItemID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <AssociationSet Name="FK_OrderItem_Menu" Association="Model.FK_OrderItem_Menu">
+            <End Role="Menu" EntitySet="Menus" />
+            <End Role="OrderItem" EntitySet="OrderItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItem_Order" Association="Model.FK_OrderItem_Order">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderItem" EntitySet="OrderItems" />
+          </AssociationSet>
+          <FunctionImport Name="p_GetUserOrderForDay" ReturnType="Collection(Model.p_GetUserOrderForDay_Result)">
+            <Parameter Name="CompanyID" Mode="In" Type="Int32" />
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+            <Parameter Name="Date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="p_GetUserOrderForPeriod" ReturnType="Collection(Model.p_GetUserOrderForPeriod_Result)">
+            <Parameter Name="CompanyID" Mode="In" Type="Int32" />
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+            <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <EntitySet Name="UserSettings" EntityType="Model.UserSetting" />
+          <AssociationSet Name="FK_UserSettings_User" Association="Model.FK_UserSettings_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserSetting" EntitySet="UserSettings" />
+          </AssociationSet>
+          <FunctionImport Name="p_StatisticByCourse" ReturnType="Collection(Model.p_StatisticByCourse_Result)">
+            <Parameter Name="CompanyID" Mode="In" Type="Int32" />
+            <Parameter Name="FromDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ToDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="p_StatisticByDays" ReturnType="Collection(Model.p_StatisticByDays_Result)">
+            <Parameter Name="CompanyID" Mode="In" Type="Int32" />
+            <Parameter Name="FromDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ToDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="p_StatisticByUsers" ReturnType="Collection(Model.p_StatisticByUsers_Result)">
+            <Parameter Name="CompanyID" Mode="In" Type="Int32" />
+            <Parameter Name="FromDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ToDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="p_GetUsersForNotification" ReturnType="Collection(Model.p_GetUsersForNotification_Result)">
+            <Parameter Name="FromDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ToDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="p_StatisticByCourseBuyout" ReturnType="Collection(Model.p_StatisticByCourseBuyout_Result)">
+            <Parameter Name="CompanyID" Mode="In" Type="Int32" />
+            <Parameter Name="FromDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ToDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="p_StatisticByCourseDeficit" ReturnType="Collection(Model.p_StatisticByCourseDeficit_Result)">
+            <Parameter Name="CompanyID" Mode="In" Type="Int32" />
+            <Parameter Name="FromDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ToDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <EntitySet Name="CompanySettings" EntityType="Model.CompanySetting" />
+          <AssociationSet Name="FK_Company_CompanySettings" Association="Model.FK_Company_CompanySettings">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="CompanySetting" EntitySet="CompanySettings" />
+          </AssociationSet>
+          <FunctionImport Name="p_AddCompany" ReturnType="Collection(Int32)">
+          <Parameter Name="Name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="p_ChangeCompanyName">
+            <Parameter Name="CompanyID" Mode="In" Type="Int32" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="p_DeleteCompany">
+          <Parameter Name="CompanyID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="p_GetCoursePicture" ReturnType="Collection(Model.p_GetCoursePicture_Result)">
+            <Parameter Name="CompanyID" Mode="In" Type="Int32" />
+            <Parameter Name="CourseID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="p_GetCoursePictures" ReturnType="Collection(Model.p_GetCoursePicture_Result)">
+            <Parameter Name="CompanyID" Mode="In" Type="Int32" />
+            <Parameter Name="IncludeDeleted" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="p_UpsertCoursePicture">
+            <Parameter Name="CompanyID" Mode="In" Type="Int32" />
+            <Parameter Name="CourseID" Mode="In" Type="Int32" />
+            <Parameter Name="Picture" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <EntitySet Name="EventLogs" EntityType="Model.EventLog" />
+          <EntitySet Name="Feedbacks" EntityType="Model.Feedback" />
+          <EntitySet Name="FeedbackTypes" EntityType="Model.FeedbackType" />
+          <EntitySet Name="MenuItemWishes" EntityType="Model.MenuItemWish" />
+          <AssociationSet Name="FK_Feedback_Company" Association="Model.FK_Feedback_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Feedback" EntitySet="Feedbacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feedback_Course" Association="Model.FK_Feedback_Course">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="Feedback" EntitySet="Feedbacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feedback_Feedback" Association="Model.FK_Feedback_Feedback">
+            <End Role="Feedback" EntitySet="Feedbacks" />
+            <End Role="Feedback1" EntitySet="Feedbacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feedback_FeedbackType" Association="Model.FK_Feedback_FeedbackType">
+            <End Role="FeedbackType" EntitySet="FeedbackTypes" />
+            <End Role="Feedback" EntitySet="Feedbacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feedback_User" Association="Model.FK_Feedback_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Feedback" EntitySet="Feedbacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuItemWish_Menu" Association="Model.FK_MenuItemWish_Menu">
+            <End Role="Menu" EntitySet="Menus" />
+            <End Role="MenuItemWish" EntitySet="MenuItemWishes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuItemWish_User" Association="Model.FK_MenuItemWish_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="MenuItemWish" EntitySet="MenuItemWishes" />
+          </AssociationSet>
+          <FunctionImport Name="p_MenuItemWish_Delete">
+            <Parameter Name="CustomerUserID" Mode="In" Type="Int32" />
+            <Parameter Name="MenuItemID" Mode="In" Type="Int32" />
+            <Parameter Name="Date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="p_MenuItemWish_Get" ReturnType="Collection(Model.p_MenuItemWish_Get_Result)">
+            <Parameter Name="CustomerUserID" Mode="In" Type="Int32" />
+            <Parameter Name="Date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="p_MenuItemWish_GetAll" ReturnType="Collection(Model.p_MenuItemWish_Get_Result)">
+          <Parameter Name="Date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="p_MenuItemWish_Upsert">
+            <Parameter Name="CustomerUserID" Mode="In" Type="Int32" />
+            <Parameter Name="MenuItemID" Mode="In" Type="Int32" />
+            <Parameter Name="Date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <EntitySet Name="IdentityCards" EntityType="Model.IdentityCard" />
+          <AssociationSet Name="FK_IdentityCard_CustomerCompany" Association="Model.FK_IdentityCard_CustomerCompany">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="IdentityCard" EntitySet="IdentityCards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IdentityCard_IdentityCard" Association="Model.FK_IdentityCard_IdentityCard">
+            <End Role="User" EntitySet="Users" />
+            <End Role="IdentityCard" EntitySet="IdentityCards" />
+          </AssociationSet>
+          <FunctionImport Name="p_Order_GetByIdentityCard" ReturnType="Collection(Model.p_Order_GetByIdentityCard_Result)">
+            <Parameter Name="SupplierCompanyID" Mode="In" Type="Int32" />
+            <Parameter Name="Date" Mode="In" Type="DateTime" />
+            <Parameter Name="IdentityCard" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="p_Order_SetPurchased">
+            <Parameter Name="OrderID" Mode="In" Type="Int32" />
+            <Parameter Name="Time" Mode="In" Type="Time" />
+            <Parameter Name="IsPurchased" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="p_IdentityCard_CheckNumber" ReturnType="Collection(Model.p_IdentityCard_CheckNumber_Result)">
+          <Parameter Name="IdentityCard" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="p_UserOrder_GetByID" ReturnType="Collection(Model.p_UserOrder_GetByID_Result)">
+            <Parameter Name="OrderID" Mode="In" Type="Int32" />
+            <Parameter Name="Date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <AssociationSet Name="FK_MenuItemWish_CourseCategory" Association="Model.FK_MenuItemWish_CourseCategory">
+            <End Role="CourseCategory" EntitySet="CourseCategories" />
+            <End Role="MenuItemWish" EntitySet="MenuItemWishes" />
+          </AssociationSet>
+          <FunctionImport Name="p_Order_Delete" ReturnType="Collection(Model.p_Order_Delete_Result)">
+          <Parameter Name="OrderID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="p_CustomerUser_Insert">
+            <Parameter Name="CustomerCompanyID" Mode="In" Type="Int32" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Login" Mode="In" Type="String" />
+            <Parameter Name="PasswordMD5" Mode="In" Type="String" />
+            <Parameter Name="RoleID" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Users" Relationship="Model.FK_Company" FromRole="Company" ToRole="User" />
+          <NavigationProperty Name="Courses" Relationship="Model.FK_CompanyCourse" FromRole="Company" ToRole="Course" />
+          <NavigationProperty Name="CompanySetting" Relationship="Model.FK_Company_CompanySettings" FromRole="Company" ToRole="CompanySetting" />
+          <NavigationProperty Name="Feedbacks" Relationship="Model.FK_Feedback_Company" FromRole="Company" ToRole="Feedback" />
+          <NavigationProperty Name="IdentityCards" Relationship="Model.FK_IdentityCard_CustomerCompany" FromRole="Company" ToRole="IdentityCard" />
+        </EntityType>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="CompanyID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
+          <NavigationProperty Name="Company" Relationship="Model.FK_CompanyCourse" FromRole="Course" ToRole="Company" />
+          <Property Type="Int32" Name="CourseCategoryID" Nullable="false" />
+          <NavigationProperty Name="CourseCategory" Relationship="Model.FK_CourseCategory_Course" FromRole="Course" ToRole="CourseCategory" />
+          <NavigationProperty Name="Menus" Relationship="Model.FK_Course_Menu" FromRole="Course" ToRole="Menu" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
+          <Property Type="String" Name="Weight" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="Binary" Name="Picture" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Feedbacks" Relationship="Model.FK_Feedback_Course" FromRole="Course" ToRole="Feedback" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Time" Type="Time" Precision="7" />
+          <NavigationProperty Name="User" Relationship="Model.FK_UserOrder" FromRole="Order" ToRole="User" />
+          <NavigationProperty Name="OrderItems" Relationship="Model.FK_OrderItem_Order" FromRole="Order" ToRole="OrderItem" />
+          <Property Name="IsPurchased" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="CompanyID" Type="Int32" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Company" Relationship="Model.FK_Company" FromRole="User" ToRole="Company" />
+          <NavigationProperty Name="Orders" Relationship="Model.FK_UserOrder" FromRole="User" ToRole="Order" />
+          <NavigationProperty Name="UserRole" Relationship="Model.FK_Role" FromRole="User" ToRole="UserRole" />
+          <Property Type="Time" Name="Time" Precision="0" />
+          <NavigationProperty Name="UserSetting" Relationship="Model.FK_UserSettings_User" FromRole="User" ToRole="UserSetting" />
+          <Property Type="String" Name="NewPassword" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsVerified" Type="Boolean" />
+          <NavigationProperty Name="Feedbacks" Relationship="Model.FK_Feedback_User" FromRole="User" ToRole="Feedback" />
+          <NavigationProperty Name="MenuItemWishes" Relationship="Model.FK_MenuItemWish_User" FromRole="User" ToRole="MenuItemWish" />
+          <NavigationProperty Name="IdentityCards" Relationship="Model.FK_IdentityCard_IdentityCard" FromRole="User" ToRole="IdentityCard" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Users" Relationship="Model.FK_Role" FromRole="UserRole" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Company">
+          <End Role="Company" Type="Model.Company" Multiplicity="1" />
+          <End Role="User" Type="Model.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyCourse">
+          <End Role="Company" Type="Model.Company" Multiplicity="1" />
+          <End Role="Course" Type="Model.Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserOrder">
+          <End Role="User" Type="Model.User" Multiplicity="1" />
+          <End Role="Order" Type="Model.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Role">
+          <End Role="UserRole" Type="Model.UserRole" Multiplicity="1" />
+          <End Role="User" Type="Model.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRole">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CourseCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Courses" Relationship="Model.FK_CourseCategory_Course" FromRole="CourseCategory" ToRole="Course" />
+          <NavigationProperty Name="MenuItemWishes" Relationship="Model.FK_MenuItemWish_CourseCategory" FromRole="CourseCategory" ToRole="MenuItemWish" />
+        </EntityType>
+        <Association Name="FK_CourseCategory_Course">
+          <End Type="Model.CourseCategory" Role="CourseCategory" Multiplicity="1" />
+          <End Type="Model.Course" Role="Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CourseCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="CourseCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="CourseID" Nullable="false" />
+          <Property Type="DateTime" Name="Date" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Course" Relationship="Model.FK_Course_Menu" FromRole="Menu" ToRole="Course" />
+          <Property Type="Int32" Name="Limit" Nullable="false" />
+          <NavigationProperty Name="OrderItems" Relationship="Model.FK_OrderItem_Menu" FromRole="Menu" ToRole="OrderItem" />
+          <NavigationProperty Name="MenuItemWishes" Relationship="Model.FK_MenuItemWish_Menu" FromRole="Menu" ToRole="MenuItemWish" />
+        </EntityType>
+        <Association Name="FK_Course_Menu">
+          <End Type="Model.Course" Role="Course" Multiplicity="1" />
+          <End Type="Model.Menu" Role="Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Menu">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="p_GetDayMenu_Result">
+          <Property Type="Int32" Name="MenuID" Nullable="false" />
+          <Property Type="Int32" Name="CourseID" Nullable="false" />
+          <Property Type="Int32" Name="CompanyID" Nullable="false" />
+          <Property Type="Int32" Name="CourseCategoryID" Nullable="false" />
+          <Property Type="String" Name="CourseCategoryName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="Price" Nullable="false" Precision="10" />
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+          <Property Type="Int32" Name="Limit" Nullable="false" />
+          <Property Type="String" Name="Weight" Nullable="true" MaxLength="10" />
+          <Property Type="Decimal" Name="OrderedQuantity" Nullable="true" Precision="38" Scale="1" />
+        </ComplexType>
+        <ComplexType Name="p_GetOrderedMenu_Result">
+          <Property Type="Int32" Name="OrderID" Nullable="false" />
+          <Property Type="Int32" Name="MenuID" Nullable="false" />
+          <Property Type="Int32" Name="CourseID" Nullable="false" />
+          <Property Type="Int32" Name="CompanyID" Nullable="false" />
+          <Property Type="Int32" Name="CourseCategoryID" Nullable="false" />
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+          <Property Type="DateTime" Name="OrderDate" Nullable="false" />
+          <Property Type="Time" Name="OrderTime" Nullable="true" />
+          <Property Type="Decimal" Name="Quantity" Nullable="false" Precision="5" Scale="1" />
+          <Property Type="String" Name="CourseCategoryName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="Price" Nullable="false" Precision="10" />
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+          <Property Type="Int32" Name="OrderItemID" Nullable="false" />
+          <Property Type="Int16" Name="Boxindex" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="p_GetCourses_Result">
+          <Property Type="Int32" Name="CourseID" Nullable="false" />
+          <Property Type="Int32" Name="CompanyID" Nullable="false" />
+          <Property Type="Int32" Name="CourseCategoryID" Nullable="false" />
+          <Property Type="String" Name="CourseCategoryName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="Price" Nullable="false" Precision="10" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
+          <Property Type="String" Name="Weight" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="p_GetAllOrdersByDate_Result">
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+          <Property Type="Time" Name="Time" Nullable="true" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="Quantity" Nullable="false" Precision="5" Scale="1" />
+          <Property Type="Int32" Name="CourseID" Nullable="false" />
+          <Property Type="String" Name="CourseName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="CourseDescription" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="CoursePrice" Nullable="false" Precision="10" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
+          <Property Type="String" Name="CourseCategoryName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="OrderItemID" Nullable="false" />
+          <Property Type="Int16" Name="Boxindex" Nullable="false" />
+          <Property Type="Int32" Name="CourseCategoryID" Nullable="false" />
+          <Property Type="Boolean" Name="IsPurchased" Nullable="false" />
+          <Property Type="String" Name="Weight" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="OrderID" Nullable="false" />
+          <Property Type="String" Name="UserIdentityNumber" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="p_GetDayTiming_Result">
+          <Property Type="Time" Name="Time" Nullable="true" />
+          <Property Type="Int32" Name="Count" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="p_GetUserOrderTime_Result">
+          <Property Type="Time" Name="OrderTime" Nullable="true" />
+          <Property Type="Time" Name="UserTime" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="OrderItem">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="MenuID" Nullable="false" />
+          <Property Type="Int32" Name="OrderID" Nullable="false" />
+          <Property Type="Decimal" Name="Quantity" Nullable="false" Precision="5" Scale="1" />
+          <Property Type="Int16" Name="Boxindex" Nullable="false" />
+          <NavigationProperty Name="Menu" Relationship="Model.FK_OrderItem_Menu" FromRole="OrderItem" ToRole="Menu" />
+          <NavigationProperty Name="Order" Relationship="Model.FK_OrderItem_Order" FromRole="OrderItem" ToRole="Order" />
+        </EntityType>
+        <Association Name="FK_OrderItem_Menu">
+          <End Type="Model.Menu" Role="Menu" Multiplicity="1" />
+          <End Type="Model.OrderItem" Role="OrderItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderItem">
+              <PropertyRef Name="MenuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderItem_Order">
+          <End Type="Model.Order" Role="Order" Multiplicity="1" />
+          <End Type="Model.OrderItem" Role="OrderItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderItem">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="p_GetUserOrderForDay_Result">
+          <Property Type="Int32" Name="OrderID" Nullable="false" />
+          <Property Type="Int32" Name="MenuID" Nullable="false" />
+          <Property Type="Int32" Name="CourseID" Nullable="false" />
+          <Property Type="Int32" Name="CompanyID" Nullable="false" />
+          <Property Type="Int32" Name="CourseCategoryID" Nullable="false" />
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+          <Property Type="DateTime" Name="OrderDate" Nullable="false" />
+          <Property Type="Time" Name="OrderTime" Nullable="true" />
+          <Property Type="Int32" Name="OrderItemID" Nullable="false" />
+          <Property Type="Decimal" Name="Quantity" Nullable="false" Precision="5" Scale="1" />
+          <Property Type="Int16" Name="Boxindex" Nullable="false" />
+          <Property Type="String" Name="CourseCategoryName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="Price" Nullable="false" Precision="10" />
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+          <Property Type="Boolean" Name="IsPurchased" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="p_GetUserOrderForPeriod_Result">
+          <Property Type="Int32" Name="OrderID" Nullable="false" />
+          <Property Type="Int32" Name="MenuID" Nullable="false" />
+          <Property Type="Int32" Name="CourseID" Nullable="false" />
+          <Property Type="Int32" Name="CompanyID" Nullable="false" />
+          <Property Type="Int32" Name="CourseCategoryID" Nullable="false" />
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+          <Property Type="DateTime" Name="OrderDate" Nullable="false" />
+          <Property Type="Time" Name="OrderTime" Nullable="true" />
+          <Property Type="Int32" Name="OrderItemID" Nullable="false" />
+          <Property Type="Decimal" Name="Quantity" Nullable="false" Precision="5" Scale="1" />
+          <Property Type="Int16" Name="Boxindex" Nullable="false" />
+          <Property Type="String" Name="CourseCategoryName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="Price" Nullable="false" Precision="10" />
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+          <Property Type="Boolean" Name="IsPurchased" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="UserSetting">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+          <Property Type="Time" Name="Time" Precision="0" />
+          <Property Type="Boolean" Name="SendAdminNotification" Nullable="false" />
+          <Property Type="Boolean" Name="SendChangedOrderNotification" Nullable="false" />
+          <Property Type="Boolean" Name="SendWeeklyNotification" Nullable="false" />
+          <Property Type="Boolean" Name="SendDailyNotification" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Model.FK_UserSettings_User" FromRole="UserSetting" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_UserSettings_User">
+          <End Type="Model.User" Role="User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.UserSetting" Role="UserSetting" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserSetting">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="p_StatisticByCourse_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="CategoryID" Nullable="false" />
+          <Property Type="Int32" Name="CourseCount" Nullable="true" />
+          <Property Type="Decimal" Name="TotalPrice" Nullable="true" Precision="38" Scale="5" />
+          <Property Type="String" Name="CategoryName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="CourseName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="DayCount" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="p_StatisticByDays_Result">
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+          <Property Type="Int32" Name="UserCount" Nullable="true" />
+          <Property Type="Int32" Name="CourseCount" Nullable="true" />
+          <Property Type="Decimal" Name="TotalPrice" Nullable="true" Precision="38" Scale="5" />
+        </ComplexType>
+        <ComplexType Name="p_StatisticByUsers_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="CourseCount" Nullable="true" />
+          <Property Type="Int32" Name="DaysCount" Nullable="true" />
+          <Property Type="Decimal" Name="TotalPrice" Nullable="true" Precision="38" Scale="5" />
+        </ComplexType>
+        <ComplexType Name="p_AddOrderItem_Result">
+          <Property Type="Int32" Name="Limit" Nullable="true" />
+          <Property Type="Decimal" Name="RestQuantity" Nullable="true" Precision="6" Scale="1" />
+          <Property Type="Decimal" Name="CourseBoxQuantity" Nullable="true" Precision="5" Scale="1" />
+          <Property Type="Int32" Name="ID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="p_DeleteOrderItem_Result">
+          <Property Type="Int32" Name="Limit" Nullable="false" />
+          <Property Type="Decimal" Name="RestQuantity" Nullable="true" Precision="38" Scale="1" />
+          <Property Type="Int32" Name="CourseBoxQuantity" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="p_GetUsersForNotification_Result">
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="SendWeeklyNotification" Nullable="false" />
+          <Property Type="Boolean" Name="SendDailyNotification" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="p_ChangeOrderItemBoxindex_Result">
+          <Property Type="Int32" Name="NewID" Nullable="true" />
+          <Property Type="Decimal" Name="NewQuantity" Nullable="true" Precision="5" Scale="1" />
+          <Property Type="Int32" Name="OldID" Nullable="true" />
+          <Property Type="Decimal" Name="OldQuantity" Nullable="true" Precision="5" Scale="1" />
+        </ComplexType>
+        <ComplexType Name="p_UpsertCourseToMenu_Result">
+        <Property Type="Int32" Name="ID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="p_UpsertCourse_Result">
+          <Property Type="Int32" Name="ID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="p_StatisticByCourseBuyout_Result">
+          <Property Type="Int32" Name="CategoryID" Nullable="false" />
+          <Property Type="String" Name="CategoryName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="CourseName" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="AvgLimit" Nullable="true" Precision="38" Scale="6" />
+          <Property Type="Decimal" Name="AvgPercent" Nullable="true" Precision="38" Scale="13" />
+        </ComplexType>
+        <ComplexType Name="p_StatisticByCourseDeficit_Result">
+          <Property Type="Int32" Name="CategoryID" Nullable="false" />
+          <Property Type="String" Name="CategoryName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="CourseName" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+          <Property Type="Int32" Name="Count" Nullable="true" />
+          <Property Type="Int32" Name="Limit" Nullable="false" />
+          <Property Type="Decimal" Name="Percent" Nullable="true" Precision="27" Scale="13" />
+          <Property Type="Decimal" Name="Price" Nullable="false" Precision="10" />
+        </ComplexType>
+        <EntityType Name="CompanySetting">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Type="Int32" Name="CompanyID" Nullable="false" />
+          <Property Type="Boolean" Name="ShowMenuWithImages" Nullable="false" />
+          <Property Type="Boolean" Name="ShowMenuWithDescription" Nullable="false" />
+          <Property Type="Boolean" Name="ShowMenuWithWeight" Nullable="false" />
+          <NavigationProperty Name="Company" Relationship="Model.FK_Company_CompanySettings" FromRole="CompanySetting" ToRole="Company" />
+        </EntityType>
+        <Association Name="FK_Company_CompanySettings">
+          <End Type="Model.Company" Role="Company" Multiplicity="1" />
+          <End Type="Model.CompanySetting" Role="CompanySetting" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CompanySetting">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="p_GetCoursePicture_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="CompanyID" Nullable="false" />
+          <Property Type="Binary" Name="Picture" Nullable="true" MaxLength="Max" />
+        </ComplexType>
+        <EntityType Name="EventLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EventType" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Principal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="FeedbackTypeID" Type="Int16" Nullable="false" />
+          <Property Name="CompanyID" Type="Int32" Nullable="false" />
+          <Property Name="OwnerUserID" Type="Int32" Nullable="false" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="CourseID" Type="Int32" />
+          <Property Name="ReplyToFeedbackID" Type="Int32" />
+          <Property Name="IsPublic" Type="Boolean" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Company" Relationship="Model.FK_Feedback_Company" FromRole="Feedback" ToRole="Company" />
+          <NavigationProperty Name="Course" Relationship="Model.FK_Feedback_Course" FromRole="Feedback" ToRole="Course" />
+          <NavigationProperty Name="Feedback1" Relationship="Model.FK_Feedback_Feedback" FromRole="Feedback" ToRole="Feedback1" />
+          <NavigationProperty Name="Feedback2" Relationship="Model.FK_Feedback_Feedback" FromRole="Feedback1" ToRole="Feedback" />
+          <NavigationProperty Name="FeedbackType" Relationship="Model.FK_Feedback_FeedbackType" FromRole="Feedback" ToRole="FeedbackType" />
+          <NavigationProperty Name="User" Relationship="Model.FK_Feedback_User" FromRole="Feedback" ToRole="User" />
+        </EntityType>
+        <EntityType Name="FeedbackType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Feedbacks" Relationship="Model.FK_Feedback_FeedbackType" FromRole="FeedbackType" ToRole="Feedback" />
+        </EntityType>
+        <EntityType Name="MenuItemWish">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="CustomerUserID" Type="Int32" Nullable="false" />
+          <Property Name="MenuItemID" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Menu" Relationship="Model.FK_MenuItemWish_Menu" FromRole="MenuItemWish" ToRole="Menu" />
+          <NavigationProperty Name="User" Relationship="Model.FK_MenuItemWish_User" FromRole="MenuItemWish" ToRole="User" />
+          <Property Name="CourseCategoryID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CourseCategory" Relationship="Model.FK_MenuItemWish_CourseCategory" FromRole="MenuItemWish" ToRole="CourseCategory" />
+        </EntityType>
+        <Association Name="FK_Feedback_Company">
+          <End Type="Model.Company" Role="Company" Multiplicity="1" />
+          <End Type="Model.Feedback" Role="Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feedback_Course">
+          <End Type="Model.Course" Role="Course" Multiplicity="0..1" />
+          <End Type="Model.Feedback" Role="Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feedback_Feedback">
+          <End Type="Model.Feedback" Role="Feedback" Multiplicity="0..1" />
+          <End Type="Model.Feedback" Role="Feedback1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Feedback">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Feedback1">
+              <PropertyRef Name="ReplyToFeedbackID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feedback_FeedbackType">
+          <End Type="Model.FeedbackType" Role="FeedbackType" Multiplicity="1" />
+          <End Type="Model.Feedback" Role="Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FeedbackType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="FeedbackTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feedback_User">
+          <End Type="Model.User" Role="User" Multiplicity="1" />
+          <End Type="Model.Feedback" Role="Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="OwnerUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuItemWish_Menu">
+          <End Type="Model.Menu" Role="Menu" Multiplicity="1" />
+          <End Type="Model.MenuItemWish" Role="MenuItemWish" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MenuItemWish">
+              <PropertyRef Name="MenuItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuItemWish_User">
+          <End Type="Model.User" Role="User" Multiplicity="1" />
+          <End Type="Model.MenuItemWish" Role="MenuItemWish" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MenuItemWish">
+              <PropertyRef Name="CustomerUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="p_MenuItemWish_Get_Result">
+          <Property Type="Int32" Name="MenuItemWishID" Nullable="false" />
+          <Property Type="Int32" Name="CustomerUserID" Nullable="false" />
+          <Property Type="Int32" Name="MenuItemID" Nullable="false" />
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+          <Property Type="Int32" Name="CourseID" Nullable="false" />
+          <Property Type="String" Name="CourseName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="CourseCategoryID" Nullable="false" />
+          <Property Type="String" Name="CourseCategoryName" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <EntityType Name="IdentityCard">
+          <Key>
+            <PropertyRef Name="IdentityNumber" />
+            <PropertyRef Name="CustomerCompanyID" />
+          </Key>
+          <Property Name="CustomerCompanyID" Type="Int32" Nullable="false" />
+          <Property Name="CustomerUserID" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdentityNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Company" Relationship="Model.FK_IdentityCard_CustomerCompany" FromRole="IdentityCard" ToRole="Company" />
+          <NavigationProperty Name="User" Relationship="Model.FK_IdentityCard_IdentityCard" FromRole="IdentityCard" ToRole="User" />
+          <Property Name="PublicNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_IdentityCard_CustomerCompany">
+          <End Type="Model.Company" Role="Company" Multiplicity="1" />
+          <End Type="Model.IdentityCard" Role="IdentityCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="IdentityCard">
+              <PropertyRef Name="CustomerCompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdentityCard_IdentityCard">
+          <End Type="Model.User" Role="User" Multiplicity="0..1" />
+          <End Type="Model.IdentityCard" Role="IdentityCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="IdentityCard">
+              <PropertyRef Name="CustomerUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="p_Order_GetByIdentityCard_Result">
+          <Property Type="Int32" Name="OrderID" Nullable="false" />
+          <Property Type="Int32" Name="MenuID" Nullable="false" />
+          <Property Type="Int32" Name="CourseID" Nullable="false" />
+          <Property Type="Int32" Name="CompanyID" Nullable="false" />
+          <Property Type="Int32" Name="CourseCategoryID" Nullable="false" />
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+          <Property Type="DateTime" Name="OrderDate" Nullable="false" />
+          <Property Type="Time" Name="OrderTime" Nullable="true" />
+          <Property Type="Int32" Name="OrderItemID" Nullable="false" />
+          <Property Type="Decimal" Name="Quantity" Nullable="false" Precision="5" Scale="1" />
+          <Property Type="Int16" Name="Boxindex" Nullable="false" />
+          <Property Type="String" Name="CourseCategoryName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="Price" Nullable="false" Precision="10" />
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+          <Property Type="Boolean" Name="IsPurchased" Nullable="false" />
+          <Property Type="String" Name="CourseName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="CourseDescription" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="CoursePrice" Nullable="false" Precision="10" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="p_IdentityCard_CheckNumber_Result">
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="CustomerCompanyID" Nullable="false" />
+          <Property Type="String" Name="IdentityNumber" Nullable="false" MaxLength="20" />
+          <Property Type="Int32" Name="CustomerUserID" Nullable="true" />
+          <Property Type="String" Name="PublicNumber" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="CardHolderName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserEmail" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CardHolderEmail" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="p_UserOrder_GetByID_Result">
+          <Property Type="Int32" Name="OrderID" Nullable="false" />
+          <Property Type="Int32" Name="MenuID" Nullable="false" />
+          <Property Type="Int32" Name="CourseID" Nullable="false" />
+          <Property Type="Int32" Name="CompanyID" Nullable="false" />
+          <Property Type="Int32" Name="CourseCategoryID" Nullable="false" />
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+          <Property Type="DateTime" Name="OrderDate" Nullable="false" />
+          <Property Type="Time" Name="OrderTime" Nullable="true" />
+          <Property Type="Int32" Name="OrderItemID" Nullable="false" />
+          <Property Type="Decimal" Name="Quantity" Nullable="false" Precision="5" Scale="1" />
+          <Property Type="Int16" Name="Boxindex" Nullable="false" />
+          <Property Type="String" Name="CourseCategoryName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="Price" Nullable="false" Precision="10" />
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+          <Property Type="Boolean" Name="IsPurchased" Nullable="false" />
+          <Property Type="String" Name="Weight" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <Association Name="FK_MenuItemWish_CourseCategory">
+          <End Type="Model.CourseCategory" Role="CourseCategory" Multiplicity="1" />
+          <End Type="Model.MenuItemWish" Role="MenuItemWish" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CourseCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MenuItemWish">
+              <PropertyRef Name="CourseCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="p_Order_Delete_Result">
+          <Property Type="Int32" Name="Limit" Nullable="false" />
+          <Property Type="Decimal" Name="RestQuantity" Nullable="true" Precision="38" Scale="1" />
+          <Property Type="Int32" Name="CourseBoxQuantity" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="Model.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Courses">
+            <EntityTypeMapping TypeName="Model.Course">
+              <MappingFragment StoreEntitySet="Course">
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CourseCategoryID" ColumnName="CourseCategoryID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="Model.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="IsPurchased" ColumnName="IsPurchased" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Model.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
+                <ScalarProperty Name="NewPassword" ColumnName="NewPassword" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRoles">
+            <EntityTypeMapping TypeName="Model.UserRole">
+              <MappingFragment StoreEntitySet="UserRole">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CourseCategories">
+            <EntityTypeMapping TypeName="Model.CourseCategory">
+              <MappingFragment StoreEntitySet="CourseCategory">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menus">
+            <EntityTypeMapping TypeName="Model.Menu">
+              <MappingFragment StoreEntitySet="Menu">
+                <ScalarProperty Name="Limit" ColumnName="Limit" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="p_GetDayMenu" FunctionName="Model.Store.p_GetDayMenu">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.p_GetDayMenu_Result">
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="CourseCategoryID" ColumnName="CourseCategoryID" />
+                <ScalarProperty Name="CourseCategoryName" ColumnName="CourseCategoryName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Limit" ColumnName="Limit" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="OrderedQuantity" ColumnName="OrderedQuantity" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="p_GetCourses" FunctionName="Model.Store.p_GetCourses">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.p_GetCourses_Result">
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="CourseCategoryID" ColumnName="CourseCategoryID" />
+                <ScalarProperty Name="CourseCategoryName" ColumnName="CourseCategoryName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="p_MarkCourseAsDeleted" FunctionName="Model.Store.p_MarkCourseAsDeleted" />
+          <FunctionImportMapping FunctionImportName="p_UpsertCourse" FunctionName="Model.Store.p_UpsertCourse" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.p_UpsertCourse_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="p_GetAllOrdersByDate" FunctionName="Model.Store.p_GetAllOrdersByDate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.p_GetAllOrdersByDate_Result">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+                <ScalarProperty Name="CourseDescription" ColumnName="CourseDescription" />
+                <ScalarProperty Name="CoursePrice" ColumnName="CoursePrice" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CourseCategoryName" ColumnName="CourseCategoryName" />
+                <ScalarProperty Name="OrderItemID" ColumnName="OrderItemID" />
+                <ScalarProperty Name="Boxindex" ColumnName="Boxindex" />
+                <ScalarProperty Name="CourseCategoryID" ColumnName="CourseCategoryID" />
+                <ScalarProperty Name="IsPurchased" ColumnName="IsPurchased" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="UserIdentityNumber" ColumnName="UserIdentityNumber" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="p_DeleteCourseFromMenu" FunctionName="Model.Store.p_DeleteCourseFromMenu" />
+          <FunctionImportMapping FunctionImportName="p_GetDayTiming" FunctionName="Model.Store.p_GetDayTiming">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.p_GetDayTiming_Result">
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="p_GetOrderTime" FunctionName="Model.Store.p_GetOrderTime" />
+          <FunctionImportMapping FunctionImportName="p_SetOrderTime" FunctionName="Model.Store.p_SetOrderTime" />
+          <FunctionImportMapping FunctionImportName="p_UpsertCourseToMenu" FunctionName="Model.Store.p_UpsertCourseToMenu" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.p_UpsertCourseToMenu_Result">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="p_DeleteCourse" FunctionName="Model.Store.p_DeleteCourse" />
+          <FunctionImportMapping FunctionImportName="p_GetUserOrderTime" FunctionName="Model.Store.p_GetUserOrderTime">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.p_GetUserOrderTime_Result">
+                <ScalarProperty Name="OrderTime" ColumnName="OrderTime" />
+                <ScalarProperty Name="UserTime" ColumnName="UserTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="p_SetUserTime" FunctionName="Model.Store.p_SetUserTime" />
+          <EntitySetMapping Name="OrderItems">
+            <EntityTypeMapping TypeName="Model.OrderItem">
+              <MappingFragment StoreEntitySet="OrderItem">
+                <ScalarProperty Name="Boxindex" ColumnName="Boxindex" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ip_ClearDeletedCourses" FunctionName="Model.Store.ip_ClearDeletedCourses" />
+          <FunctionImportMapping FunctionImportName="p_AddOrderItem" FunctionName="Model.Store.p_AddOrderItem" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.p_AddOrderItem_Result">
+                <ScalarProperty Name="Limit" ColumnName="Limit" />
+                <ScalarProperty Name="RestQuantity" ColumnName="RestQuantity" />
+                <ScalarProperty Name="CourseBoxQuantity" ColumnName="CourseBoxQuantity" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="p_ChangeOrderItemBoxindex" FunctionName="Model.Store.p_ChangeOrderItemBoxindex" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.p_ChangeOrderItemBoxindex_Result">
+                <ScalarProperty Name="NewID" ColumnName="NewID" />
+                <ScalarProperty Name="NewQuantity" ColumnName="NewQuantity" />
+                <ScalarProperty Name="OldID" ColumnName="OldID" />
+                <ScalarProperty Name="OldQuantity" ColumnName="OldQuantity" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="p_DeleteOrderItem" FunctionName="Model.Store.p_DeleteOrderItem" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.p_DeleteOrderItem_Result">
+                <ScalarProperty Name="Limit" ColumnName="Limit" />
+                <ScalarProperty Name="RestQuantity" ColumnName="RestQuantity" />
+                <ScalarProperty Name="CourseBoxQuantity" ColumnName="CourseBoxQuantity" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="p_GetUserOrderForDay" FunctionName="Model.Store.p_GetUserOrderForDay">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.p_GetUserOrderForDay_Result">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="CourseCategoryID" ColumnName="CourseCategoryID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="OrderTime" ColumnName="OrderTime" />
+                <ScalarProperty Name="OrderItemID" ColumnName="OrderItemID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Boxindex" ColumnName="Boxindex" />
+                <ScalarProperty Name="CourseCategoryName" ColumnName="CourseCategoryName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="IsPurchased" ColumnName="IsPurchased" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="p_GetUserOrderForPeriod" FunctionName="Model.Store.p_GetUserOrderForPeriod">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.p_GetUserOrderForPeriod_Result">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="CourseCategoryID" ColumnName="CourseCategoryID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="OrderTime" ColumnName="OrderTime" />
+                <ScalarProperty Name="OrderItemID" ColumnName="OrderItemID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Boxindex" ColumnName="Boxindex" />
+                <ScalarProperty Name="CourseCategoryName" ColumnName="CourseCategoryName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="IsPurchased" ColumnName="IsPurchased" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="UserSettings">
+            <EntityTypeMapping TypeName="Model.UserSetting">
+              <MappingFragment StoreEntitySet="UserSettings">
+                <ScalarProperty Name="SendDailyNotification" ColumnName="SendDailyNotification" />
+                <ScalarProperty Name="SendWeeklyNotification" ColumnName="SendWeeklyNotification" />
+                <ScalarProperty Name="SendChangedOrderNotification" ColumnName="SendChangedOrderNotification" />
+                <ScalarProperty Name="SendAdminNotification" ColumnName="SendAdminNotification" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="p_StatisticByCourse" FunctionName="Model.Store.p_StatisticByCourse" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.p_StatisticByCourse_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="CourseCount" ColumnName="CourseCount" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+                <ScalarProperty Name="DayCount" ColumnName="DayCount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="p_StatisticByDays" FunctionName="Model.Store.p_StatisticByDays" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.p_StatisticByDays_Result">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="UserCount" ColumnName="UserCount" />
+                <ScalarProperty Name="CourseCount" ColumnName="CourseCount" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="p_StatisticByUsers" FunctionName="Model.Store.p_StatisticByUsers" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.p_StatisticByUsers_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CourseCount" ColumnName="CourseCount" />
+                <ScalarProperty Name="DaysCount" ColumnName="DaysCount" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="p_GetUsersForNotification" FunctionName="Model.Store.p_GetUsersForNotification">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.p_GetUsersForNotification_Result">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="SendWeeklyNotification" ColumnName="SendWeeklyNotification" />
+                <ScalarProperty Name="SendDailyNotification" ColumnName="SendDailyNotification" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="p_StatisticByCourseBuyout" FunctionName="Model.Store.p_StatisticByCourseBuyout">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.p_StatisticByCourseBuyout_Result">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+                <ScalarProperty Name="AvgLimit" ColumnName="AvgLimit" />
+                <ScalarProperty Name="AvgPercent" ColumnName="AvgPercent" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="p_StatisticByCourseDeficit" FunctionName="Model.Store.p_StatisticByCourseDeficit">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.p_StatisticByCourseDeficit_Result">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Limit" ColumnName="Limit" />
+                <ScalarProperty Name="Percent" ColumnName="Percent" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="CompanySettings">
+            <EntityTypeMapping TypeName="Model.CompanySetting">
+              <MappingFragment StoreEntitySet="CompanySettings">
+                <ScalarProperty Name="ShowMenuWithWeight" ColumnName="ShowMenuWithWeight" />
+                <ScalarProperty Name="ShowMenuWithDescription" ColumnName="ShowMenuWithDescription" />
+                <ScalarProperty Name="ShowMenuWithImages" ColumnName="ShowMenuWithImages" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="p_AddCompany" FunctionName="Model.Store.p_AddCompany" />
+          <FunctionImportMapping FunctionImportName="p_ChangeCompanyName" FunctionName="Model.Store.p_ChangeCompanyName" />
+          <FunctionImportMapping FunctionImportName="p_DeleteCompany" FunctionName="Model.Store.p_DeleteCompany" />
+          <FunctionImportMapping FunctionImportName="p_GetCoursePicture" FunctionName="Model.Store.p_GetCoursePicture">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.p_GetCoursePicture_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="p_GetCoursePictures" FunctionName="Model.Store.p_GetCoursePictures">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.p_GetCoursePicture_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="p_UpsertCoursePicture" FunctionName="Model.Store.p_UpsertCoursePicture" />
+          <EntitySetMapping Name="EventLogs">
+            <EntityTypeMapping TypeName="Model.EventLog">
+              <MappingFragment StoreEntitySet="EventLog">
+                <ScalarProperty Name="Principal" ColumnName="Principal" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="EventType" ColumnName="EventType" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Feedbacks">
+            <EntityTypeMapping TypeName="Model.Feedback">
+              <MappingFragment StoreEntitySet="Feedback">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="IsPublic" ColumnName="IsPublic" />
+                <ScalarProperty Name="ReplyToFeedbackID" ColumnName="ReplyToFeedbackID" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="OwnerUserID" ColumnName="OwnerUserID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="FeedbackTypeID" ColumnName="FeedbackTypeID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FeedbackTypes">
+            <EntityTypeMapping TypeName="Model.FeedbackType">
+              <MappingFragment StoreEntitySet="FeedbackType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MenuItemWishes">
+            <EntityTypeMapping TypeName="Model.MenuItemWish">
+              <MappingFragment StoreEntitySet="MenuItemWish">
+                <ScalarProperty Name="CourseCategoryID" ColumnName="CourseCategoryID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="MenuItemID" ColumnName="MenuItemID" />
+                <ScalarProperty Name="CustomerUserID" ColumnName="CustomerUserID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="p_MenuItemWish_Delete" FunctionName="Model.Store.p_MenuItemWish_Delete" />
+          <FunctionImportMapping FunctionImportName="p_MenuItemWish_Get" FunctionName="Model.Store.p_MenuItemWish_Get" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.p_MenuItemWish_Get_Result">
+                <ScalarProperty Name="MenuItemWishID" ColumnName="MenuItemWishID" />
+                <ScalarProperty Name="CustomerUserID" ColumnName="CustomerUserID" />
+                <ScalarProperty Name="MenuItemID" ColumnName="MenuItemID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+                <ScalarProperty Name="CourseCategoryID" ColumnName="CourseCategoryID" />
+                <ScalarProperty Name="CourseCategoryName" ColumnName="CourseCategoryName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="p_MenuItemWish_GetAll" FunctionName="Model.Store.p_MenuItemWish_GetAll" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.p_MenuItemWish_Get_Result">
+                <ScalarProperty Name="MenuItemWishID" ColumnName="MenuItemWishID" />
+                <ScalarProperty Name="CustomerUserID" ColumnName="CustomerUserID" />
+                <ScalarProperty Name="MenuItemID" ColumnName="MenuItemID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+                <ScalarProperty Name="CourseCategoryID" ColumnName="CourseCategoryID" />
+                <ScalarProperty Name="CourseCategoryName" ColumnName="CourseCategoryName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="p_MenuItemWish_Upsert" FunctionName="Model.Store.p_MenuItemWish_Upsert" />
+          <EntitySetMapping Name="IdentityCards">
+            <EntityTypeMapping TypeName="Model.IdentityCard">
+              <MappingFragment StoreEntitySet="IdentityCard">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PublicNumber" ColumnName="PublicNumber" />
+                <ScalarProperty Name="IdentityNumber" ColumnName="IdentityNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="CustomerUserID" ColumnName="CustomerUserID" />
+                <ScalarProperty Name="CustomerCompanyID" ColumnName="CustomerCompanyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="p_Order_GetByIdentityCard" FunctionName="Model.Store.p_Order_GetByIdentityCard">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.p_Order_GetByIdentityCard_Result">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="CourseCategoryID" ColumnName="CourseCategoryID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="OrderTime" ColumnName="OrderTime" />
+                <ScalarProperty Name="OrderItemID" ColumnName="OrderItemID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Boxindex" ColumnName="Boxindex" />
+                <ScalarProperty Name="CourseCategoryName" ColumnName="CourseCategoryName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="IsPurchased" ColumnName="IsPurchased" />
+                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+                <ScalarProperty Name="CourseDescription" ColumnName="CourseDescription" />
+                <ScalarProperty Name="CoursePrice" ColumnName="CoursePrice" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="p_Order_SetPurchased" FunctionName="Model.Store.p_Order_SetPurchased" />
+          <FunctionImportMapping FunctionImportName="p_IdentityCard_CheckNumber" FunctionName="Model.Store.p_IdentityCard_CheckNumber">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.p_IdentityCard_CheckNumber_Result">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="CustomerCompanyID" ColumnName="CustomerCompanyID" />
+                <ScalarProperty Name="IdentityNumber" ColumnName="IdentityNumber" />
+                <ScalarProperty Name="CustomerUserID" ColumnName="CustomerUserID" />
+                <ScalarProperty Name="PublicNumber" ColumnName="PublicNumber" />
+                <ScalarProperty Name="CardHolderName" ColumnName="CardHolderName" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="CardHolderEmail" ColumnName="CardHolderEmail" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="p_UserOrder_GetByID" FunctionName="Model.Store.p_UserOrder_GetByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.p_UserOrder_GetByID_Result">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="CourseCategoryID" ColumnName="CourseCategoryID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="OrderTime" ColumnName="OrderTime" />
+                <ScalarProperty Name="OrderItemID" ColumnName="OrderItemID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Boxindex" ColumnName="Boxindex" />
+                <ScalarProperty Name="CourseCategoryName" ColumnName="CourseCategoryName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="IsPurchased" ColumnName="IsPurchased" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="p_Order_Delete" FunctionName="Model.Store.p_Order_Delete">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.p_Order_Delete_Result">
+                <ScalarProperty Name="Limit" ColumnName="Limit" />
+                <ScalarProperty Name="RestQuantity" ColumnName="RestQuantity" />
+                <ScalarProperty Name="CourseBoxQuantity" ColumnName="CourseBoxQuantity" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="p_CustomerUser_Insert" FunctionName="Model.Store.p_CustomerUser_Insert" />
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams />
+  </Designer>
+</edmx:Edmx>

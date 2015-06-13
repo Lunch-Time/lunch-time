@@ -1,0 +1,25 @@
+﻿<html>
+    <head>
+        <title>Напоминание</title>
+    </head>
+    <body>
+        <table
+            style="border: medium none; margin: 0pt auto; padding: 0pt; width: 615px; font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; font-size: 14px; color: rgb(26, 26, 26);"
+            align="center" cellpadding="0" cellspacing="0">
+            <tbody>
+                <tr>
+                    <td>
+                        <div style="margin: 0 0 50px;">
+                            <p>В меню на <b>@Model.Day</b> произошла замена блюда <b>@Model.CourseOld</b> на <b>@Model.CourseNew</b>. 
+                                В вашем заказе присутствует блюдо <b>@Model.CourseOld</b>, по-умолчанию данное блюдо будет удалено из вашего заказа.
+                                Если вы хотите заменить данное блюдо на <b>@Model.CourseNew</b>, то нажмите на кнопку <a href="@Model.KeyLink">заменить</a>.
+                            </p>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
+
+

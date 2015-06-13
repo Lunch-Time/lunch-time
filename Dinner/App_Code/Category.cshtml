@@ -1,0 +1,44 @@
+﻿@using Dinner.Entities
+@using Dinner.Entities.Course
+@inherits Dinner.Helper
+
+@helper Title(CourseCategories categoryType, string category)
+{
+    <h3 class="uppercase">
+        @CategoryIcon(categoryType, category)
+        @category
+    </h3>
+}
+
+@helper CategoryIcon(CourseCategories categoryType, string title = "")
+{
+    <img src="@CategoryIconUrl(categoryType)" alt="@title" class="img-circle course-category-icon" />
+}
+
+@helper CategoryIconUrl(CourseCategories categoryType)
+{
+    string iconFileName;
+    switch (categoryType)
+    {
+        case CourseCategories.Salads:
+            iconFileName = "salad.png";
+            break;
+        case CourseCategories.Soups:
+            iconFileName = "soup.png";
+            break;
+        case CourseCategories.MainDishes:
+            iconFileName = "meat.png";
+            break;
+        case CourseCategories.SideDishes:
+            iconFileName = "garnish.png";
+            break;
+        case CourseCategories.Misc:
+            iconFileName = "misc.png";
+            break;
+        default:
+            iconFileName = "misc.png";
+            break;
+    }
+
+    @Url.Content(string.Format("~/Images/CourseType/{0}", iconFileName))
+}

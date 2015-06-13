@@ -1,0 +1,17 @@
+﻿<div>
+    <h3 class="page-title">
+        <i class="glyphicon glyphicon-cutlery"></i>
+        Блюда
+    </h3>
+    <accordion close-others="true">
+        <div ng-repeat="categoryCourses in categoriesCourses" style="margin-bottom: 5px;">
+            <lt:admin-courses-category category="categoryCourses.category"
+                                       courses="categoryCourses.courses"
+                                       on-add-course-to-menu="addCourseToMenu(course)"
+                                       on-create-course="createCourse(category)"
+                                       on-edit-course="editCourse(course)"
+                                       on-remove-course="removeCourse(course)">
+            </lt:admin-courses-category>
+        </div>
+    </accordion>
+</div>

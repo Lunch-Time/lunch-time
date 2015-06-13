@@ -1,0 +1,28 @@
+﻿@model Dinner.Models.ApplicationViewModel<Dinner.Entities.Course.CourseModel, Dinner.Entities.Company.CompanySettingsModel> 
+
+<tr>
+    @if (@Model.Bag.ShowMenuWithImages)
+    {
+        <td>
+            <img style="cursor: pointer;" class="pics img-circle course-category-icon"
+                 src="@Href(string.Format("~/api/coursepicture/thumbnail?companyid={0}&courseid={1}", @Model.Model.CompanyID, @Model.Model.ID))"
+                 data-glisse-big="@Href(string.Format("~/api/coursepicture/image?companyid={0}&courseid={1}", @Model.Model.CompanyID, @Model.Model.ID))" />
+        </td>
+    }
+    <td>
+        @Model.Model.Name
+        @if (@Model.Bag.ShowMenuWithDescription)
+        {
+            <small style="display: block" class="text-muted">@Model.Model.Description</small>
+        }
+    </td>
+    @if (@Model.Bag.ShowMenuWithWeight)
+    {
+        <td class="nowrap" style="padding-right: 20px;">
+            <span>@Model.Model.Weight</span>
+        </td>
+    }
+    <td class="nowrap">
+        @string.Format("{0:C}", Model.Model.Price)
+    </td>
+</tr>

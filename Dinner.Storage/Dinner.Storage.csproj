@@ -1,0 +1,338 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5860B373-C888-4F71-B5C1-19F9014C1F48}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Dinner.Storage</RootNamespace>
+    <AssemblyName>Dinner.Storage</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+    <CodeContractsAssemblyMode>1</CodeContractsAssemblyMode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <CodeContractsEnableRuntimeChecking>True</CodeContractsEnableRuntimeChecking>
+    <CodeContractsRuntimeOnlyPublicSurface>False</CodeContractsRuntimeOnlyPublicSurface>
+    <CodeContractsRuntimeThrowOnFailure>True</CodeContractsRuntimeThrowOnFailure>
+    <CodeContractsRuntimeCallSiteRequires>False</CodeContractsRuntimeCallSiteRequires>
+    <CodeContractsRuntimeSkipQuantifiers>False</CodeContractsRuntimeSkipQuantifiers>
+    <CodeContractsRunCodeAnalysis>False</CodeContractsRunCodeAnalysis>
+    <CodeContractsNonNullObligations>False</CodeContractsNonNullObligations>
+    <CodeContractsBoundsObligations>False</CodeContractsBoundsObligations>
+    <CodeContractsArithmeticObligations>False</CodeContractsArithmeticObligations>
+    <CodeContractsEnumObligations>False</CodeContractsEnumObligations>
+    <CodeContractsRedundantAssumptions>False</CodeContractsRedundantAssumptions>
+    <CodeContractsInferRequires>False</CodeContractsInferRequires>
+    <CodeContractsInferEnsures>False</CodeContractsInferEnsures>
+    <CodeContractsInferObjectInvariants>False</CodeContractsInferObjectInvariants>
+    <CodeContractsSuggestAssumptions>False</CodeContractsSuggestAssumptions>
+    <CodeContractsSuggestRequires>True</CodeContractsSuggestRequires>
+    <CodeContractsSuggestEnsures>False</CodeContractsSuggestEnsures>
+    <CodeContractsSuggestObjectInvariants>False</CodeContractsSuggestObjectInvariants>
+    <CodeContractsRunInBackground>True</CodeContractsRunInBackground>
+    <CodeContractsShowSquigglies>True</CodeContractsShowSquigglies>
+    <CodeContractsUseBaseLine>False</CodeContractsUseBaseLine>
+    <CodeContractsEmitXMLDocs>False</CodeContractsEmitXMLDocs>
+    <CodeContractsCustomRewriterAssembly />
+    <CodeContractsCustomRewriterClass />
+    <CodeContractsLibPaths />
+    <CodeContractsExtraRewriteOptions />
+    <CodeContractsExtraAnalysisOptions />
+    <CodeContractsBaseLineFile />
+    <CodeContractsCacheAnalysisResults>True</CodeContractsCacheAnalysisResults>
+    <CodeContractsRuntimeCheckingLevel>Full</CodeContractsRuntimeCheckingLevel>
+    <CodeContractsReferenceAssembly>DoNotBuild</CodeContractsReferenceAssembly>
+    <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <CodeContractsEnableRuntimeChecking>True</CodeContractsEnableRuntimeChecking>
+    <CodeContractsRuntimeOnlyPublicSurface>False</CodeContractsRuntimeOnlyPublicSurface>
+    <CodeContractsRuntimeThrowOnFailure>True</CodeContractsRuntimeThrowOnFailure>
+    <CodeContractsRuntimeCallSiteRequires>False</CodeContractsRuntimeCallSiteRequires>
+    <CodeContractsRuntimeSkipQuantifiers>False</CodeContractsRuntimeSkipQuantifiers>
+    <CodeContractsRunCodeAnalysis>False</CodeContractsRunCodeAnalysis>
+    <CodeContractsNonNullObligations>False</CodeContractsNonNullObligations>
+    <CodeContractsBoundsObligations>False</CodeContractsBoundsObligations>
+    <CodeContractsArithmeticObligations>False</CodeContractsArithmeticObligations>
+    <CodeContractsEnumObligations>False</CodeContractsEnumObligations>
+    <CodeContractsRedundantAssumptions>False</CodeContractsRedundantAssumptions>
+    <CodeContractsInferRequires>False</CodeContractsInferRequires>
+    <CodeContractsInferEnsures>False</CodeContractsInferEnsures>
+    <CodeContractsInferObjectInvariants>False</CodeContractsInferObjectInvariants>
+    <CodeContractsSuggestAssumptions>False</CodeContractsSuggestAssumptions>
+    <CodeContractsSuggestRequires>True</CodeContractsSuggestRequires>
+    <CodeContractsSuggestEnsures>False</CodeContractsSuggestEnsures>
+    <CodeContractsSuggestObjectInvariants>False</CodeContractsSuggestObjectInvariants>
+    <CodeContractsRunInBackground>True</CodeContractsRunInBackground>
+    <CodeContractsShowSquigglies>True</CodeContractsShowSquigglies>
+    <CodeContractsUseBaseLine>False</CodeContractsUseBaseLine>
+    <CodeContractsEmitXMLDocs>False</CodeContractsEmitXMLDocs>
+    <CodeContractsCustomRewriterAssembly />
+    <CodeContractsCustomRewriterClass />
+    <CodeContractsLibPaths />
+    <CodeContractsExtraRewriteOptions />
+    <CodeContractsExtraAnalysisOptions />
+    <CodeContractsBaseLineFile />
+    <CodeContractsCacheAnalysisResults>True</CodeContractsCacheAnalysisResults>
+    <CodeContractsRuntimeCheckingLevel>Full</CodeContractsRuntimeCheckingLevel>
+    <CodeContractsReferenceAssembly>DoNotBuild</CodeContractsReferenceAssembly>
+    <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <OutputPath>bin\Test\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.1.5\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=4.3.1.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.Patterns, Version=0.7.0.32308, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.Patterns.0.7\lib\net40\EntityFramework.Patterns.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IAdminDinnerStorage.cs" />
+    <Compile Include="IAuthStorage.cs" />
+    <Compile Include="ICompanyStorage.cs" />
+    <Compile Include="IImageStorage.cs" />
+    <Compile Include="Impl\AdminDinnerStorage.cs" />
+    <Compile Include="Impl\AuthStorage.cs" />
+    <Compile Include="Impl\CompanyStorage.cs" />
+    <Compile Include="Impl\ImageStorage.cs" />
+    <Compile Include="Impl\NotificationStorage.cs" />
+    <Compile Include="Impl\StatisticStorage.cs" />
+    <Compile Include="Impl\UserDinnerStorage.cs" />
+    <Compile Include="INotificationStorage.cs" />
+    <Compile Include="IStatisticStorage.cs" />
+    <Compile Include="IUserDinnerStorage.cs" />
+    <Compile Include="Repository\Company.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\CompanySetting.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\Course.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\CourseCategory.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataContextFactory.cs" />
+    <Compile Include="Repository\DinnerDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DinnerDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DinnerDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DinnerDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DinnerDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\EventLog.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\Feedback.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\FeedbackType.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\IDataContextFactory.cs" />
+    <Compile Include="Repository\IdentityCard.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\Menu.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\MenuItemWish.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\Order.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\OrderItem.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\p_AddOrderItem_Result.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\p_ChangeOrderItemBoxindex_Result.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\p_DeleteOrderItem_Result.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\p_GetAllOrdersByDate_Result.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\p_GetCoursePicture_Result.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\p_GetCourses_Result.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\p_GetDayMenu_Result.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\p_GetDayTiming_Result.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\p_GetOrderedMenu_Result.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\p_GetUserOrderForDay_Result.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\p_GetUserOrderForPeriod_Result.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\p_GetUserOrderTime_Result.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\p_GetUsersForNotification_Result.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\p_IdentityCard_CheckNumber_Result.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\p_MenuItemWish_Get_Result.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\p_Order_Delete_Result.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\p_Order_GetByIdentityCard_Result.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\p_StatisticByCourseBuyout_Result.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\p_StatisticByCourseDeficit_Result.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\p_StatisticByCourse_Result.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\p_StatisticByDays_Result.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\p_StatisticByUsers_Result.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\p_UpsertCourseToMenu_Result.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\p_UpsertCourse_Result.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\p_UserOrder_GetByID_Result.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\User.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\UserRole.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\UserSetting.cs">
+      <DependentUpon>DinnerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StorageModule.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <EntityDeploy Include="Repository\DinnerDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DinnerDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Repository\DinnerDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DinnerDB.edmx</DependentUpon>
+      <LastGenOutput>DinnerDB.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Repository\DinnerDB.edmx.diagram">
+      <DependentUpon>DinnerDB.edmx</DependentUpon>
+    </None>
+    <None Include="Repository\DinnerDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DinnerDB.edmx</DependentUpon>
+      <LastGenOutput>DinnerDB.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dinner.Entities\Dinner.Entities.csproj">
+      <Project>{22207837-6AEC-4BEB-BF4D-2716209C0CB0}</Project>
+      <Name>Dinner.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dinner.Infrastructure\Dinner.Infrastructure.csproj">
+      <Project>{9f62ee4d-5ebb-487e-a784-0f3e41f33bab}</Project>
+      <Name>Dinner.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>"$(SolutionDir)packages\EntityFramework.Patterns.0.7\tools\Afterthought.Amender.exe" "$(TargetPath)" "$(TargetDir)EntityFramework.Patterns.dll"
+</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

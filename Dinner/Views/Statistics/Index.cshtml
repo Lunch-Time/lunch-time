@@ -1,0 +1,163 @@
+﻿@using System.Web.Script.Serialization
+@using Dinner.Helpers
+@model Dinner.Models.StatisticsModel
+
+@{
+    ViewBag.Title = "Статистика";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2 id="statisticsName"></h2>
+
+        @using (Html.BeginForm("Get", "Statistics", FormMethod.Post, htmlAttributes: new {data_reload_statistics = "true", @class = "form-inline"}))
+        {
+            <div class="form-group with-icon-over-input">
+                <select name="statisticsType" class="form-control statistics-dropdown">
+                    @foreach (var statisticsType in Model.AvailableStatisticsTypes)
+                    {
+                        <option value="@statisticsType" @(Model.CurrentStatisticsType == statisticsType ? "selected" : "")>@statisticsType.DisplayName()</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <input id="datepickerFrom" class="form-control" style="cursor: default; background-color: inherit;" name="from" value="@Model.StartDate.ToString("dd.MM.yyyy")">
+            </div>
+            
+                <div class="form-group">
+                    <input id="datepickerTo" class="form-control" style="cursor: default; background-color: inherit;" name="to" value="@Model.EndDate.ToString("dd.MM.yyyy")">
+                </div>
+            <button type="submit" class="btn btn-success">Показать</button>
+        }
+
+<div id="statisticsArea" class='row' />
+
+
+<script>
+    $(function () {
+        
+        $('[data-reload-statistics]').ajaxForm({
+            success: function(response, status, xhr, $form) {
+                redrawStatistics(response);
+            },
+            error: function() {
+                toastr.error('Не удалось загрузить статистику.');
+            }
+        });
+
+
+        $('.statistics-dropdown').change(function() {
+            $(this).closest("form").submit();
+        });
+        
+        $('#datepickerFrom').pickadate({
+            formatSubmit: 'dd.mm.yyyy',
+            format: 'dd.mm.yyyy',
+            min: new Date(2013, 10, 1)
+            
+        });
+
+        $('#datepickerTo').pickadate({
+            formatSubmit: 'dd.mm.yyyy',
+            format: 'dd.mm.yyyy',
+            min: new Date(2013, 10, 1)
+        });
+
+        var redrawStatistics = function (data) {
+            $("#statisticsArea").html("");
+
+            $("#statisticsName").text(data.CurrentStatisticsName);
+
+            for (var i = 0; i < data.StatisticGroups.length; i++) {
+                var group = data.StatisticGroups[i];
+
+                var titles = [];
+                var values = [];
+
+                for (var j = 0; j < group.Records.length; j++) {
+                    titles.push(group.Records[j].Title);
+                    values.push(group.Records[j].Value);
+                }
+
+                renderPlot(i, titles, values, group.GroupName, group.MaxYAxisValue);
+            }
+        };
+
+        var renderPlot = function(number, titles, values, categoryName, maxYValue) {
+            
+            var plotId = 'chart' + number;
+            var plotDiv = $("<div id='" + plotId + "' class='col-xs-11 col-sm-3' style='height:200px;'>  </div>");
+            
+            $("#statisticsArea").append(plotDiv);
+            
+            var plotDAta = [];
+            
+            for (var i = 0; i < values.length; i++)
+                plotDAta.push([titles[i], values[i]]);
+
+            var plot = $.jqplot(plotId, [plotDAta], {
+                title: categoryName,
+                grid: {
+                    gridLineColor: "#e7e7e7",
+                    borderWidth: 1.0,
+                    background: '#fff'
+                },
+                series: [{
+                    renderer: $.jqplot.BarRenderer,
+                    rendererOptions: {
+                        barWidth: 20
+                    }
+                }],
+                seriesDefaults: {
+                    color: "rgba(215, 99, 78,1)",
+                    fillColor: "rgba(215, 99, 78, 0.5)",
+                    
+                },
+                axesDefaults: {
+                    tickRenderer: $.jqplot.CanvasAxisTickRenderer,
+                    tickOptions: {
+                        fontFamily: 'Georgia',
+                        fontSize: '10pt',
+                    }
+                },
+                axes: {
+                    xaxis: {
+                        renderer: $.jqplot.CategoryAxisRenderer,
+                        tickOptions: {
+                            angle: -30
+                        }
+                    },
+
+                    yaxis: {
+                        max: maxYValue,
+                        min: 0,
+                        numberTicks: 5
+                    }
+                },
+                highlighter: {
+                    tooltipAxes: 'y',
+                    show: true
+                }
+            });
+
+            // http://stackoverflow.com/questions/11229577/jqplot-set-a-fix-height-value-for-the-graph-area-not-including-y-axe-labels
+            
+            var labelWidths = $('.jqplot-xaxis-tick').map(function () {
+                return $(this).width();
+            }).get();
+
+            var w = parseInt($("#" + plotId + " .jqplot-yaxis").width(), 10) + values.length * 40;
+            var h = parseInt($("#" + plotId + " .jqplot-title").height(), 10) + parseInt($("#" + plotId + " .jqplot-xaxis").height(), 10) + parseInt($("#" + plotId).height(), 10);
+            $("#" + plotId).width(w).height(h);
+            plot.replot();
+        };
+
+        redrawStatistics(@Html.Raw(Json.Encode(@Model)));
+    });
+</script>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/statistics");
+    @Scripts.Render("~/bundles/datepicker")
+}

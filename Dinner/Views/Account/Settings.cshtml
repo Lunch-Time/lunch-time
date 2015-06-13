@@ -1,0 +1,56 @@
+﻿@model Dinner.Entities.UserSettingsModel
+@{
+    ViewBag.Title = "Настройки пользователя";
+}
+
+<div class="row content">
+    <div class="col-md-12 col-lg-12 full-height">
+        <div class="row header-title">
+            <div class="col-md-12 col-lg-12 text-center">
+                <h1>Мои настройки</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-xs-1"></div>
+            <div class="col-lg-4 col-md-4 col-xs-10">
+                @using (Html.BeginForm("Settings", "Account"))
+                {
+                    <div class="form-group">
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationMessage("Exception")
+                        @if (!string.IsNullOrEmpty(ViewBag.StatusMessage))
+                        {
+                            <div class="alert alert-success alert-inline">
+                                @ViewBag.StatusMessage
+                            </div>
+                        }
+                    </div>
+                    <div class="form-group">
+                        @Html.CheckBoxFor(m => m.SendDailyNotification)
+                        @Html.LabelFor(m => m.SendDailyNotification, "Напоминать о заказе обеда на следующий день")
+                    </div>
+                    <div class="form-group">
+                        @Html.CheckBoxFor(m => m.SendWeeklyNotification)
+                        @Html.LabelFor(m => m.SendWeeklyNotification, "Напоминать о заказе обеда на следующую неделю")
+                    </div>
+                    <div class="form-group">
+                        @Html.CheckBoxFor(m => m.SendAdminNotification)
+                        @Html.LabelFor(m => m.SendAdminNotification, "Получать новости от сайта")
+                    </div>
+                    @*<div class="form-group">
+                        @Html.CheckBoxFor(m => m.SendChangedOrderNotification)
+                        @Html.LabelFor(m => m.SendChangedOrderNotification, "Получать уведомления о замене блюд")
+                    </div>*@
+                    <div class="form-group text-center">
+                        <input type="submit" value="Сохранить" class="btn btn-success btn-block" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

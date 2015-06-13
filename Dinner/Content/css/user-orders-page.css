@@ -1,0 +1,196 @@
+.user-orders-page .orders-day {
+  width: 100%;
+  max-width: 822px;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding-bottom: 1em;
+}
+.user-orders-page .orders-day > h3 {
+  margin-top: 0;
+  line-height: 1.5em;
+  border-bottom: 1px solid #eeeeee;
+  overflow: hidden;
+  margin-right: 55px;
+}
+.user-orders-page .orders-day > h3 span {
+  float: left;
+  font-size: 0.6em;
+  margin-left: 1em;
+  line-height: 2.5em;
+}
+.user-orders-page .orders-day > h3 span.day-name {
+  color: #000;
+  text-transform: capitalize;
+  font-size: 1em;
+  line-height: 1.5em;
+  margin-left: 0;
+}
+.user-orders-page .orders-day > h3 span.total-price {
+  color: #d7634e;
+  font-size: 0.7em;
+  vertical-align: middle;
+  line-height: 2.14em;
+}
+.user-orders-page .orders-day > h3 span.order-date {
+  float: right;
+  color: #555555;
+}
+.user-orders-page .orders-day > h3 span.no-orders {
+  color: #999999;
+}
+.user-orders-page .orders-day > h3 span.frozen-order {
+  color: #999999;
+}
+.user-orders-page .orders-day .user-order .box-header {
+  position: absolute;
+  right: 0;
+  width: 50px;
+  font-size: 0.8em;
+  line-height: 15px;
+  top: 50%;
+  margin-top: -11px;
+  background: rgba(0, 0, 0, 0.1);
+  padding: 4px;
+}
+.user-orders-page .orders-day .user-order .order-items {
+  margin-right: 50px;
+  border-right: 5px solid transparent;
+}
+.user-orders-page .orders-day .user-order .order-items .order-item {
+  height: 3em;
+  line-height: 3em;
+  overflow: hidden;
+  border-top: 1px solid #dddddd;
+  background: #ffffff;
+}
+.user-orders-page .orders-day .user-order .order-items .order-item:nth-child(odd) {
+  background: #f9f9f9;
+}
+.user-orders-page .orders-day .user-order .order-items .order-item > .category-name {
+  position: relative;
+  float: left;
+  width: 8.33333333%;
+  min-height: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #999999;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: center;
+}
+.user-orders-page .orders-day .user-order .order-items .order-item > .category-name img {
+  margin-right: 5px;
+  vertical-align: -10px;
+}
+.user-orders-page .orders-day .user-order .order-items .order-item > .dish-name {
+  position: relative;
+  float: left;
+  width: 58.33333333%;
+  min-height: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.user-orders-page .orders-day .user-order .order-items .order-item > .course-price {
+  position: relative;
+  float: left;
+  width: 16.66666667%;
+  min-height: 1px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: right;
+}
+.user-orders-page .orders-day .user-order .order-items .order-item > .course-quantity {
+  position: relative;
+  float: left;
+  width: 16.66666667%;
+  min-height: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  text-align: center;
+}
+.user-orders-page .orders-day .user-order > .box {
+  margin-bottom: 0.5em;
+  overflow: hidden;
+  position: relative;
+}
+.user-orders-page .orders-day .user-order > .box1 .order-items {
+  border-right-color: #318295;
+}
+.user-orders-page .orders-day .user-order > .box1 .order-items .order-item {
+  background: #f5f9fa;
+}
+.user-orders-page .orders-day .user-order > .box1 .order-items .order-item:nth-child(odd) {
+  background: #ecf4f5;
+}
+.user-orders-page .orders-day .user-order > .box1 > .box-header {
+  background: #25616e;
+  color: #fff;
+}
+.user-orders-page .orders-day .user-order > .box2 .order-items {
+  border-right-color: #73884c;
+}
+.user-orders-page .orders-day .user-order > .box2 .order-items .order-item {
+  background: #f8f9f6;
+}
+.user-orders-page .orders-day .user-order > .box2 .order-items .order-item:nth-child(odd) {
+  background: #f2f4ee;
+}
+.user-orders-page .orders-day .user-order > .box2 > .box-header {
+  background: #58673a;
+  color: #fff;
+}
+.user-orders-page .orders-day .user-order > .box3 .order-items {
+  border-right-color: #c45054;
+}
+.user-orders-page .orders-day .user-order > .box3 .order-items .order-item {
+  background: #fcf6f6;
+}
+.user-orders-page .orders-day .user-order > .box3 .order-items .order-item:nth-child(odd) {
+  background: #f9eded;
+}
+.user-orders-page .orders-day .user-order > .box3 > .box-header {
+  background: #a9383d;
+  color: #fff;
+}
+.user-orders-page .orders-day .user-order > .box4 .order-items {
+  border-right-color: #bf8a40;
+}
+.user-orders-page .orders-day .user-order > .box4 .order-items .order-item {
+  background: #fcf9f5;
+}
+.user-orders-page .orders-day .user-order > .box4 .order-items .order-item:nth-child(odd) {
+  background: #f9f3ec;
+}
+.user-orders-page .orders-day .user-order > .box4 > .box-header {
+  background: #996f33;
+  color: #fff;
+}
+@media (max-width: 767px) {
+  .user-orders-page > .orders-day {
+    max-width: 767px;
+  }
+  .user-orders-page > .orders-day > h3 {
+    margin-right: 0;
+  }
+  .user-orders-page > .orders-day .user-order > .box > .box-header {
+    position: static;
+    top: 0px;
+    margin-top: 0px;
+  }
+  .user-orders-page > .orders-day .user-order > .box > .order-items {
+    margin-right: 0;
+    border-right: 0;
+  }
+}
+.user-orders-page > .archive-order {
+  opacity: 0.5;
+  -webkit-transition: opacity 0.5s ease-in;
+  transition: opacity 0.5s ease-in;
+}
+.user-orders-page > .archive-order:hover {
+  opacity: 1;
+}
+.user-orders-page > .current-day h3 > span.day-name {
+  color: #d7634e;
+}
